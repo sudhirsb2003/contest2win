@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+<% @title ||= "#{@controller.controller_name.humanize}: #{params[:action].humanize}" %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <%= render :partial => 'layouts/meta' %>
+  <%= yield :head %>
+</head>
+
+<body>
+<div id="wrapper">
+<section id="container">
+  <%= yield %>
+	<%= render :partial => '/layouts/header/' %>
+	<%= render :partial => '/layouts/footer/' %>    
+</section>
+</div>
+</body>
+</html>

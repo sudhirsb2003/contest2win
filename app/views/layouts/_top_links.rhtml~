@@ -1,0 +1,68 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+$('.Login').click(function () {
+        //Conditional states allow the dropdown box appear and disappear 
+        if ($('.Login-Popup').is(":visible")) {
+            $('.Login-Popup').hide()
+	    $('#session').removeClass('active'); // When the dropdown is not visible removes the class "active"
+        } else {
+            $('.Login-Popup').show()
+	    $('#session').addClass('active'); // When the dropdown is visible add class "active"
+        }
+	    return false;
+    });
+    $('.Login-Popup').click(function(e) {
+    e.stopPropagation();
+    });
+    $(document).click(function() {
+        $('.Login-Popup').hide();
+	$('#session').removeClass('active');
+    });
+});     
+
+</script>
+
+
+
+<div class="TopBar">
+	    <div class="WrapBox">
+	    	<div class="Socio">
+          	<%=link_to(image_tag("ico_fb.png",:width => "22",:height => "22",:alt => "facebook"))%>
+          	<%=link_to(image_tag("ico_twitter.png",:width => "22",:height => "22",:alt => "twitter"))%>
+          	<%=link_to(image_tag("ico_google_plus.png",:width => "22",:height => "21",:alt => "facebook"))%>
+	      </div>
+	      <%unless logged_in?%>
+		      <div class="FloatRight">
+		        <div class="SignUp">
+		          <label>Win <span>100 </span>free bonus points ! </label>
+		          <%=link_to "SIGN UP NOW",account_link(:action => :register, :ref => request.request_uri)%>
+		        </div>
+		        <div class="Login">
+		        	<%=link_to "Login",account_link(:action => :login)%>
+                            <span class="MTxt">or </span>
+                            <div class="Login-Popup">
+   <% form_for :user, @user, :url => account_url(:action => :login, :protocol => AppConfig.ssl_enabled ? 'https' : 'http') do |f| %>
+<%= f.text_field :email, :class=>"text-box", :placeholder => "username/email" %>
+<%= f.password_field :password, :class=>"text-box" %>
+        <span><%= link_to "Forgot Password?", account_link(:action => :forgot_password) %></span>
+
+                                    <div class="mrt5"><input type="checkbox"> Remember Me
+                                  <%= submit_tag '', :class=>"Login-Btn" %>
+                                    </div>
+                                    <div class="mrt5">
+                                     <div class="FloatLeft">
+                                         <span>Not a member yet?</span><br>
+                                         Sign Up now and get a<br> bonus of 100 prize points.
+                                         </div>
+                                     <input type="submit" value="" class="Sign-Up">
+                                    </div>
+                                <% end %>                             </div>
+		          <a href="javascript:;" class="fb-login-button">Login with Facebook</a>
+		        </div>
+		      </div>
+	      <%end%>
+	      <div class="Clear"></div>
+	    </div>
+	</div>

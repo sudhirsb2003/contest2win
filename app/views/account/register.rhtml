@@ -1,0 +1,12 @@
+<% @title = "Sign Up" %>
+<% if @referred_by %>
+<div class="large">You were referred to by <%= link_to_user @referred_by.username %></div>
+<% end %>
+
+<p>
+	Already a registered user? <%= link_to 'Log in', {:action => 'login'} %> here.
+</p>
+<%= render :partial => 'registration_form' %>
+<% if params[:action] == 'migrate' %>
+<script type="text/javascript">Element.toggle('old_c2w_user_form_container');Element.toggle('registration_form_inner');</script>
+<% end %>

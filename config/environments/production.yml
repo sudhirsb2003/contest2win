@@ -1,0 +1,13 @@
+include_analytics_code: true
+default_bcc_address: c2wnotify@gmail.com
+cricket_bookie_transfer_url: 'http://orkut.cricketbookie.c2w.com/players/transfer'
+
+# AdSense API parameters
+adsense_developer_email: adsense@c2w.com
+
+# moved to settings table in db
+#adsense_developer_password: *********
+adsense_api_url: https://www.google.com
+adsense_developer_url: c2w.com
+
+ssl_enabled: true

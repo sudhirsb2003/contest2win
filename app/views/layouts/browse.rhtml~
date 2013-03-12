@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title><%= @title %> | Quizzes, Crosswords, Hangman, Personality Tests and Trivia Games</title>
+	<%= javascript_include_tag :defaults,"jquery"%>
+	<script type="text/javascript">
+	  $.noConflict();
+	</script>
+	<%= javascript_include_tag "general"%>
+	<%= stylesheet_link_tag 'style' %>
+</head>
+
+<body>
+<div id="wrapper">
+  <%= yield %>
+	<%= render :partial => '/layouts/header/' %>
+	<%= render :partial => '/layouts/footer/' %>    
+</div>
+</body>
+</html>

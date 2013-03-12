@@ -1,0 +1,37 @@
+<%= render :partial => "facebook/init" %>
+<header>
+	<%=render :partial => "layouts/top_links"%>
+	<div class="WrapBox">
+		<div class="Logo">
+			<%=link_to(image_tag("logo.png",:width => "158",:height => "67",:alt => "logo"),'/')%>
+		</div>
+	    <div class="FloatRight">
+	    	<div style="background:#c7c7c7; width:728px; height:85px; font-size:10px; text-align:right; color:#FFF">Add Block</div>
+	    </div>
+	    <div class="Clear"></div>
+	</div>
+	<div class="NavBg">
+		<div class="WrapBox">
+      <nav>
+        <ul>
+          <li>
+            <%=link_to(content_tag(:span,"",:class => "Sprite Ico")+ "Play" + content_tag(:span ,"",:class => "ShapeV"),contests_path(:controller => 'contests', :action => :most_recent),:class => "NIPlay")%>
+          </li>
+          <li>
+            <%=link_to(content_tag(:span,"",:class => "Sprite Ico")+ "create",contests_path(:action => 'create', :controller => 'contests'),:class => "NICreate")%>
+          </li>
+          <li>
+            <%=link_to(content_tag(:span,"",:class => "Sprite Ico")+ "community",community_path,:class => "NICommunity")%>
+          </li>
+          <li>
+            <%=link_to(content_tag(:span,"",:class => "Sprite Ico")+ "leaderboard",prizes_path(:action => 'browse'),:class => "NILBooard")%>            
+          </li>
+          <li><a href="#" class="NIHworks"><span class="Sprite Ico"></span>how it works</a></li>
+          <li class="SrchCon">
+          	<input name="" type="text" value="SEARCH" class="SrchEl"><span class="Sprite Ico"></span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+	</div>
+</header>

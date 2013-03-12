@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<% @title ||= "#{@controller.controller_name.humanize}: #{params[:action].humanize}" %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <%= render :partial => 'layouts/meta' %>
+  <%= active_scaffold_includes %>
+</head>
+<%= render :partial => 'layouts/header' %>
+<br clear="all"/>
+<div id="middle">
+  <% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %>
+  <div id="right" class="admin_menu"><h2>Sub Menu</h2><%= render :partial => 'sub_menu' %></div><!--right-->	
+  <div id="main">
+  <h1><%= @title %></h1>
+    <%= yield %>
+  </div><!--main-->
+</div><!--middle-->
+<%= render :partial => 'layouts/footer' %>

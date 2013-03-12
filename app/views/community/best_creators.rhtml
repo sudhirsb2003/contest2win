@@ -1,0 +1,23 @@
+<% cache(@community_best_creators_cache_key) do %>
+<!--b:cache <%= "#{@community_best_creators_cache_key} #{Time.now}" %>-->
+<%= render :partial => 'sub_menu' %>
+<div id="main_center">
+<%= will_paginate @best_creators %>
+<div class="best_creators" style="width:556px">
+<ul>
+<% @best_creators.each do |user| %>
+  <li><div class="thumb"><%= show_user_image(user, 'thumb') %></div>
+  <span><%= link_to_user user.username, 15 %></span>
+  <span>Votes <%= number_with_delimiter(user.total_score) %></span><br/>
+  <small>Created <b><%= number_with_delimiter(user.num_contests) %></b> games</small></li>
+<% end %>
+<% (3-(@best_creators.size % 3)).times do %>
+	<li></li>
+<% end %>
+</ul>
+</div>
+<br clear="all"/>
+<%= will_paginate @best_creators %>
+</div><!-- main_center -->			
+<!--e cache <%= @community_best_creators_cache_key %>-->
+<% end %>

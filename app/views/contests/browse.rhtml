@@ -1,0 +1,167 @@
+<section id="container">
+	<div class="BreadCrumb">
+    	<a href="#">Home</a> »
+        <%=link_to "Play",contests_path(:action => "most_recent")%> »
+        <%if params[:controller] != "contests"%>
+            <%=link_to params[:controller].to_s.titleize, contests_path(:overwrite_params => {:action => 'most_recent',:page => nil}) if !params[:action].blank?%> »
+        <%end%>
+        <%=link_to params[:action].to_s.titleize, contests_path(:overwrite_params => {:action => params[:action],:page => nil}) if !params[:action].blank?%>
+    </div>
+	<aside class="PanelRight">
+        <%=render :partial => "/contests/suggestions"%>
+        <div class="BoxBdr AdBlock">
+        </div>
+        <%=render :partial => "/shared/fb_likes"%>
+        <%=render :partial => "/shared/twitter_contents"%>        
+    </aside>
+    <section class="PanelCenter">
+    	
+      <div class="DipCon">
+      	<h1><%=params[:action].to_s.titleize if !params[:action].blank?%></h1>
+        <div class="FavCat">
+            <ul>
+                <li <%= ' class="RBox"' if "quizzes" == params[:controller] %>>
+                    <%=link_to(content_tag(:span,nil,:class => "Sprite IcoQuiz") + "Quizzes",contests_path(:overwrite_params => {:controller => "quizzes",:page => nil}))%>
+                </li>
+                <li <%= ' class="RBox"' if "hangman" == params[:controller] %>>
+                    <%=link_to(content_tag(:span,nil,:class => "Sprite IcoHang") + "Hangman",contests_path(:overwrite_params => {:controller => "hangman",:page => nil}))%>
+                </li>
+                <li <%= ' class="RBox"' if "crosswords" == params[:controller] %>>
+                    <%=link_to(content_tag(:span,nil,:class => "Sprite IcoCross") + "Crossword",contests_path(:overwrite_params => {:controller => "crosswords",:page => nil}))%>
+                </li>
+                <li <%= ' class="RBox"' if "personality_tests" == params[:controller] %>>
+                    <%=link_to(content_tag(:span,nil,:class => "Sprite IcoPersnlty") + "Personality",contests_path(:overwrite_params => {:controller => "personality_tests",:page => nil}))%>
+                </li>
+            </ul>
+        	<div class="Clear"></div>
+        </div>
+        
+      	<div class="Route">
+            <label class="rCat">Category</label> 
+            <div class="sOuter">
+                <%=select :content,:category,options_for_category,{:include_blank => "ALL",:selected => @catid.to_s},:class => "category_opts"%>            	
+                <%#=select_tag :category,options_for_select(Category.all.collect{|category| [category.name,category.id]},:@category),{:class => "category_opts",:prompt => "All"}%>
+            </div>
+            <%=text_field_tag :search,@search || "Search",:class => "Srch"%>
+            <input type="submit" value="" class="Search-btn">
+            	<div class="FloatRight">
+                	<label class="rCat">Sort By </label>
+                	<div class="sOuter">
+                        <%=select_tag :sort_by,options_for_select(options_for_sorting,params[:action]),:class => "sort_by_opts"%>
+                    </div>
+                </div>
+            
+            <div class="Clear"></div>
+        </div>
+        <div class="SListBox">
+        	<div class="SortBar">
+                <%=will_paginate @contests,:class => "",:next_label => "Next",:previous_label => "Previous"%>
+                <div class="Clear"></div>
+            </div>
+            <% if @contests and !@contests.empty?%>
+                <ul class="SList">
+                    <%@contests.each do |contest|%>                    
+                      <li>
+                        <%= link_to image_tag_for_contest(contest,:width=>"151",:height => "150"), contest_path(contest.url_attributes)%>
+                        <div class="CLInfo">
+                            <h3><%=contest.title%></h3>
+                            <span>By <%=link_to_user(contest.username)%></span>
+                            <div class="Desc">
+                                <p><%=contest.description%></p>
+                                <div class="FloatLeft"><span class="Sprite IcoErs"></span><%=number_with_delimiter(contest.net_votes) %></div>
+                                <div class="FloatRight"><span class="Sprite IcoIks"></span><%=number_with_delimiter(contest.favourites.count)%></div>
+                                <%=link_to "Play Now",contest_path(contest.url_attributes),:class => "BtnPlayNow"%>
+                                <div class="Clear"></div>
+                            </div>
+                        </div>
+                      </li>            
+                    <%end%>
+                </ul>
+            <%end%>        	
+         <div class="Clear"></div>
+             <div class="SortBar">
+                <%=will_paginate @contests,:class => "",:next_label => "Next",:previous_label => "Previous"%>
+                <div class="FloatRight">
+                    <label>Sort By </label>
+                    <%=select_tag :sort_by,options_for_select(options_for_sorting,params[:action]),:class => "sort_by_opts"%>
+                </div>
+                <div class="Clear"></div>
+            </div>
+         	<div class="Clear"></div>
+         </div>
+         <div class="Clear"></div>
+      </div>
+      <div class="AdBlock BoxBdr"> Ad Space</div>
+    </section>
+</section>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        function call_play_method(category,url,search){
+            if(url == "" || url == undefined)
+                url = "<%=request.path%>";
+            if(category != "")
+                url += "?catid="+category;
+            if(jQuery.trim(search) != "" && search != "Search"){
+                if(category == ""){
+                    url += "?"
+                }
+                url +="&search=" + search;
+            }
+            window.location.href = url;
+        }
+
+        jQuery(".category_opts").change(function(){
+            var category = jQuery(this).val();
+            var sort_by = jQuery("#sort_by").val();
+            var request_url = get_request_url(sort_by);
+            var search_key = jQuery("#search").val();
+            call_play_method(category,request_url,search_key);
+        })   
+        jQuery(".sort_by_opts").change(function(){
+            var sort_by = jQuery(this).val();            
+            var category =  jQuery("#content_category").val();
+            var request_url = get_request_url(sort_by)
+            var search_key = jQuery("#search").val();
+            call_play_method(category,request_url,search_key);
+        }) 
+
+        jQuery(".Search-btn").click(function(){
+            var sort_by = jQuery("#sort_by").val();
+            var category =  jQuery("#content_category").val();
+            var request_url = get_request_url(sort_by)
+            var search_key = jQuery("#search").val();
+            call_play_method(category,request_url,search_key) 
+        })
+
+        function get_request_url(sorting_opt){
+            var request_url ;
+            switch (sorting_opt){
+                case 'most_recent':
+                 request_url = "<%=contests_path(:overwrite_params => {:action => 'most_recent',:page => nil,:catid => nil,:search => nil})%>";
+                 break;
+                case 'most_played':    
+                 request_url = "<%=contests_path(:overwrite_params => {:action => 'most_played',:page => nil,:catid => nil,:search => nil})%>";
+                 break;
+                case 'top_rated':
+                 request_url = "<%=contests_path(:overwrite_params => {:action => 'top_rated',:page => nil,:catid => nil,:search => nil})%>";
+                 break;
+                case 'featured':
+                 request_url = "<%=contests_path(:overwrite_params => {:action => 'featured',:page => nil,:catid => nil,:search => nil})%>";
+                 break;
+                 case 'prize_points':
+                 request_url = "<%=contests_path(:overwrite_params => {:action => 'prize_points',:page => nil,:catid => nil,:search => nil})%>";
+                 break
+                default:
+                   request_url = "<%=contests_path(:overwrite_params => {:action => 'most_recent',:page => nil,:catid => nil,:search => nil})%>"; 
+                   break;
+
+            }
+            //alert(request_url)
+            
+            return request_url;
+        }
+
+
+    })
+</script>

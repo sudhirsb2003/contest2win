@@ -1,0 +1,62 @@
+<div class="arge" style="color:#000">
+<p>This is the first time you are logging in via Facebook.</p>
+
+<p>If you already have a C2w account, you can link it to your Facebook account by <%= link_to 'loging-in the old way', account_path(:action => :login) %></p>
+
+<div style="text-align:left">OR</div>
+
+<p>Sign-up below:- </p>
+<%= error_messages_for :user, :header_message => 'Failed to create your account!', :sub => {:username => 'Display Name', :eula => 'Terms &amp; conditions and Privacy Policy'} %>
+<% form_for :user, @user do |f| %>	
+<div class="row">
+  <label for="user_username" class="field_name">Display Name <%= reqd %></label>
+  <%= f.text_field :username, :size => 20 %>
+  <span class="tip">Note: Your Display Name is your permanent c2w ID that is displayed to the c2w community</span>
+</div>
+
+<div class="row">
+  <label for="user_email" class="field_name">Email <%= reqd %></label>
+  <%= f.text_field :email, :size => 50 %>
+</div>
+
+<div class="row">
+  <div>
+  <label for="user_first_name" class="field_name">First Name</label>
+  <%= f.text_field :first_name, :size => 20 %>
+  </div>
+  <div>
+  <label for="user_last_name" class="field_name">Last Name</label>
+  <%= f.text_field :last_name, :size => 20 %>
+  </div>
+</div>
+
+<div class="row">
+  <label for="user_country" class="field_name">Country <%= reqd %></label>
+  <%= f.country_select :country, ['India', 'United States', 'United Kingdom'], {:include_blank => true} %>
+</div>
+
+<div class="row">
+  <label class="field_name">Gender <%= reqd %></label>
+  <ul class="options">
+    <li><label for="user_gender_female">Female</label> <%= f.radio_button :gender, 'Female' %></li>
+    <li><label for="user_gender_male">Male</label> <%= f.radio_button :gender, 'Male' %></li>
+  </ul>
+</div>
+
+<%= submit_tag "Continue &raquo;" %>
+<%= link_to 'Remind me later', session['return-to'], :class => 'cancel_button' %>
+<% end %>
+
+<script type="text/javascript">
+//<![CDATA[
+  FB_QUEUE.push(function() {
+      FB.Facebook.apiClient.users_getInfo(FB.Facebook.apiClient.get_session().uid, 'last_name,profile_url,sex,first_name'.split(','), function(result) {
+        $("user_first_name").value = result[0].first_name;
+        $("user_last_name").value = result[0].last_name;
+        $("user_username").value = result[0].first_name + result[0].last_name;
+      });
+    //});
+  });
+//]]>
+</script>
+</div>

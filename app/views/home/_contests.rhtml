@@ -1,0 +1,12 @@
+<p style="margin: 2px 5px"><%= @description %></p>
+<ul id="home_contests">
+  <% contests.each {|contest| %>
+    <li class="contest <%= cycle('odd','even', :name => 'home_contests') %>">
+      <div class="thumb"><%= link_to image_tag_for_contest(contest), (contest.url_attributes) %></div>
+      <div style="margin-left:70px">
+      <b><%= link_to h(contest.title), contest_path(contest.url_attributes) %></b>
+      <span><%= contest.class.name.titlecase %> by <%= link_to_user contest.username %></span>
+      <%= safe_html(contest.description) %><br clear="left" /></div>
+      </li>
+  <% } %>
+</ul>

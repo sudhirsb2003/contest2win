@@ -1,0 +1,45 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+ipod:
+  id: 1
+  title: 'ipod'
+  item_type: 'Object'
+  credits: 500
+  value: 9500
+  description: 's'
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  region_id: 2
+
+cash:
+  id: 2
+  title: 'cash'
+  item_type: 'Credits'
+  credits: 19000
+  description: 's'
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  region_id: 2
+
+ipod_sans_tds:
+  id: 3
+  title: 'ipod - no TDS'
+  item_type: 'Object'
+  value: 4999
+  credits: 500
+  description: 's'
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  region_id: 2
+
+ferrari:
+  id: 4
+  title: 'ferrari'
+  item_type: 'Object'
+  value: 9000
+  credits: 50000000
+  description: 's'
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  region_id: 2
+
+

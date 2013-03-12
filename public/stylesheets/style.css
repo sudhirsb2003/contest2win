@@ -1,0 +1,977 @@
+@charset "utf-8";
+/*CSS Document*/
+/*Don't use undescore(_)*/
+/*Don't define font family in body*/
+/*UseProper name for css*/
+/*--DEFAULT TAGS DEfinition END--*/
+
+
+/*-Fonts-*/
+
+@font-face {
+  font-family: 'interstate-lightnormal';
+    src: url('/fonts/interstate-light-webfont.eot');
+    src: url('/fonts/interstate-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/interstate-light-webfont.woff') format('woff'),
+         url('/fonts/interstate-light-webfont.ttf') format('truetype'),
+         url('/fonts/interstate-light-webfont.svg#interstate-lightnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'interstate_mono_blkregular';
+    src: url('/fonts/interstatemono-blk-webfont.eot');
+    src: url('/fonts/interstatemono-blk-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/interstatemono-blk-webfont.woff') format('woff'),
+         url('/fonts/interstatemono-blk-webfont.ttf') format('truetype'),
+         url('/fonts/interstatemono-blk-webfont.svg#interstate_mono_-_blkregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('/fonts/bebas-webfont.eot');
+    src: url('/fonts/bebas-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/bebas-webfont.woff') format('woff'),
+         url('/fonts/bebas-webfont.ttf') format('truetype'),
+         url('/fonts/bebas-webfont.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+   font-family: 'BebasNeueRegular';
+    src: url('/fonts/BebasNeue-webfont.eot');
+    src: url('/fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/BebasNeue-webfont.woff') format('woff'),
+         url('/fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('/fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadWebPro';
+    src: url('/fonts/myriadwebpro-webfont.eot');
+    src: url('/fonts/myriadwebpro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/myriadwebpro-webfont.woff') format('woff'),
+         url('/fonts/myriadwebpro-webfont.ttf') format('truetype'),
+         url('/fonts/myriadwebpro-webfont.svg#myriadwebpro-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadWebPro-Semibold';
+    src: url('/fonts/myriadpro-semibold-webfont.eot');
+    src: url('/fonts/myriadpro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/myriadpro-semibold-webfont.woff') format('woff'),
+         url('/fonts/myriadpro-semibold-webfont.ttf') format('truetype'),
+         url('/fonts/myriadpro-semibold-webfont.svg#myriadpro-semibold-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyriadProLightRegular';
+    src: url('/fonts/myriadpro-light-webfont.eot');
+    src: url('/fonts/myriadpro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/myriadpro-light-webfont.woff') format('woff'),
+         url('/fonts/myriadpro-light-webfont.ttf') format('truetype'),
+         url('/fonts/myriadpro-light-webfont.svg#MyriadProLightRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body {margin:0; padding:0; }
+form{ margin:0px; padding:0px;}
+ul, from{ padding:0px; margin:0px; list-style:none; }
+Input { outline-style:none; font: 12px "MyriadWebPro", Tahoma, Geneva, sans-serif;}
+textarea{ font: 13px "MyriadWebPro", Tahoma, Geneva, sans-serif;}
+
+/* Make HTML 5 elements display block-level for consistent styling */  
+header, nav, article, footer, address, section ,aside{display: block;}
+  
+/*-for image link-*/
+img	{padding:0; margin:0; border:0;}
+a img{filter: alpha(opacity=100); opacity:1; -moz-opacity:1; -webkit-opacity:1; border : 0px;}
+a:hover img{filter: alpha(opacity=90); opacity:.9; -moz-opacity:.9; -webkit-opacity:.9; border : 0px;}
+
+/*Heading Definitions*/
+h1{}
+h2{}
+h3{}
+h4{}
+h5{}
+h6{}
+
+/*Heading Definations end*/
+
+/* Anchors */
+a { outline: 0; text-decoration:none; }
+a img { border: 0px; text-decoration: none; }
+a:link, a:visited {  }
+a:hover, a:active { text-decoration:underline; }
+a:focus {outline-style: none;}
+strong, b { font-weight:800; }
+p b, p strong { font-weight:600; }
+p { }
+.alert strong { font-weight:700; }
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { text-decoration:none; }
+
+.fr{ float:right;}
+/*---Moz Focus---*/
+a:active, a:focus, input[type="image"], select:focus, input, input[type="button"]:focus {
+outline: 0;
+-moz-outline-style: none;
+outline-style : none; outline-width : medium;
+}
+:focus {
+-moz-outline-style: none;
+}
+select::-moz-focus-inner,
+button::-moz-focus-inner,
+checkbox:-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="checkbox"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none;
+}
+
+
+/*--Commonly Used Classes works according to name-*/
+.FloatLeft{ float:left;}
+.FloatRight{ float:right;}
+.Clear{clear:both;}
+
+.Sprite{background:url(/images/sprite.png) no-repeat;}
+
+/*---Buttons Setting-*/
+.BtnCommon{cursor:pointer; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; -mso-border-radius:5px; box-shadow:0px 2px 0px #c6c6c6; -moz-box-shadow:0px 2px 0px #632a05; -webkit-box-shadow:0px 2px 0px #632a05; -mso-box-shadow:0px 2px 0px #632a05; border:none; padding:5px 10px; color:#fff; font-size:12px;
+background:#d97420 ;
+background: -webkit-gradient(linear, left top, left bottom, from(#ec8b21), to(#ca621f)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #ec8b21,  #ca621f); /* for firefox 3.6+ */ 
+background: -o-linear-gradient(top, #ec8b21 0%, #ca621f 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec8b21', endColorstr='#ca621f'); /* for IE */
+}
+.BtnCommon:hover, .BtnCommonHover{ background:  #cb6b1d ;
+background: -webkit-gradient(linear, left top, left bottom, from(#e17f1e), to(#b9591c)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #e17f1e,  #b9591c); /* for firefox 3.6+ */ 
+background: -o-linear-gradient(top, #e17f1e 0%, #b9591c 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e17f1e', endColorstr='#b9591c'); /* for IE */
+}
+
+
+/*----Small Elements Setting*/
+.ShapeH { border-left: 4px solid #F00; border-top: 4px solid transparent; border-bottom:4px solid transparent; margin:0px; display:inline; font-size:0; line-height:0;}
+.ShapeV { border-top: 4px solid #F00; border-left: 4px solid transparent; border-right:4px solid transparent; margin:0px; display:inline; font-size:0; line-height:0;}
+.BoxBdr{ border:#999999 solid 1px; line-height:0;}
+/*--Header Footer-*/
+header{ position:absolute; width:100%; top:0; left:0; 
+background: #f3f3f3; /* Old browsers */
+background: -moz-linear-gradient(top, #f3f3f3 0%, #f3f3f3 50%, #ededed 51%, #ededed 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(50%,#f3f3f3), color-stop(51%,#ededed), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #f3f3f3 0%,#f3f3f3 50%,#ededed 51%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #f3f3f3 0%,#f3f3f3 50%,#ededed 51%,#ededed 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #f3f3f3 0%,#f3f3f3 50%,#ededed 51%,#ededed 100%); /* IE10+ */
+background: linear-gradient(to bottom, #f3f3f3 0%,#f3f3f3 50%,#ededed 51%,#ededed 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+footer{ margin:0; padding:0; background:#4c4c4c; border-top:solid 8px #dc2527; clear:both;}
+
+.Logo{ float:left; color:#FFF; font-size:25px; font-weight:bold; text-align:center; /*padding if text istead of logo*/ padding:0 0 0 30px;}
+
+/*--Navigation-*/
+.NavBg{ background:#fff url(/images/menu-bg.jpg) repeat-x 0 0; position:relative; margin:20px 0 0 0; *min-height:30px;}
+nav {margin:-7px auto 0; display:inline-block; box-shadow:0px 5px 5px #b2b2b2; -moz-box-shadow:0px 5px 5px #b2b2b2; -webkit-box-shadow:0px 5px 5px #b2b2b2; -mso-box-shadow:0px 5px 5px #b2b2b2; }
+nav li{ position:relative; float:left;}
+nav li a{ float:left; color:#FFF; font:22px/19px "BebasNeueRegular";  text-decoration:none; padding:10px 20px 6px; position:relative;}
+nav li .Ico{  position:absolute; left:20px; top:8px; height:22px; }
+nav li .NIPlay{ background:#eb262c; padding-left:45px; padding-right:35px;}
+nav li .NIPlay .Ico{ background-position:-163px -52px; width:21px; height:21px; top:6px; left:15px;}
+nav li .NIPlay .ShapeV{ border-top:6px solid #FFF; border-left: 6px solid transparent; border-right:6px solid transparent; position:absolute; right:15px; top:15px;}
+nav li .NICreate{background:#f8831a; padding-left:60px;}
+nav li .NICreate .Ico{ background-position:-34px -2px; width:28px; }
+nav li .NICommunity{background:#eeb402; padding-left:59px; }
+nav li .NICommunity .Ico{ background-position:-64px -1px; width:25px; }
+nav li .NILBooard{background:#64b045; padding-left:50px; }
+nav li .NILBooard .Ico{ background-position:-93px -1px; width:14px; height:23px; }
+nav li .NIHworks{background:#05a589; padding-left:50px; }
+nav li .NIHworks .Ico{ background-position:-109px -1px; width:24px; }
+nav li.SrchCon{ background:#056ba5;}
+nav li.SrchCon input[type="text"] {font:22px/19px "BebasNeueRegular"; color:#FFF; background:#0790c4; width:198px; border:none; padding:4px 10px 0px; margin:3px 8px; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; -mso-border-radius:10px; height:25px; *height:22px; *padding-top:3px;*padding:5px 10px 0px; *line-height:22px; }
+:root .SrchEl { padding:2px 10px 1px \0/IE9; } /* IE9 */
+
+nav li.SrchCon .Ico{ background-position:-133px -4px; width:18px; height:18px; position:absolute; top:10px; left:200px; cursor:pointer;}
+
+
+/*--Containers---*/
+#wrapper{ position:relative; margin:0; padding:0; font: 13px "MyriadWebPro", Tahoma, Geneva, sans-serif; color:#343434;}
+#container{width:970px;  margin:0 auto; padding:188px 0 0 0; }
+.WrapBox{ position:relative; width:970px; margin:0 auto;}
+.PanelLeft{float:left; width:260px; margin:0 35px 0 0; position:relative; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; -mso-border-radius:5px;  min-height:400px;}
+.PanelRight{float:right; width:300px;background-color:#FFF; margin:0 0 0 20px; }
+.PanelCenter{ overflow:hidden; height:1%; margin:0 0 10px 0; padding:0 0 10px 0; }
+
+
+/*--Home Page Main Container UNJ---*/
+
+#container h1{color:#242424; font:22px/23px "bebasregular"; margin:10px 0;}
+#container h2{ color:#242424; font:18px "bebasregular"; margin-bottom:10px; line-height:22px; margin-top:10px;}
+#container .BoxH h2{ color:#242424; font:18px "bebasregular"; margin-bottom:0px; line-height:22px; margin-top:10px;}
+
+.FavSlider{ background-color:#0790c4; color:#BBBBBB; position:relative; border:#999999 solid 1px; margin:0 0 40px 0; }
+.FavSlider li{ font-size:14px; border-bottom:#045676 solid 1px; width:325px; cursor:pointer;}
+.FavSlider li:hover, .FavSlider li.active, .FavSlider li.active a{ color:#FFF; background-color:#00507d;} 
+.FavSlider li a{ color:#FFF; position:relative; padding:11px 10px 10px 45px; *padding:9px 10px 8px 45px;  display:block; font:bold 14px Arial, Helvetica, sans-serif;}
+:root .FavSlider li.active a{padding:12px 10px 12px 45px \0/IE9; } /* IE9 */
+.FavSlider li a:hover{ text-decoration:none; color:#FFF;}
+.FavSlider .IcoS1, .FavSlider .IcoS2, .FavSlider .IcoS3, .FavSlider .IcoS4, .FavSlider .IcoS5, .FavSlider .IcoS6,  .FavSlider .IcoS7{ background-position:-1px -50px; width:19px; height:23px; position:absolute; left:10px; top:5px;}
+.FavSlider .IcoS2{ background-position:-24px -50px; width:14px; height:24px;}
+.FavSlider .IcoS3{ background-position:-40px -50px; width:20px; height:24px;}
+.FavSlider .IcoS4{ background-position:-62px -50px; width:24px; height:24px;}
+.FavSlider .IcoS5{ background-position:-62px -50px; width:24px; height:24px;}
+.FavSlider .IcoS6{ background-position:-88px -50px; width:24px; height:24px;}
+.FavSlider .IcoS7{ background-position:-113px -50px; width:23px; height:24px;}
+
+.FavSlider li:hover .IcoS1, .FavSlider li.active .IcoS1{background-position:-1px -50px;}
+.FavSlider li:hover .IcoS2, .FavSlider li.active .IcoS2{background-position:-24px -50px;}
+.FavSlider li:hover .IcoS3, .FavSlider li.active .IcoS3{background-position:-40px -50px;}
+.FavSlider li:hover .IcoS4, .FavSlider li.active .IcoS4{background-position:-62px -50px;}
+.FavSlider li:hover .IcoS5, .FavSlider li.active .IcoS5{background-position:-62px -50px;}
+.FavSlider li:hover .IcoS6, .FavSlider li.active .IcoS6{background-position:-88px -50px;}
+.FavSlider li:hover .IcoS7, .FavSlider li.active .IcoS7{background-position:-113px -50px;}
+
+.FavSlider li:hover .FsDetail, .FavSlider li.active .FsDetail{opacity:1; filter:alpha(opacity=100); z-index:100;}
+.FavSlider li:hover .FsDetail{ z-index:200;}
+.FavSlider .FsDetail{ opacity:0; filter:alpha(opacity=0); line-height:0px; position:absolute; right:0px; top:0px; color:#FFF; width:325px; height:190px; background:#999;
+-webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; -ms-transition: all 1s ease-in-out;
+}
+
+.FavSlider .FsDetail img{ width:100%; height:100%;}
+
+
+.FavSlider .FsDetail .FsInfo{ position:absolute; bottom:0px; left:0px; background:#000; width:94%;/* opacity:.9; filter:alpha(opacity=90);*/ padding:15px 3% ;}
+.FavSlider .FsDetail .FsInfo p{ width:240px; font: 14px "MyriadWebPro"; margin:0;}
+.FavSlider .FsDetail .FsInfo .BElement{ margin:10px 0 0 0; font: 13px "MyriadWebPro"; position:relative; }
+.FavSlider .FsDetail .FsInfo .BElement a{ background:none; display:inline; padding:0; color:#eeb402;}
+.FavSlider .FsDetail .FsInfo .BElement a:hover{ text-decoration:underline;}
+.GamErs, .LikErs{ position:relative; display:inline-block; padding-left:25px; margin: 0 0 0 50px;}
+.LikErs{ padding-left:20px; margin: 0 0 0 15px;}
+.GamErs .Ico{background-position:-139px -64px; width:21px; height:12px; position:absolute; left:0px; top:1px;}
+.LikErs .Ico{ background-position:-139px -24px; width:14px; height:13px; position:absolute; left:0px; top:0px;}
+
+.FavSlider li.active .BtnPlay, .FavSlider li:hover .BtnPlay, .FavSlider li:hover a .BtnPlay {background-position:-114px -110px; padding:0; background-color:#000; width:123px; height:53px; position:absolute; right:0px; bottom:5px; }
+.BtnPlay:hover{ opacity:.9; filter:alpha(opacity=90);}
+
+/*.BtnPlay{ background:url(/images/sprite.png) -114px -110px no-repeat!important; width:123px; height:53px; position:absolute; right:0px; bottom:0px; padding:0!important;  }*/
+
+.PanelRight .BoxBdr{ font-size:0px;}
+.PanelRight .AdBlock{ line-height:normal; font-size:12px; text-align:center; height:250px; background:#cccccc; margin:20px 0; }
+.PanelRight .TwiApp{margin:20px 0; }
+.mrt42{ margin-top:42px !important;}
+.CList{ position:relative; clear:both; margin-bottom:30px;}
+.CList h2{margin-bottom:10px;}
+.CList li{ float:left; margin-right:12px; *margin-right:9px; border:#CCC solid 1px; line-height:0px; position:relative; font-size:0;}
+.CList li{margin-right:9px \0/IE8; /* IE8 */}
+
+.CList li:last-child{ margin-right:0px;} 
+.CList .CLInfo{ position:absolute; bottom:0; left:0; width:91%; padding:5px 5%; background:#1f1f1f; color:#FFF; line-height:normal; font-size:12px; opacity:.85; filter:alpha(opacity=85);}
+.CList .CLInfo h3{ margin:0 0 3px 0;  font:12px "MyriadWebPro-Semibold";}
+.CList .CLInfo a{ color:#bd930e; }
+
+.CList li:hover .Desc{ height:110px; overflow:hidden; opacity:1; filter:alpha(opacity=100); *display:block;}
+.CList .CLInfo .Desc{ height:0px; overflow:hidden; opacity:0; filter:alpha(opacity=0); *display:none; -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; -ms-transition: all 1s ease-in-out;}
+.CList .CLInfo .Desc p{ margin:15px auto 22px;}
+.CList .CLInfo .Desc .FloatLeft, .CList .CLInfo .Desc .FloatRight{position:relative; padding:0 0 10px 25px; margin:0 10px 0 0;}
+.IcoErs{ background-position:-139px -51px; width:18px; height:12px; position:absolute; left:0; top:0;}
+.IcoIks{ background-position:-139px -24px; width:14px; height:13px; position:absolute; left:5px; top:-1px;}
+.LiNav{ position:absolute; top:-5px; right:0px;}
+.LiNav .Prev{ background-position:-1px -113px; width:27px; height:27px; float:left;  margin:0 2px; opacity:.8; filter:alpha(opacity=80);}
+.LiNav .Next{background-position:-28px -113px; width:27px; height:27px; float:left;  margin:0 2px; opacity:.8; filter:alpha(opacity=80);}
+.LiNav .Prev:hover, .LiNav .Next:hover{ opacity:1; filter:alpha(opacity=100);}
+.BtnViewAll{background:#ddd; color:#444; padding:6px 15px; float:left;  margin:0 8px; }
+
+.FavCat{ clear:both; background-color:#3591BE;}
+.FavCat li{ position:relative; float:left; padding:50px 5px 10px 5px; min-width:151px; min-height:20px; background:#3591be; margin:0 0 0 1px; text-align:center; }
+.DipCon .FavCat{ }
+.DipCon .FavCat li{ position:relative; float:left; padding:50px 5px 10px 5px; min-width:151px; min-height:20px; margin:0px; text-align:center; border-left:1px solid #fff; }
+.DipCon .FavCat li.RBox{ background-color:#942024;}
+.FavCat li a{font:14px "interstate_mono_blkregular"; color:#FFF;}
+.FavCat .IcoQuiz{ background-position:-71px -78px; width:32px; height:29px; position:absolute; left:65px; top:15px;}
+.FavCat .IcoTwis{ background-position:-104px -78px; width:32px; height:27px; position:absolute; left:67px; top:15px;}
+.FavCat .IcoHang{ background-position:-28px -78px; width:17px; height:31px; position:absolute; left:70px; top:15px;}
+.FavCat .IcoCross{ background-position:0px -78px; width:26px; height:30px; position:absolute; left:67px; top:15px;}
+.FavCat .IcoPersnlty{background-position:-44px -78px; width:26px; height:30px; position:absolute; left:67px; top:15px;}
+.FavCat .IcoPredic{ background-position:-139px -78px; width:31px; height:30px; position:absolute; left:65px; top:15px;}
+
+.PanelCenter .AdBlock{ display:block; text-align:right; height:76px; background-color:#CCC; clear:both; margin:20px 0; line-height:20px; color:#fff;}
+
+/*--Footer---*/
+
+.FNav{ padding:20px 0 15px; float:left; color:#fff; text-align:center;}
+.FNav a{ color:#fff; margin-bottom:5px; line-height:22px; font-size:12px; padding:0px 5px;}
+.FNav li{float:left; color:#d1d1d1; font-size:16px; min-width:150px; }
+.FNav li a{ color:#d1d1d1;}
+.FNav ol{margin:10px 0 0 0; padding:0;}
+.FNav ol li{ float:none; list-style:none; font-size:14px; padding:4px;}
+
+/*--Top Bar---*/
+.TopBar{background:#111111; color:#CCC; border-bottom:#3a3a3a solid 1px; padding:0; margin:0 0 10px 0;}
+.TopBar .SCountry{ float:left; width:460px; padding:5px 0 0 0; margin:5px 0 0 0; color:#adadad; font-size:12px;}
+.TopBar .SCountry a{ color:#666666; margin-left:18px;}
+.TopBar .SCountry a img{ margin:0 8px 0 0; vertical-align:middle;}
+.TopBar .SCountry a.active{ color:#FFF;}
+.TopBar .SignUp{ float:left; border-left:#3f3f3f solid 1px; border-right:#3f3f3f solid 1px; padding:5px 10px 0px; color:#bbb;} 
+.TopBar .SignUp label{ float:left; margin:5px; }
+.TopBar .SignUp span{ color:#eeb402; }
+.TopBar .SignUp a{ font:20px "BebasNeueRegular"; color:#ff0003;}
+.TopBar .Login{ float:left; margin:5px 0 0 14px; color:#3f3f3f; position:relative;}
+.TopBar .Login span{float:left;}
+.TopBar .Login .MTxt{ margin:5px 0 0 0;}
+.TopBar .Login a{ float:left; font:20px "BebasNeueRegular"; color:#007dff; margin:0 5px 0 0;}
+.TopBar .Login .ShapeV { float:left; border-top: 5px solid #007dff; border-left: 5px solid transparent; border-right:5px solid transparent;  margin:10px 5px 0 0;display:inline; font-size:0; line-height:0;}
+.TopBar .Login a img{ margin-left:5px;}
+.TopBar .Socio{ float:left; padding:5px 0 0 0;}
+.TopBar .Socio a{ margin:0 2px;}
+.TopBar .Socio img{ vertical-align:top;}
+
+
+/*--Score App---*/
+.ScoreApp{ border:#d6d6d6 solid 1px; clear:both;}
+.ScoreApp .HTop{ float:left; width:100%; background:#919191; }
+.ScoreApp .HTop li{ color:#FFF; float:left; font-weight:bold; padding:8px 0 6px;}
+.ScoreApp .HTop .One{ min-width:73px; text-indent:10px;}
+.ScoreApp .HTop .Two{min-width:148px;}
+.ScoreApp .HTop .Three{min-width:68px; }
+.ScoreApp .Dcon { float:left; width:100%; background:#FFF; color:#181818; }
+.ScoreApp .Dcon li{  float:left; padding:7px 0 7px; position:relative;}
+.ScoreApp .SepD{background-color:#f3f3f3;}
+.ScoreApp .Dcon .One{ min-width:73px; text-indent:10px;}
+.ScoreApp .Dcon .Two{min-width:156px;}
+.ScoreApp .Dcon .Three{min-width:68px; }
+.ScoreApp .Up{ background-position:-140px -41px; width:10px; height:6px; position:absolute; left:38px; top:12px;}
+.ScoreApp .Down{ background-position:-151px -41px; width:10px; height:6px; position:absolute; left:38px; top:12px;}
+.ViewAll{ padding:20px 0 0 0; *padding:0;}
+.ViewAll a{color:#6a6a6a;  text-decoration:underline;}
+.ViewAll a:hover{text-decoration:none;}
+
+/*--More Description---*/
+
+.more{display: none; }
+.showLink, .hideLink {text-decoration: none; color:#444; padding-left: 8px; background: transparent url(down.gif) no-repeat left; text-decoration:underline; float:right; position:relative; margin:0 20px 0 0;}
+.showLink:hover, .hideLink:hover { text-decoration:none;}
+.showLink span, .hideLink span { font-size:10px; font-weight:bold; position:absolute; top:2px; right:-20px;}
+.showLink .ArrowDwn, .hideLink .ArrowDwn{background-position:-156px -25px; width:13px; height:9px;}
+.showLink .ArrowUp, .hideLink .ArrowUp{background-position:-170px -25px; width:13px; height:9px;}
+
+.PanelRight .Socio{ /*margin:18px 0 0 0;*/ float:right;}
+.PanelRight .Socio a{ margin:0 3px;}
+
+/*--Play page UNJ---*/
+.QuizBox { position:relative; min-height:488px;}
+.QuizBox .TopH{ background:#333333; color:#FFF; *float:left; }
+.QuizBox .TopH .Que{ float:left; font:24px Tahoma, Geneva, sans-serif; color:#BBBBBB; padding:5px 10px;}
+.QuizBox .TopH .active{ color:#ececec;}
+.QuizBox .TopH .Corr{ color:#BBBBBB; font:14px Tahoma, Geneva, sans-serif; border-right:#4a4a4a solid 1px;padding:10px 25px; display:inline-block; }
+.QuizBox .TopH .Corr .Val{ font-size:18px;}
+.QuizBox .TopH .Score{ font-size:16px; color:#BBBBBB; padding:3px 5px; display:inline-block;}
+.QuizBox .TopH .Score .Val{ font:bold 24px Arial,Helvetica,sans-serif; color:#FFF; margin:0 5px 0 7px;}
+
+#container .QuizBox .ConQ{ padding:24px 24px 10px;}
+#container .QuizBox .ConQ h2{ margin:30px 0 0 15px; font:24px "MyriadWebPro"; width:290px; float:left; color:#00273a;}
+#container .QuizBox .ConQ .Hdr .ImgHolder{  float:left; border:#a3a4a4 solid 2px; font-size:0; line-height:0;}
+
+.QuizBox .GlHdr{ padding:10px 20px; border-bottom:#e2e2e2 solid 1px;}
+.QuizBox .ConQ .Obj{ margin:10px 0 0px 0;}
+.QuizBox .ConQ .Obj li { display:inline;}
+.QuizBox .ConQ .Obj li a{ font:16px "MyriadWebPro"; border:#c0c3be solid 1px; padding:8px 8px 8px 30px; margin:0 20px 7px 0; width:94%; display:inline-block; color:#333; position:relative; background:#FFF; opacity:.9; filter:alpha(opacity=90);}
+
+.QuizBox .ConQ .Obj li a span{ color:#f28421; position:absolute; left:5px; top:8px;}
+.QuizBox .ConQ .Obj li a:hover{text-decoration:none; border:#979797 solid 1px;}
+.QuizBox .SlImg{ position:absolute; top:35px; left:0px; z-index:-1;}
+.QuizBox .Bott{/*position:absolute;*/ bottom:0px; left:0px; width:100%; background:#333; opacity:.9; filter:alpha(opacity=90);  }
+.QuizBox .Bott .FloatLeft{ margin:9px 0 0 0; padding:0 15px;}
+.QuizBox .Bott ul{ float:right; }
+.QuizBox .Bott ul li{ float:left; padding:5px; border-left:#4a4a4a solid 1px; min-height:30px;}
+.QuizBox .Bott ul li a{ padding:3px 3px 0px; float:left;}
+
+.QuizSec{border:#CCC solid 1px;}
+.QuizSec .Desc{ padding:8px;}
+.QuizSec .Desc .Title{ position:relative; padding:0px 0 0 30px; font:12px Tahoma, Geneva, sans-serif; line-height:22px;}
+.QuizSec .Desc .Title .Ex{ font: normal 16px "BebasNeueRegular"; color:#333;}
+.QuizSec .Desc a{ color:#4889c8;}
+.QuizSec .Desc .IcoS4{ background-position:-62px -25px; width:24px; height:24px; position:absolute; left:0px;}
+.QuizSec .Desc p{ font:13px/18px "MyriadWebPro"; margin:10px 0px;}
+.QuizSec .Desc label{ color:#a0a0a0; font:bold 11px Tahoma, Geneva, sans-serif;}
+
+.vLess{ display:block; text-align:center; padding:8px 0; color:#333; opacity:.9; filter:alpha(opacity=90);
+background:  #e4e4e4 ;
+background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#dedede)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #e9e9e9,  #dedede); /* for firefox 3.6+ */ 
+background: -o-linear-gradient(top, #e9e9e9 0%, #dedede 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#dedede'); /* for IE */
+}
+.Comment-On{ display:block; text-align:left; padding:8px 0 8px 10px; color:#333; opacity:.9; filter:alpha(opacity=90);
+background:  #e4e4e4 ;
+background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#dedede)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #e9e9e9,  #dedede); /* for firefox 3.6+ */ 
+background: -o-linear-gradient(top, #e9e9e9 0%, #dedede 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#dedede'); /* for IE */
+border-top:1px solid #ccc; font-size:14px;
+}
+.vLess:hover{opacity:1; filter:alpha(opacity=100); text-decoration:none;}
+
+.TabsWidget{ }
+.TabsWidget .Tabs li{ display:inline;}
+.TabsWidget .Tabs li a{ padding:0px 35px 0px 10px; display:inline; text-decoration:none; color:#8C8C8C; font:18px/20px "bebasregular"; position:relative;}
+.TabsWidget .Tabs li a:hover{ text-decoration:none;}
+.TabsWidget .Tabs .active{color:#FFF; height: 0; width:80px; border-bottom: 35px solid #f01d08; border-left: 0px solid transparent; border-right: 20px solid transparent; float:left; z-index:100; }
+.TabsWidget .Tabs .active span{ position:absolute; left:10px; top:6px; *top:9px; *line-height:22px;}
+
+.TabsWidget .Tabs .llactive{color:#FFF; height: 0; width:70px; border-bottom: 30px solid #ececec; border-left: 0px solid transparent; border-right: 20px solid transparent; float:left; z-index:50; margin:5px 0 0 -7px; }
+.TabsWidget .Tabs .llactive span{ position:absolute; left:15px; color:#cccccc;top:6px; *top:6px; *line-height:22px;}
+
+.TabDetail{border:#CCC solid 1px;}
+.TabDetail li{ position:relative; padding:5px; border-bottom:#ccc solid 1px; min-height:52px;}
+.TabDetail .ImgHolder{ position:absolute; width:50px; height:50px; background:#ededed; border:#cecece solid 1px; overflow:hidden;}
+.TabDetail .LiDetail{ padding:0 0 0 60px;}
+.TabDetail .LiDetail h3{ font-size:12px; font-weight:bold; margin:0; }
+.TabDetail .LiDetail a{color:#0790c4;}
+.TabDetail .LiDetail span{ color:#7f7f7f;}
+.TabDetail .LiDetail label{ color:#7f7f7f; font-size:12px; position:relative; margin:8px 15px 0 16px; display:inline-block;}
+.TabDetail .LiDetail .IcoSPlay, .LiDetail .IcoSLike,.LiDetail .IcoSLike-Red, .TabDetail .IcoSPlay-Btn, .TabDetail .IcoSChat-Comment, .LiDetail .IcoSChat {position:absolute; left:-15px; top:0px;}
+.LiDetail .IcoSChat{ left:-18px; top:-1px;}
+.TabDetail .vms{ min-height:10px; text-align:center;}
+.TabDetail .vms a{ color:#7f7f7f; font-size:12px;}
+.IcoSPlay{ background-position:-153px -1px; width:12px; height:12px;}
+.IcoSLike{ background-position:-167px -1px; width:13px; height:11px;}
+.IcoSChat{ background-position:-181px -1px; width:16px; height:11px;}
+
+.suggestions .TabDetail .LiDetail label{ margin:8px 15px 0 25px;}
+.suggestions .TabDetail .LiDetail span{ color:#CCCCCC;}
+.suggestions .TabDetail .IcoSLike-Red{ background-position:-140px -26px; width:16px; height:11px;}
+.suggestions .TabDetail .IcoSPlay-Btn{background-position: -139px -53px; width:22px; height:11px; left:-24px;}
+.suggestions .TabDetail .LiDetail a{ color:#ffb400; font-size:12px;}
+.suggestions .TabDetail .IcoSChat-Comment{background-position: -184px -26px; width:22px; height:14px; left:-16px;}
+
+.QuizReLin{ padding:10px 20px; border-top:#d6d6d6 solid 1px;}
+.QuizReLin a{ color:#056ba5;}
+.QuizReLin .Sep{ color:#747474; margin:0 10px;}
+.QuizReLin .RepV{ float:right; *float:none; *padding:0 0 0 80px; color:#dc2527; text-decoration:underline;}
+.QuizReLin .RepV:hover{  text-decoration:none;}
+
+.PanelRight .SocioL{ margin:0px 0 15px;}
+.PanelRight .SocioL a{ margin:0px;}
+
+.BreadCrumb{ margin:0;}
+.BreadCrumb a{ color:#4889C8;}
+
+.BoxH{ color:#242424; font:18px "bebasregular"; margin-bottom:10px;}
+
+.PanelRight .BoxH{ float:left; margin:0px 0 10px 0;}
+
+/*--Browse Contest UNJ---*/
+
+.DipCon{}
+.Route{ padding:6px 5px 8px 4px; background:#222222; margin:0 0 5px 0;}
+.Route label{ color:#BBBBBB; margin:8px 10px 0 0; float:left;}
+.Route .GBox{ background:#8b8b8b; padding:3px 3px 2px; margin:0 4px; float:left; font:bold 15px Arial, Helvetica, sans-serif;}
+.Route .RBox{ background:#942024; padding:3px 3px 2px; color:#FFF; margin:0 4px; float:left; font:bold 15px Arial, Helvetica, sans-serif;}
+.Route .rCat{ margin:9px 10px 0 8px;}
+.Route .sOuter{ width:140px; overflow:hidden; float:left; margin:2px 10px 0 0; }
+.Route select{ border:0; color:#222222; padding:3px 5px 4px; width:165px; font-size:15px;  font-weight:bold;
+background: url(/images/s_arrow_down.png) no-repeat 115px 10px #8c8c8c; /* Old browsers */ height:28px;
+
+}
+.Route select option{ background:#8b8b8b;}
+.Route .Srch{ border:0; color:#222; padding:2px 10px; font-size:15px; font-weight:bold; width:135px; margin:2px 0px 0px 15px; float:left; height:25px;
+background: url(/images/IcoSearch.png) no-repeat 165px 5px #8c8c8c; /* Old browsers */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px -moz-linear-gradient(top,  #8c8c8c 0%, #797979 100%); /* FF3.6+ */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8c8c8c), color-stop(100%,#797979)); /* Chrome,Safari4+ */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px -webkit-linear-gradient(top,  #8c8c8c 0%,#797979 100%); /* Chrome10+,Safari5.1+ */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px -o-linear-gradient(top,  #8c8c8c 0%,#797979 100%); /* Opera 11.10+ */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px -ms-linear-gradient(top,  #8c8c8c 0%,#797979 100%); /* IE10+ */
+background: url(/images/IcoSearch.png) no-repeat 165px 5px linear-gradient(to bottom,  #8c8c8c 0%,#797979 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c8c8c', endColorstr='#797979',GradientType=0 ); /* IE6-9 */
+}
+.Route .Search-btn{ border:none; background: url(/images/IcoSearch.png) no-repeat 6px 5px #8c8c8c; width:30px; height:29px; cursor:pointer; float:left; margin-top:2px;}
+.SListBox{ background:#f7f7f7; padding:15px 25px 30px; *padding:15px 30px 30px 30px;}
+.SListBox h3{  font:18px/20px "MyriadWebPro-Semibold";}
+.SortBar{ margin:0 0 14px 0; *margin:20px 0 14px 0px;}
+.SortBar ul{ float:left;max-width: 90%; width: auto;}
+.SortBar ul li{ float:left; margin: 2px 0;}
+.SortBar ul li a{ float:left; background:#dcdcdc; padding:5px 8px; margin:0 2px; font:bold 11px Arial, Helvetica, sans-serif; color:#222;}
+.SortBar ul li a:hover{text-decoration:none; opacity:.85; filter:alpha(opacity=85);}
+.SortBar ul li .active{background:#a82328; color:#FFF;}
+.SortBar select{ border:#eaeaea solid 1px; padding:2px 5px; width:140px; font:bold 11px Arial, Helvetica, sans-serif;}
+.SortBar label{ font:12px Arial, Helvetica, sans-serif;}
+
+.SList{ float:left; width:102%; margin:0 0 0 -18px; *margin:0px;}
+.SList li{ float:left; width:130px; height:150px; margin:0 0 18px 18px; *margin-left:18px; border:#CCC solid 1px; line-height:0px; position:relative; font-size:0;}
+.SList li img{ width:100%; height:100%;}
+.SList li{margin-left:18px \0/IE8; /* IE8 */}
+:root .SList li{margin-left:9px \0/IE9; /* IE9 */}
+
+.SList li:last-child{ margin-right:0px;} 
+.SList .CLInfo{ position:absolute; bottom:0; left:0; width:91%; padding:5px 5%; background:#1f1f1f; color:#FFF; line-height:normal; font-size:12px; opacity:.9; filter:alpha(opacity=90);}
+.SList .CLInfo h3{ margin:0 0 3px 0;  font:12px "MyriadWebPro-Semibold";}
+.SList .CLInfo a{ color:#bd930e; }
+
+.SList li:hover .Desc{ height:110px; overflow:hidden; opacity:1; filter:alpha(opacity=100); *display:block;}
+.SList .CLInfo .Desc{ height:0px; overflow:hidden; opacity:0; filter:alpha(opacity=0); *display:none; -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; -ms-transition: all 1s ease-in-out;}
+.SList .CLInfo .Desc p{ margin:15px auto 10px;}
+.SList .CLInfo .Desc .FloatLeft, .SList .CLInfo .Desc .FloatRight{position:relative; padding:0 0 10px 25px; margin:0 10px 0 0;}
+.SList .CLInfo .BtnPlayNow{ color:#FFF;}
+.BtnPlayNow{ background:url(/images/btn-play-bg.png) no-repeat; width:91px;  padding:3px 0px 8px 17px; color:#FFF; float:left;}
+.BtnPlayNow:hover{ text-decoration:none;}
+
+/*-------- create_hangman_quiz.html by Mukesh----------*/
+.Enter-Hangman-Step{margin: 0 0 5px; }
+.Enter-Hangman-Step ul, .Enter-Hangman-Step ul li{ margin:0px; padding:0px;}
+
+.Enter-Hangman-Step li{ background-color:#fbb576;color:#fff; text-align:center; float:left; position:relative; height:30px; font-size:14px; line-height:30px; *width:33%; width:33%;}
+.Enter-Hangman-Step .Front-Arrow{ background:url(/images/sprite.png) no-repeat left -146px; width:23px; float:right; display:block; height:30px;}
+
+.Enter-Hangman-Step .active{ background-color:#f8831a !important;}
+.Enter-Hangman-Step .active span.Back-Arrow{ background:url(/images/sprite.png) no-repeat 0 -256px !important; position:absolute; left:-24px; top:0px;}
+
+.Enter-Hangman-Step .active span{  background:url(/images/sprite.png) no-repeat left -221px !important; width:24px; float:right; display:block; height:30px;}
+.Enter-Hangman-Step .active .Front-Arrow{  background:url(/images/sprite.png) no-repeat left -291px !important; width:24px; float:right; display:block; height:30px;}
+.Enter-Hangman-Step .last .Front-Arrow{  background:url(/images/sprite.png) no-repeat left -184px; width:24px; float:right; display:block; height:30px;}
+.Enter-Hangman-Step .first span{  background:url(/images/sprite.png) no-repeat left -146px; width:24px; float:right; display:block; height:30px;}
+
+.Enter-Hangman-Step a{ text-decoration:none; color:#fff; padding:0px 0px 0px 10px; float:left; font-family:"MyriadWebPro-Semibold"; display:block; }
+.Enter-Hangman-Step .Enter-Hangman-Step .last{ background:url(/images/sprite.png) no-repeat right 3px; width:24;}
+
+/*---------- Hangman Quiz Page---------------------*/
+.hangman-quiz-block{}
+.hangman-quiz-block label{ width:100px; float:left; font:12px/20px "MyriadWebPro-Semibold"; padding-right:10px;}
+.hangman-quiz-block input[type='text']{ width:240px; height:20px; border:1px solid #eee; float:left; font:12px/18px "MyriadWebPro";}
+.hangman-quiz-block select{ width:240px; height:23px; border:1px solid #eee; font:11px/20px Arial, Helvetica, sans-serif; font-weight:bold;  margin: 0; padding-top: 2px; padding-bottom: 2px;  float:left; color:#8C8C8C;}
+.hangman-quiz-block textarea{ width:240px; height:70px; border:1px solid #eee; float:left; font:12px/18px "MyriadWebPro"; color:#8C8C8C; padding-left:4px;}
+.hangman-quiz-block .checkbox{ border:1px solid #eee;}
+.hangman-quiz-block p{ float:right; width:225px; color:#6a6a6a; font-size:11px; margin:0px;}
+.hangman-quiz-block li{ margin-bottom:20px;}
+.hangman-quiz-block .text-box{ padding-left:4px; font:12px/20px Arial, Helvetica, sans-serif;}
+.hangman-quiz-block .tag-texbox{ color:#8C8C8C; padding-left:4px;/* font:10px/20px Arial, Helvetica, sans-serif;*/}
+.hangman-quiz-block .Words-Remaining{ font-size:22px;}
+.hangman-quiz-block .skin{ width:260px; float:left;}
+.hangman-quiz-block a{ color:#056BA5;}
+.hangman-quiz-block .skin ul li{ float:left; margin-right:5px; line-height:15px; font:11px/12px Arial, Helvetica, sans-serif; font-weight:bold; width:86px; margin:0px; min-height:85px;}
+.hangman-quiz-block .skin ul li.last{ margin:0px;}
+.hangman-quiz-block .Browse-Skins a{ display:block; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; background-color:#1e6986; color:#fff; padding:2px 10px; font:13px/20px "MyriadWebPro-Semibold"; float:left;}
+.Proceed-to-next-step{ float:right;-moz-border-radius:2px 0px 0px 2px ; -webkit-border-radius:2px 0px 0px 2px; border-radius:2px 0px 0px 2px;
+color:#fff; padding:5px 30px 5px 10px; position:relative; margin-right:20px;
+background: #a52426; /* Old browsers */
+background: -moz-linear-gradient(top,  #a52426 0%, #942024 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a52426), color-stop(100%,#942024)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #a52426 0%,#942024 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #a52426 0%,#942024 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #a52426 0%,#942024 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #a52426 0%,#942024 100%); /* W3C */
+}
+.Proceed-to-next-step a{ color:#fff;}
+.next-step{border-bottom: 12px solid transparent; border-left: 20px solid #992124; border-top:13px solid transparent;
+    position: absolute; top: 0; font-size:0px; line-height:0px; display:block; z-index:100; left:154px;}
+
+
+/*------------Create-Quiz Page-------------*/
+.Create-Quiz-Block{background: none repeat scroll 0 0 #F7F7F7; padding: 15px;*float:left;}
+.Create-Quiz{ background-color:#e6e6e6;-moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; margin-bottom:20px; padding-bottom:10px; *float:left;}
+.Create-Quiz-Block label{ width:140px; float:left; font:70px/70px Arial, Helvetica, sans-serif; padding-left:10px}
+.Create-Quiz-Block label span{ font:16px/16px Arial, Helvetica, sans-serif; font-weight:bold; vertical-align:middle;}
+.Create-Quiz-Block p{ width:395px;font:15px/27px "MyriadWebPro"; color:#6a6a6a; padding-top:5px; float:left; *padding-top:20px;}
+.Create-Quiz-Block .close-btn{ float:right; width:45px; background:url(/images/close-btn.png) no-repeat center 0; margin-top:15px;  font-size:11px; margin-right:10px; text-align:center; }
+.Create-Quiz-Block .close-btn a{ color:#000;padding-top:25px; display:block;}
+.Boder-Btm{ border-bottom:1px solid #fff;}
+.Create-Quiz p{ line-height:1.4;}
+image-contaner{ padding:6px; display:block; background-color:#fff; float:left; text-align:center;}
+image-contaner a{ color:#056ba5;}
+.Quiz-Session{ margin:8px 8px 0px 8px;}
+.Quiz-Session a{ color:#056BA5;}
+quiz-block{ float:left; margin-left:8px;}
+.Create-Quiz-Block quiz-block ul li{ border-bottom:1px solid #fff; display:table; padding:5px 0; width:460px;}
+.Create-Quiz-Block quiz-block ul li span{ font:bold 16px/26px Arial,Helvetica,sans-serif; background-color:#64B045; color:#fff;    -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; padding:3px 6px;}
+.Create-Quiz-Block quiz-block ul li label{ background-color:#f8831a; font:bold 21px/21px Arial, Helvetica, sans-serif; -moz-border-radius:3px;
+    -webkit-border-radius: 3px; border-radius: 3px; padding:3px 6px; color:#fff; width:auto; margin:0px 10px 0px 4px;}
+.Create-Quiz-Block quiz-block ul li p{ margin:0px; float:left; width:275px; padding:0px; line-height:27px;}
+.Create-Quiz-Block quiz-block ul li span.active{ display:block;/* background:url(/images/right-arrow.png) no-repeat 0 1px; height:26px; */ float:left; padding:7px 0 0; color:#6A6A6A;}
+.Create-Quiz-Block .Create-Quiz .edit{ float:none; color:#fff; background-color:#1E6986; padding:4px 15px;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: right; font-size:18px; margin-right:10px; margin-top:10px;}
+.Create-Quiz-Block .Create-Quiz .edit a{ color:#fff;}
+add-quiz-block{ float:left; margin-left:8px;}
+.Quiz-Session .Add-Option{ width:245px;}
+.Create-Quiz-Block add-quiz-block ul li{display:table; padding:5px 0; width:460px;}
+.Create-Quiz-Block add-quiz-block ul li label{ background-color:#f8831a; font:bold 21px/21px Arial, Helvetica, sans-serif; -moz-border-radius:3px;
+    -webkit-border-radius: 3px; border-radius: 3px; padding:3px 6px; color:#fff; width:auto; margin:0px 10px 0px 4px;}
+.Create-Quiz-Block add-quiz-block ul li p{ margin:0px; float:left; width:270px; padding:0px;}
+.Create-Quiz-Block add-quiz-block ul li span.active{ display:block;/* background:url(/images/right-arrow.png) no-repeat 0 1px;*/ width:26px; height:26px; float:left;}
+.Create-Quiz-Block add-quiz-block ul li span.active{ display:block;/* background:url(/images/right-arrow.png) no-repeat 0 1px;*/ width:26px; height:26px; float:left;}
+
+.Create-Quiz-Block textarea{ width:360px; height:35px; border:1px solid #eee; color:#8C8C8C; font-size:13px; padding:5px; margin-top:15px; float:left;}
+.Create-Quiz-Block .Quiz-Point{ width:50px; float:left;}
+ input[type='text']{height:20px; line-height:20px; border:1px solid #eee; padding-left:3px; color:#8C8C8C;}
+.Create-Quiz-Block .Remove-Quiz{  float:right; height:20px; background:url(/images/close-btn2.png) no-repeat 0 0; font-size:11px; margin-right:10px; line-height:20px; margin-top:4px; }
+.Create-Quiz-Block .Remove-Quiz a{ text-decoration:none; color:#000; padding-left:25px;}
+.Create-Quiz-Block .Create-Quiz .save{ float:none; color:#fff; background-color:#1E6986; padding:4px 15px;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: left; font-size:18px; margin:10px 0px 0px 10px;}
+.Create-Quiz-Block .Create-Quiz .save a{ color:#fff; text-decoration:none;}
+.Create-Quiz-Block .Add-Quiz{ padding:10px;  background-color: #E6E6E6; border-radius: 8px 8px 8px 8px; margin-bottom: 20px; padding-bottom: 10px;}
+.Create-Quiz-Block .Add-Quiz .add-more-btn{ font:bold 16px/16px Arial, Helvetica, sans-serif; padding-left:15px; float:left; margin-top:10px}
+.Create-Quiz-Block .Add-Quiz .add-more-btn a{ color:#000;}
+.Create-Quiz-Block .Add-Quiz img{ vertical-align:middle; float:left;}
+.Go-Back-Block{background-color:#A2A2A2; float:right;-moz-border-radius:0px 2px 2px 0px ; -webkit-border-radius:0px 2px 2px 0px; border-radius:0px 2px 2px 0px;padding:5px 10px; position:relative; margin-right:20px;}
+.Go-Back-Block a{ color:#fff;}
+.go-back{border-bottom: 12px solid transparent; border-right: 20px solid #A2A2A2; border-top:13px solid transparent;
+    position: absolute; right:44px; top: 0; font-size:0px; line-height:0px;}
+	
+	
+.Create-Quiz-Block ul.upload-an-image{ padding:15px;}
+.Create-Quiz-Block ul.upload-an-image li.active { background-color: #F5F5F5;}
+.Create-Quiz-Block .upload-image{background-color: #F5F5F5; margin:0px 15px;}
+.Create-Quiz-Block .upload-image .text-box{ float:left; margin-right:15px; width:240px;}
+.Create-Quiz-Block .upload-image p{ float:right; width:200px; color: #6A6A6A; font-size: 11px; margin:0px; padding:0px;}
+.Add-Ans{ margin:15px 10px;}
+.Add-Ans label{ background-color: #F8831A; border-radius: 3px 3px 3px 3px; color: #FFFFFF; font: bold 21px/21px Arial,Helvetica,sans-serif;
+    margin: 0 7px 0 4px; padding: 3px 6px;  width: auto;}
+.Add-More-Q{ margin-left:15px; margin-bottom:15px; display:block;}
+.Add-More-Q a{ color:#056BA5;}
+.save-btn{ margin-left:15px; line-height:25px;}
+/*-----------------------create-quiz-popup Page-------------------*/
+.create-quiz-popup{ width:100%; height:100%; background:url(/images/popup-bg.png) repeat 0 0; z-index:999; position:absolute; font-family:"MyriadWebPro";}
+.create-quiz-popup .quiz-popup{ width:570px; height:230px; margin:0px auto; border:10px solid #727272; background-color:#F6F6F6; -moz-border-radius:20px; -webkit-border-radius:20px; border-radius:20px; margin-top:25%;}
+.create-quiz-popup .quiz-popup .popup-header{ height:47px; background-color:#d8090a; width:100%; -moz-border-radius:10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0;}
+.create-quiz-popup .quiz-popup .popup-header ul{ margin:0px; padding:0px;}
+.create-quiz-popup .quiz-popup .popup-header ul li.first{-moz-border-radius:10px 0px 0 0; -webkit-border-radius:10px 0px 0 0; border-radius:10px 0px 0 0;}
+.create-quiz-popup .quiz-popup .popup-header ul li{ float:left; padding:0px 15px; font:19px/47px "MyriadWebPro-Semibold";}
+.create-quiz-popup .quiz-popup .popup-header ul li a{  color:#ffb7b9;}
+.popup-active-tab{ background-color:#eb262c;}
+.popup-active-tab a{  color:#fff !important;}
+.create-quiz-popup .quiz-popup ul{ margin:0px; padding:30px 20px ;}
+.create-quiz-popup .quiz-popup ul li{ margin-bottom:10px;}
+.create-quiz-popup .quiz-popup ul li input[type='text']{ width:270px; height:20px; border:1px solid #c5c5c5; padding-left:3px; color:#8C8C8C;}
+.create-quiz-popup .quiz-popup ul li p{ float:right; font-size:11px; color:#6a6a6a; width:225px; margin:0px;}
+.add-image{color:#fff; background-color:#1E6986; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: right; font-size:18px; margin-right:10px; margin-top:10px; float:left;}
+.add-image a{ color:#fff; display:block; padding:4px 15px;}
+.cancel-image{ color:#fff; background-color:#1E6986;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: right; font-size:18px; margin-right:10px; margin-top:10px; float:left;}
+.cancel-image a{ color:#fff; display:block; padding:4px 15px;}
+.Close-Btn{ background:url(/images/dialog-close.png) no-repeat 0 0; width:32px; height:32px; position:absolute; margin:-18px 0 0 -16px;}
+/*---------------------Preview-You-Quiz Page----------------------*/
+.Preview-You-Quiz{ background-color:#F7F7F7; padding:10px; *padding:5px 10px 10px 10px;}
+.Preview-You-Quiz .Quiz-Answer-Block{ padding:0 15px 15px;}
+#container .Preview-You-Quiz h2{ font:18px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; display:table; padding-right:10px; }
+#container .Preview-You-Quiz h3{ font:16px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; display:table; padding-right:10px; }
+.Preview-You-Quiz .Quiz-Answer-Block ul{ margin:10px 15% 0 0; width:35%; float:left;}
+.Preview-You-Quiz .Quiz-Answer-Block ul li{ line-height:18px;}
+.Answer-Title{ font:18px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; }
+.Done-Edit{ margin-top:25px; line-height:25px;}
+.Red-button{ color:#fff; padding:0px 15px;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: right; font-size:13px; margin-right:10px; float:left;background: #a52426; /* Old browsers */
+background: -moz-linear-gradient(top,  #a52426 0%, #942024 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a52426), color-stop(100%,#942024)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #a52426 0%,#942024 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #a52426 0%,#942024 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #a52426 0%,#942024 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #a52426 0%,#942024 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a52426', endColorstr='#942024',GradientType=0 ); /* IE6-9 */}
+.Done-Edit a{ color:#a62327; text-decoration:underline; margin-left:3px;}
+.Red-button a{ color:#fff !important; display:block; text-decoration:none;}
+.Red-Link{ color:#A62327; text-decoration:underline;}
+a.Red-Link{ color:#A62327; text-decoration:underline;}
+.line-h25{ line-height:25px;}
+/*----------------------Create-Personalty Page---------------------*/
+.Create-Personalty{ background-color:#F7F7F7; padding:15px;}
+#container .Create-Personalty h2{ font:20px/20px "MyriadWebPro-Semibold"; margin:0 0 20px;}
+#container .Create-Personalty h3{ font:16px/20px "MyriadWebPro-Semibold"; margin:10px 0px 0 0; color:#4d4d4d;}
+.Create-Personalty ul li{ border-bottom:1px solid #d0d0d0; padding-bottom:8px; padding-left:10px;}
+.Create-Personalty ul li ul li{ border:none; padding:0px; margin:0px; line-height:25px;}
+.Create-Personalty .left-div{ float:left; color:#6c6c6c;}
+.Create-Personalty .left-div span{ font-weight:bold; width:70px; float:left;}
+.Create-Personalty .right-div{ float:right; margin-right:20px;}
+.Create-Personalty .right-div img{ border:6px solid #fff;}
+.Create-Personalty .edit { color:#056ba5; padding:3px 5px 3px 0px; text-decoration:underline;}
+.Create-Personalty .delete{ color:#a62327; padding:3px 5px; text-decoration:underline;}
+.Create-Personalty ul.Questions span{ width:22px;}
+.Done-Add-Delect{ line-height:25px; margin-top:35px;}
+.Done-Add-Delect a{color:#A62327;}
+
+/*--------------------------Leader Board Page ----------------------*/
+.LeaderBoard-Time{ border:1px solid #ebebeb; background-color:#fdfdfd; padding:10px; margin-bottom:15px;}
+.LeaderBoard-Time a{ color:#0088bc; padding:0px 30px;}
+.LeaderBoard-Time a.active{ text-decoration:underline; margin-bottom:15px;}
+.paginaton{ float:right; font:12px/20px "MyriadWebPro-Semibold"; color:#8c8989; }
+.paginaton a{ padding:0px 5px; color:#8c8989;}
+.paginaton a.active{ color:#222222;}
+.LeaderBoard-Time li{ float:left;}
+.LeaderBoard-Content{background: none repeat scroll 0 0 #F7F7F7;}
+.LeaderBoard-Content table{}
+.LeaderBoard-Content table tr td{ font:13px/20px "MyriadWebPro-Semibold"; padding:6px 0px 6px 25px;border-bottom:1px solid #fff;}
+.LeaderBoard-Content .header-top{ background-color:#4a4a4a; color:#fff; font:13px/20px "MyriadWebPro-Semibold";  border-bottom:1px solid #fff;}
+.LeaderBoard-Content table tr td span.active{ background:url(/images/sprite.png) no-repeat -202px 3px; width:12px; height:15px; display:block; float:right; margin-right:65px;}
+.dark-grey-bgcolor{ background-color:#B1B1B1; color:#fff;}
+.light-grey-bgcolor{ background-color:#EEEEEE;}
+.SortBar-Next{ margin:30px 0 0;}
+.SortBar-Next-Btn{ float:right;color: #222222; font: bold 11px Arial,Helvetica,sans-serif; background:url(/images/sprite.png) no-repeat -207px -20px #e5e5e5;}
+.SortBar-Next-Btn a{ color:#000; padding:5px 25px 5px 10px; display:block;}
+.LeaderBoard-Content img{ vertical-align:middle; margin-right:5px;}
+
+/*-------------------Create-Cressword step2 page -------------*/
+.Create-Cressword{ background-color:#F7F7F7; padding:10px 20px 20px 20px;}
+.Create-Cressword label{ font:13px/20px "MyriadWebPro-Semibold";}
+.Create-Cressword label a{ color:#026ba4; font:italic 13px/20px "MyriadWebPro-Semibold";}
+.Create-Cressword ul li{ margin-bottom:15px;} 
+.Create-Cressword ul li .Left-Div{ width:140px; float:left; margin-right:20px;}
+.Create-Cressword ul li .Middle-Div{ width:270px; float:left;margin-right:20px;}
+.Create-Cressword ul li .Right-div{ float:left;}
+.Add-Word-Textbox{ width:135px; height:20px; border:1px solid #e7e7e7; -moz-border-radius:3px;-webkit-border-radius:3px; border-radius:3px;}
+.Add-Clue-Textbox{width:265px; height:20px; border:1px solid #e7e7e7; -moz-border-radius:3px;-webkit-border-radius:3px; border-radius:3px;}
+.Create-Cressword a.Add-Image{ color:#fff; background-color:#1E6986; padding:4px 10px;-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; float: left; font-size:13px; margin-right:10px; margin-top:20px; *margin-top:21px;}
+.Create-Cressword a.Add-More{ color:#026BA4; text-decoration:underline;}
+.Generate-Pass{ line-height:25px; margin-bottom:35px !important;}
+.Generate-Pass .Red-button a{ line-height:25px; padding:0px;}
+
+/*----------------------Crossword-Block -----------------------*/
+.Crossword-Block{ border:1px solid #d9d9d9; background-color:#F7F7F7;}
+.Crossword-Block h3{ font: 20px/20px "MyriadWebPro-Semibold"; margin-bottom: 8px; padding-bottom: 5px; padding-right: 10px; margin-top:5px; color:#787878; padding:10px 10px 0px;}
+.Crossword-Block .Crossword-Answer-Block{ padding:0 15px 15px;}
+#container .Across h2{ font:18px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; display:table; padding-right:10px; }
+#container .Across h3{ font:16px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; display:table; padding-right:10px; }
+.Crossword-Answer-Block ul{ float: left; margin: 10px 15% 0 0; width: 35%;}
+.Crossword-Answer-Block ul li{font:14px/20px "MyriadWebPro-Semibold";}
+.Crossword-Answer-Block .Answer-Title{ font:18px/20px "MyriadWebPro-Semibold"; border-bottom:1px solid #d0d0d0; margin-bottom: 8px; padding-bottom: 3px; }
+.Crossword-Answer-Block .select{ color:#DD2429;}
+.Crossword-Answer-Block a{ color:#026BA4;}
+.Crossword-Block .Bott{ width:100%; background:#333; opacity:.9; filter:alpha(opacity=90);  }
+.Crossword-Block .Desc a { color: #4889C8;}
+.Crossword-Block .Give-Up-Block{ text-align:center; color:#333333;background-color: #D9D9D9; color: #333333; padding: 10px; text-align: center;}
+.Crossword-Block .Crossword-puzzle-img{ margin:10px;}
+.Crossword-Block .Bott .FloatLeft img{ float:left;padding:11px 5px 11px 15px;}
+.Crossword-Block .Give-Up-Block a{ color:#026BA4; text-decoration:underline;}
+.Give-Up-Block a.Give-up{ font:16px/20px "MyriadWebPro-Semibold"; text-decoration:none;}
+.Crossword-Block .Bott ul li a {float: left; padding: 3px 3px 0;}
+.Crossword-Block .Bott ul li { border-left: 1px solid #4A4A4A; float: left; min-height: 30px; padding: 5px;}
+.Crossword-Block ul{}
+.Crossword-Block .Desc{ padding:10px; line-height:1.4;}
+.Crossword-Block .Desc .leftdiv{ float:left; width:82%;}
+.Crossword-Block .Desc .rightdiv{ float:right; width:17%;font:24px/24px "MyriadWebPro-Semibold"; }
+.Crossword-Block .Desc .IcoS4 { background-position: -62px -25px; height: 24px;left: 0; position: absolute; top: 5px; width: 24px;}
+.Crossword-Block .Desc .Title{font: 12px Tahoma,Geneva,sans-serif; padding: 10px 0 0 30px; position: relative; margin-bottom:10px;}
+.Crossword-Block .Desc .Title .Ex {color: #333333; font: 16px "BebasNeueRegular";}
+.Crossword-Block .Desc .Categ{ margin-bottom:3px;}
+.Crossword-Point{ background:url(/images/sprite.png) no-repeat -224px 3px;height:26px;padding-left:35px; float:right; font-family:Tahoma, Geneva, sans-serif;}
+.Game-Point{ background:url(/images/sprite.png) no-repeat -190px -51px;height:24px;padding-left:30px; margin-top:10px; float:right; font-family:Tahoma, Geneva, sans-serif;}
+.Vote-Up{background:url(/images/sprite.png) no-repeat -191px -81px;height:27px;padding-left:30px; margin-top:10px; float:right; font-family:Tahoma, Geneva, sans-serif;}
+/*-------------------Crossword-Popup -------------*/
+.Crossword-Popup-Block{background: url(/images/popup-bg.png) repeat scroll 0 0 transparent; font-family: "MyriadWebPro"; height: 100%;
+    position: absolute; width: 100%; z-index: 999;}
+ .Crossword-Popup{ background-color: #F6F6F6; border: 10px solid #727272; border-radius: 20px 20px 20px 20px;
+    height: 230px; margin: 25% auto 0; width: 570px}
+.Crossword-Popup-Block .popup-header{ background-color: #D8090A; border-radius: 10px 10px 0 0;height:47px; font:19px/47px "MyriadWebPro-Semibold"; padding-left:20px; color:#fff;}
+.Crossword-Popup-Block .Crossword-Popup ul{ padding:20px 40px;}
+.Crossword-Popup-Block .Crossword-Popup ul li{color:#1E6986; margin-bottom:10px;font:18px/18px "MyriadWebPro-Semibold";}
+.Crossword-Popup-Block .Crossword-textbox{ border: 1px solid #C5C5C5; color: #8C8C8C; height: 20px; padding-left: 3px; width: 270px}
+.Blue-bg{background-color: #1E6986; border-radius: 3px 3px 3px 3px; color: #FFFFFF; float: left; font-size: 18px; margin-right: 10px;}
+.Blue-bg a{ color:#fff; padding:4px 10px; font-size:14px; display:block;}
+.Crossword-Popup .Red-button a{ padding:4px 0px;}
+
+/*-------------------create_personality_quiz_step------------*/
+ul.Add-Question{}
+ul.Add-Question textarea{border: 1px solid #EEEEEE; color: #8C8C8C;float: left; font-size: 13px; height: 35px; padding: 5px; width: 415px;}
+ul.Add-Question .close-btn{ float:right; width:75px; background:url(/images/close-btn.png) no-repeat left 0; font-size:11px;line-height:12px; margin-top:12px; }
+ul.Add-Question .close-btn a{ color:#000; padding-left:30px; display:block;}
+ul.Add-Question ul li{ width:50%; float:left;}
+ul.Add-Question label{background-color: #F8831A;border-radius: 3px 3px 3px 3px; color: #FFFFFF; font: bold 21px/21px Arial,Helvetica,sans-serif; margin: 0 7px 0 0px; padding: 3px 6px; width: auto;}
+ul.Add-Question p{ float:left; width:auto;}
+.Enter-option {border: 1px solid #EEEEEE; float: left; height: 20px; width:115px !important; color:#8C8C8C; padding-left:4px; margin-right:8px;}
+.Points{border: 1px solid #EEEEEE; float: left; height: 20px; width:50px !important;color:#8C8C8C;padding-left:4px;}
+ul.Add-Question .Remove-Quiz{  float:right; width:73px; height:20px; background:url(/images/close-btn2.png) no-repeat 0 0; font-size:11px; line-height:20px; margin-top:3px;  }
+ul.Add-Question .Remove-Quiz a{ color:#000;padding-left:25px; }
+ul.upload-an-image{}
+ul.upload-an-image li{ float:left; width:120px !important; margin:0px;}
+ul.upload-an-image li a{ display:block; padding:5px 10px !important; color:#056BA5;font:14px/18px "MyriadWebPro-Semibold";}
+ul.upload-an-image li.active{ background-color:#E6E6E6;}
+ul.upload-an-image li.active a{ font-size:15px;}
+.upload-image{ background-color:#E6E6E6; padding:25px 15px;}
+.Add-Question .upload-image span{ margin-left:10px;}
+.Add-Question .upload-image p{ float:right; width:210px;}
+.Add-more{color:#056BA5;font:14px/18px "MyriadWebPro-Semibold";}
+.Add-more a{ text-decoration:underline; text-transform:uppercase;}
+/*---------------Personality Quiz -----------------*/
+.QuizSec .Per-Quiz{color: #FFFFFF; float: left; font:bold 20px Arial, Helvetica, sans-serif; padding: 5px 10px;}
+.QuizSec .PerQ {padding: 15px 15px 6px;}
+#container .QuizBox .PerQ h2{ margin:30px 0 0 15px; font:24px "MyriadWebPro" !important; width:290px; float:left; color:#00273a;}
+#container .QuizBox .PerQ .Hdr .ImgHolder{  float:left; border:#a3a4a4 solid 2px; font-size:0; line-height:0;}
+.QuizBox .PerQ .Obj{ margin:10px 0 0px 0;}
+.QuizBox .PerQ .Obj li { display:inline;}
+.QuizBox .PerQ .Obj li a{ font:16px "MyriadWebPro"; border:#c0c3be solid 1px; padding:8px 8px 8px 30px; margin:0 20px 7px 0; width:94%; display:inline-block; color:#333; position:relative; background:#FFF; opacity:.9; filter:alpha(opacity=90);}
+
+.QuizBox .PerQ .Obj li a span{ color:#f28421; position:absolute; left:5px; top:8px;}
+.QuizBox .PerQ .Obj li a:hover{text-decoration:none; border:#979797 solid 1px;}
+.Per-Quiz-block{ }
+.Per-Quiz-block h3{ color:#636363; font:18px "MyriadWebPro-Semibold"; margin:0px 0px 0px 15px; float:left;}
+#container .Per-Quiz-block h2{color: #00273A; float: left; font:22px "MyriadWebPro-Semibold" !important; margin: 30px 0 0 15px; width: 290px;}
+.light-grey{ color:#8B8B8B; font-size:11px;}
+.Desc .Categ{ margin-bottom:5px;}
+.Desc .leftdiv{ float:left; width:82%;}
+.Desc .rightdiv{ float:right; font: 24px/24px "MyriadWebPro-Semibold"; width: 17%;}
+.Per-Quiz-block .TopH{ background:#333333; color:#FFF; *float:none; }
+.Skip-Option{ float:right; padding:3px 10px;}
+.Skip-Option a{ color:#4889C8; text-decoration:underline}
+/*--------------------Per-Quiz-Result ----------------------*/
+.Per-Quiz-Result{}
+#container .Per-Quiz-Result .ImgHolder{ width:230px; margin:0px auto; float:none !important;}
+#container .Per-Quiz-Result .Per-Result{ text-align:center; margin-top:15px; line-height:1.4; font-size:13px;}
+#container .Per-Quiz-Result .Result-Uname{ color:#F01F0B; font:14px "MyriadWebPro-Semibold"; }
+#container .Per-Quiz-Result .Per-Result h3{color: #636363; float: none; font:bold 15px Arial, Helvetica, sans-serif; margin:8px 0 0 15px;}
+#container .Per-Quiz-Result .Per-Result .Blue-bg{ margin:0 auto 15px; width:160px; float:none;}
+#container .Per-Quiz-Result .Per-Result .Blue-bg a{ font-size:16px;}
+#container .Per-Quiz-Result  ul.Socal-Ico { width:100px; margin:15px auto 0;}
+#container .Per-Quiz-Result  ul.Socal-Ico li{ float:left;}
+#container .Per-Quiz-Result  ul.Socal-Ico li img{ margin:0px 5px;}
+#container .Per-Quiz-block { min-height:535px;}
+/*---------------------Hangman-Quiz-Result ----------------------*/
+.Hangman-Quiz-Result{min-height:434px;background:url(/images/quiz_img2.jpg) repeat 0 0;}
+.Hangman-Result{ /*background:url(/images/grey-transparent-bg.png) repeat 0 0;*/ color:#636363; font-size: 13px; line-height: 1.4; margin-top: 12px;text-align: center;}
+.Hangman-Quiz-Result .Hangman-Result{ padding:15px 0 0;}
+.thank-you{font:20px/25px "MyriadWebPro";}
+.Your-Score{font:bold 15px/25px "Arial";}
+.Score{font:bold 26px/25px "Arial";}
+.Per-Result ul li{ margin-bottom:10px;}
+.Per-Result .Blue-bg{ margin:0px auto; float:none; width:150px;}
+.Per-Result ul.Socal-Ico li{ float:left;}
+.Per-Result ul.Socal-Ico{ width:100px; margin:0px auto;}
+.Per-Result ul.Socal-Ico li img{margin:0px 5px;}
+.Hangman-Quiz-Result .Hdr{ padding-top:30px; *padding-top:190px;}
+.Hangman-Quiz-Result .Hdr img{ border:2px solid #AEAEAE;}
+/*-------------------Hangman-Quiz --------------------------*/
+.Hangman-Quiz{ }
+.QuizSec .Hangman-Quiz .Score{ padding:4px 4px 3px 9px; font-size:16px;}
+.QuizSec .Hangman-Quiz .Score .Val{ font:bold 24px Arial,Helvetica,sans-serif; margin:0px 6px 0px 0px;}
+.Hangman-Quiz .HanQ{ }
+.Hangman-Quiz .HanQ h3{ font:bold 18px/20px Arial, Helvetica, sans-serif; margin:10px 15px; }
+.Hangman-Quiz .HanQ p{ font:13px/18px "MyriadWebPro"; margin:0 15px; color:#535151;}
+.Hangman-Quiz .Hangman-Quiz-block{ padding:17px;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QLeft{ float:left; background:url(/images/Hangman-Quiz-img1.jpg) no-repeat 0 0; width:292px; height:250px; border:2px solid #aeaeae;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QLeft ul{ margin:10px;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QLeft ul li{ background-color:#F9A59B; padding:2px 7px; float:left; color:#fbc9c4;font:22px/25px "MyriadWebPro-Semibold"; margin-right:3px;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QLeft ul li.active{ color:#fff; background-color:#F01D08;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QRight{ float:right;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QRight .img{width:293px; min-height:136px;border:2px solid #aeaeae;}
+.Hangman-Quiz .HanQ .Han-QRight h3{ font:bold 18px/20px Arial, Helvetica, sans-serif; margin:10px 0px; }
+.Hangman-Quiz .Hangman-Quiz-block .Han-QRight ul{ margin:20px 0 20px 30px; width:265px;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QRight ul li{ background-color:#64b045; padding:1px 8px; float:left; color:#fff;font:22px/25px "MyriadWebPro-Semibold"; margin-right:3px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius: 3px; min-height:25px; min-width:15px; margin-bottom:3px;}
+.Hangman-Quiz .Hangman-Quiz-block .Han-QRight a{ color:#4889C8; text-decoration:underline;}
+.Han-Quiz-Option{}
+.Han-Quiz-Option ul{ margin:0px 18px}
+.Han-Quiz-Option ul li{padding:0 2px; float:left; color:#f28421; font:22px/25px "MyriadWebPro-Semibold"; margin-right:5px; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius: 3px;border:2px solid #b7b7b7; margin-bottom:5px; background-color:#fff; width:21px; text-align:center;}
+.Han-Quiz-Option ul li.acrive-redbg{ background-color:#EF1C07; color:#fff;}
+.Han-Quiz-Option ul li.active-greenbg{ background-color:#64B044; color:#fff;}
+.Give-Up-Block{ text-align:center; color:#333333;background-color: #D9D9D9; color: #333333; padding: 10px; text-align: center;}
+.Give-Up-Block a{ color:#026BA4; text-decoration:underline;}
+.Give-Up-Block a.Give-up{ font:16px/20px "MyriadWebPro-Semibold"; text-decoration:none; color:#026BA4;}
+
+/*--------------------Drop Down Play---*/
+.NIPlay-DrpDwn{ background-color:#EB262D; position:absolute; left:0px; top:35px; color:#fff; min-width:610px; padding:20px; z-index:990;}
+.NIPlay-DrpDwn ul li{ float:left; }
+.NIPlay-DrpDwn ul li a{ padding:4px 0px;}
+.NIPlay-DrpDwn ul li a{ font:13px/13px "MyriadWebPro-Semibold";}
+.NIPlay-DrpDwn ul li ul{ float:left; width:140px;}
+.NIPlay-DrpDwn ul li ul li{ width:100%;}
+.RandomContest{ background-color:#fff; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; padding:10px; 
+width:115px; text-align:center; float:right; margin-top:30px; margin-right:15px;}
+.RandomContest a{ color:#DC2527;font:16px/18px "MyriadWebPro-Semibold"; padding:0px;}
+.NIPlay-DrpDwn .Cat-Title h3{font:16px/13px "MyriadWebPro-Semibold"; margin:0px 0px 10px 0px;}
+/*---------------------NICreate-DrpDwn ---------------*/
+.NICreate-DrpDwn{ background-color:#F8831A; position:absolute; left:0px; top:35px; color:#fff; min-width:780px; padding:20px; z-index:999999999; min-height:120px;}
+.NICreate-DrpDwn ul li{ float:left; width:250px; margin-right:10px; min-height:110px; }
+.NICreate-DrpDwn ul li div{background-color: #FFFFFF; color: #F8831A; float: left;font-family: arial;font-size: 19px;font-weight: bold;
+    margin-right: 10px; padding: 5px 10px;} 
+.NICreate-DrpDwn ul li .Cat-Title{ font:16px/13px "MyriadWebPro-Semibold"; margin-bottom:10px;}
+.NICreate-DrpDwn ul li p{ margin:5px 0 5px 45px; font-size:12px;}
+.Create-Live-Camp{ background-color:#fff; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; padding:10px; 
+text-align:center; float:right; }
+.Create-Live-Camp a{ color:#F8831A;font:14px/14px "MyriadWebPro-Semibold"; padding:0px;}
+.Drop-dwn-Boder-Top{ border-top: 1px solid #FBB577; padding-top:15px; line-height:35px;}
+
+/*----------------*/
+.light-grey-color{ background-color:#F7F7F7;}
+.copyright{ text-align:center; color:#fff; padding-bottom:10px; font-size:12px;}
+.copyright a{ color:#fff; text-decoration:underline;}
+#container .DipCon .quiz-channel{background-position:-83px -165px; width:40px; height:34px; display:block;}
+#container .DipCon .hangman-channel{background-position: -130px -165px; width:40px; height:34px; display:block;}
+#container .DipCon .crossword-channel{background-position: -172px -165px; width:40px; height:34px; display:block;}
+#container .DipCon .Personality-channel{background-position: -215px -165px; width:40px; height:34px; display:block;}
+
+#container .PanelCenter .SListBox .ST_Day{ width:55px !important; float:left; margin-right:10px; padding-left:4px;}
+#container .PanelCenter .SListBox .ST_Month{ width:105px !important; float:left;  margin-right:10px; padding-left:4px;}
+#container .PanelCenter .SListBox .ST_Year{ width:60px !important; float:left; padding-left:4px;}
+
+#container .PanelCenter .SListBox .End_Day{ width:55px !important; float:left; margin-right:10px; padding-left:4px;}
+#container .PanelCenter .SListBox .End_Month{ width:105px !important; float:left;  margin-right:10px; padding-left:4px;}
+#container .PanelCenter .SListBox .End_Year{ width:60px !important; float:left; padding-left:4px;}
+
+/*-------------------- User Profile --------------------*/
+#container .PanelCenter .Profile-Share-link{float: right; font: 12px/20px "MyriadWebPro-Semibold";}
+#container .PanelCenter .Profile-Share-link a{ background-color:#056BA5; color:#fff; padding:3px 10px; margin-left:10px;}
+.User-Profile-Block {background-color: #FDFDFD; border:1px solid #EBEBEB; margin-bottom:15px; padding:10px;}
+
+.User-Profile-Block .User-Imege{ float:left; margin-right:15px;}
+.User-Profile-Block .User-Imege img{border:1px solid #EBEBEB; padding:2px;}
+.User-Profile{font:18px/18px Tahoma, Geneva, sans-serif;color:#5c5c5c; border-bottom:1px solid #d4d4d4; float:left; width:77%;}
+.User-Profile p{font: 12px/16px "MyriadWebPro"; color:#818080; margin-bottom:3px; margin-top:3px;}
+.User-Profile a{ color:#0790c4; text-decoration:underline; margin-left:30px; font: 13px/20px "MyriadWebPro-Semibold"}
+.User-Profile-Name{ font:bold 18px/18px Tahoma, Geneva, sans-serif; padding-right:5px; }
+.User-Profile-Location{ font: 13px/18px "MyriadWebPro"; padding-left:10px;}
+.User-Rank-Div{ padding:6px 10px; color:#fff; font: 17px/20px "MyriadWebPro-Semibold"; float:left; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; min-width:130px; text-align:center; margin-top:10px;
+ background: #f51c23; /* Old browsers */
+background: -moz-linear-gradient(top,  #f51c23 0%, #f51c23 56%, #d70c12 87%, #d31538 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f51c23), color-stop(56%,#f51c23), color-stop(87%,#d70c12), color-stop(100%,#d31538)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f51c23 0%,#f51c23 56%,#d70c12 87%,#d31538 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f51c23 0%,#f51c23 56%,#d70c12 87%,#d31538 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f51c23 0%,#f51c23 56%,#d70c12 87%,#d31538 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f51c23 0%,#f51c23 56%,#d70c12 87%,#d31538 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f51c23', endColorstr='#d31538',GradientType=0 ); /* IE6-9 */
+}
+.User-Rank-Div ul{ text-align:center; margin-left:37px;}
+.User-Rank-Div ul li{ background:url(/images/Profile-Rank.png) no-repeat 0 0; width:14px; height:13px; float:left; margin-right:3px;}
+.User-Point{ margin-top:15px; margin-left:10px; width:325px; float:left; color:#5c5c5c;}
+.User-Point li{ float:left;font: 14px/18px "MyriadWebPro"; margin-right:5px;}
+.User-Point li span{font: 20px/20px "MyriadWebPro-Semibold"}
+.User-Profile-Div{ margin-bottom:50px;}
+.User-Profile-Div .Left-Div{ float:left;}
+.User-Profile-Div .Left-Div ul li{ width:135px; background-color:#222222; border-bottom:1px solid #fff; font: 14px/18px "MyriadWebPro"; padding:3px 10px;}
+.User-Profile-Div .Left-Div ul li a{ color:#b7b6b6; display:block;}
+.User-Profile-Div .Left-Div ul li a:hover{ color:#fff;}
+.User-Profile-Div .Right-div{ float:right; width:480px;}
+#container .User-Profile-Div .Right-div .CList h2{ color:#6a6a6a; *height:25px;}
+.User-Quiz-Block{ border:1px solid #EBEBEB; padding:20px 7px;}
+.User-Quiz-Block ul li{ border:none;}
+.User-Quiz-Block ul li.Prev{ border:none; margin-top:55px; float:left;}
+.User-Quiz-Block ul li.Next{ border:none; margin-top:55px; float:right; margin-right:0px;}
+.mrt35{ margin-top:35px;}
+.User-Profile-Div .Left-Div li.active{ background-color:#932024; position:relative;}
+.User-Profile-Div .Left-Div li.active span{ margin-top:-22px;background:url(/images/sprite.png) no-repeat -244px -52px; height:24px; width:17px; position:absolute; right:-17px;}
+.User-Profile-Div .Left-Div li.active a{ color:#fff;}
+.Selected-Box{border-top:1px solid #EBEBEB;border-bottom:1px solid #EBEBEB; padding:3px 0;}
+.Right-div ul{ color:#000;font:13px/18px "MyriadWebPro-Semibold"; margin-top:10px;}
+.Right-div ul li{ border-bottom:1px solid #dbdbdb; padding:1px 0px; line-height:20px;}
+.Right-div ul span{border-bottom:1px dashed #dbdbdb; width:100%; display:block; padding:3px 0px;}
+.Right-div ul li span{ float:left; color:#858585; margin-right:20px; width:auto; border:none;}
+.Right-div ul li p{ color:#4a4a4a; margin:3px 0px;}
+.Right-div ul li a{ color:#0790c4; text-decoration:underline;}
+
+/*------------------Login Popup---------------*/
+.Login-Popup{ background-color:#343434; width:235px; padding:10px 10px 15px 10px; -moz-border-radius:0px 0px 5px 5px; -webkit-border-radius:0px 0px 5px 5px; border-radius:0px 0px 5px 5px; position:absolute; z-index:9; left:-15px; top:26px; color:#fff; font-size:11px;}
+.Login-Popup .text-box{border: 1px solid #EEEEEE; color: #8C8C8C; height: 20px; line-height: 20px; padding-left: 3px; width:230px; margin-bottom:12px;}
+.TopBar .Login .Login-Popup span{ float:right;}
+.TopBar .Login .Login-Popup p{ margin:7px 0 0;}
+.TopBar .Login .Login-Popup .Login-Btn{ background:url(/images/sprite.png) no-repeat -160px -212px; width:75px; height:34px; border:none; float:right; cursor:pointer;}
+.TopBar .Login .Login-Popup .Sign-Up{ background:url(/images/sprite.png) no-repeat -152px -249px; width:85px; height:42px; border:none; float:right; cursor:pointer;}
+.mrt5{ margin-top:5px;}
+.TopBar .Login .Login-Popup .FloatLeft span{ float:left; width:100%; margin-bottom:5px;}
+.TopBar .Login .Login-Popup a{ color:#fff; font:11px "MyriadWebPro";}
+.TopBar .Login .Login-Popup .FloatLeft{ width:130px;}

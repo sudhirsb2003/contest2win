@@ -1,0 +1,98 @@
+one:
+  id: 1
+  prize_id: 1 # ipod
+  contest_id: 1 #text_quiz_1
+  quantity: 2
+  region_id: 2
+  created_on: <%= Time.now %>
+  created_by_id: 3 #an_Admin
+  from_date: <%= Time.now - 10.days %>
+  to_date: <%= Time.now %>
+
+two:
+  id: 2
+  prize_id: 1 # ipod
+  contest_id: 1 #text_quiz_1
+  region_id: 2
+  quantity: 1
+  created_on: <%= Time.now %>
+  created_by_id: 3 #an_Admin
+  from_date: <%= Time.now + 10.days %>
+  to_date: <%= Time.now + 20.days %>
+
+boundary:
+  id: 3
+  prize_id: 1 # ipod
+  region_id: 2
+  contest_id: 1 #text_quiz_1
+  quantity: 2
+  created_on: '2007-01-01'
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+credits:
+  id: 5
+  prize_id: 2 # cash
+  region_id: 2
+  contest_id: 1 #text_quiz_1
+  quantity: 2
+  created_on: '2007-01-01'
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+tds_check:
+  id: 6
+  prize_id: 3 # ipod sans tds
+  contest_id: 2
+  region_id: 2
+  quantity: 2
+  created_on: '2007-01-01'
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+short_listed_winner_tests:
+  id: 7
+  prize_id: 3 # ipod sans tds
+  contest_id: 2
+  quantity: 2
+  region_id: 2
+  created_on: '2007-01-01'
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+tds_check1:
+  id: 8
+  prize_id: 1 # ipod with tds
+  contest_id: 2
+  quantity: 2
+  created_on: '2007-01-01'
+  region_id: 2
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+winners_page_check:
+  id: 9
+  prize_id: 1 # ipod with tds
+  contest_id: 3 #text_poll_1
+  quantity: 1
+  created_on: '2007-01-01'
+  region_id: 2
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: '2007-01-31 02:12'
+
+premature:
+  id: 10
+  prize_id: 1 # ipod
+  contest_id: 1 #text_quiz_1
+  quantity: 2
+  region_id: 2
+  created_on: <%= Time.now %>
+  created_by_id: 3 #an_Admin
+  from_date: '2007-01-01 12:21'
+  to_date: <%= Time.now + 1.day %>

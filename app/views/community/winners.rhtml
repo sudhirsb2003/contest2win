@@ -1,0 +1,19 @@
+<% cache(@community_winners_cache_key) do %>
+<!--b:cache <%= "#{@community_winners_cache_key} #{Time.now}" %>-->
+<%= render :partial => 'sub_menu' %>
+<div id="main_center">
+<%= will_paginate @winners %>
+<div class="community_winners">
+<ul>
+<% @winners.each do |winner| %>
+  <li class="<%= cycle('odd','even') %>"><div class="thumb"><%= show_user_image(winner.user, 'thumb') %></div>
+  <h4> Congrats! <%= link_to_user winner.user.username %> won <%= h winner.contest_prize.prize.title %></h4>
+  <small>on <%= short_date(winner.confirmed_on) %> in the <%= link_to h(winner.contest_prize.contest.title), contest_url(winner.contest_prize.contest.url_attributes)  %></small></li>
+<% end %>
+</ul>
+</div>
+<br clear="all"/>
+<%= will_paginate @winners %>
+</div><!-- main_center -->			
+<!--e cache <%= @community_winners_cache_key %>-->
+<% end %>

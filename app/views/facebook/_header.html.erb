@@ -1,0 +1,23 @@
+<div id="user_top">
+<% if fb_authorized? %>
+  <div style="border:1px solid #76b916;padding:2px;width:250px;overflow:hidden;">
+    <div style="float:right;width:50px;margin-left:5px;">
+      <%= fb_profile_pic(session[:facebook_id], :linked => true, :size => "square") %> 
+    </div>
+    Welcome, <fb:name class=" FB_ElementReady" linked="false" uid="<%= session[:facebook_id] %>" useyou="false"></fb:name>
+    <br />
+    <br />
+    <%= fb_logout_link "Logout of Facebook", account_link(:action => :logout) %>
+  </div>
+<% else %>
+<fb:login-button length="large" onlogin='fbLogin()' scope="email"></fb:login-button>
+
+<script type="text/javascript">
+//<![CDATA[
+function fbLogin() {
+  <%= remote_function(:url => facebook_path(:action => :login, :ref => "#{request.path}"), :with => "'register=true'") %>
+}
+//]]>
+</script>
+<% end %>
+</div>

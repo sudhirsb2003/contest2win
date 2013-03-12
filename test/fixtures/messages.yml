@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  body: 'test'
+  sender_id: 1 # users(:a_user)
+  receiver_id: 2 # users(:another_user)
+  created_on: <%= DateTime.now %>

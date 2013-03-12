@@ -1,0 +1,11 @@
+comment_on_sombodies_contest:
+  commentable_id: 1
+  message: foo
+  user_id: 2
+
+comment_on_own_contest:
+  commentable_id: 1
+  message: foo
+  user_id: 1
+
+

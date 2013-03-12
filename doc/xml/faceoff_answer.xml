@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <id>391</id>
+  <score>41</score>
+  <completed>false</completed>
+  <questions-answered>41</questions-answered>
+  <questions-remaining>79</questions-remaining>
+  <correct-count>41</correct-count>
+  <success>100.0</success>
+  <latest-answer>
+    <correct>true</correct>
+    <id>6165</id>
+    <points>1</points>
+    <options>
+      <option>
+        <text>World Trade Center</text>
+        <score>33</score>
+      </option>
+      <option>
+        <text>The Devil Wears Prada</text>
+        <score>67</score>
+      </option>
+    </options>
+  </latest-answer>
+</response>

@@ -1,0 +1,39 @@
+<%
+contests ||= []
+heading ||= nil
+action_name ||= nil
+%>
+<%unless heading.blank?%>
+	<h2><%=heading%></h2>
+<%end%>
+<%unless contests.empty?%>
+	<ul>		
+		<%contests.each do |contest|%>
+			<li>
+				<%= link_to image_tag_for_contest(contest), contest_path(contest.url_attributes)%>
+				<div class="CLInfo">
+				  <h3><%=contest.title%></h3>
+				  <span>By <%=link_to_user(contest.username)%></span>
+				  <div class="Desc">
+				    <p><%=contest.description%></p>
+				      <div class="FloatLeft"><span class="Sprite IcoErs"></span><%=number_with_delimiter(contest.net_votes) %></div>
+				      <div class="FloatRight"><span class="Sprite IcoIks"></span><%=number_with_delimiter(contest.favourites.count)%></div>
+				      <div class="Clear"></div>
+				  </div>
+				</div>
+			</li>
+		<%end%>
+	</ul>
+<%end%>
+<div class="LiNav">
+	<%=link_to "View All",contests_path(:controller => "contests",:action => action_name, :page => nil),:class => "BtnViewAll"%>
+  <%if contests.class != Array%>
+	  <%if contests.previous_page%>
+	  	<%=link_to_remote "",:url  => "/?page=#{contests.previous_page}&quize_type=#{quiz_type}",:html => {:class => "Sprite Prev"}%>  	
+		<%end%>
+	  <%if contests.next_page%>
+	  	<%=link_to_remote "",:url  => "/?page=#{contests.next_page}&quize_type=#{quiz_type}",:html => {:class => "Sprite Next"}%>  	
+		<%end%>
+	<%end%>
+ </div>
+ <div class="Clear"></div>

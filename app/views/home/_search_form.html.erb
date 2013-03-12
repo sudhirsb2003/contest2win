@@ -1,0 +1,15 @@
+<form action="/search" id="search_frm">
+	<a href="#" onclick="$('search_frm').submit()">GO</a>
+	<input type="text" id="search_query" name="query" size="25" value="" onfocus="this.select()" onchange="set_search_query_default_string()" />
+</form>
+<%= javascript_tag 'function set_search_query_default_string() {
+	if("" == $F("search_query") || "search..." == $F("search_query")) {
+		$("search_query").value = "search...";
+		$("search_query").addClassName("tip");
+	} else {
+		$("search_query").removeClassName("tip");
+	}
+};
+set_search_query_default_string()' %>
+
+

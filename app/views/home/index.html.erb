@@ -1,0 +1,74 @@
+<section id="container">
+  <aside class="PanelRight">
+    <%=render :partial => "/home/today_leaders"%>
+    <div class="BoxBdr AdBlock"></div>
+    <%=render :partial => "/shared/fb_likes"%>
+    <%=render :partial => "/shared/twitter_contents"%>
+  </aside>
+  <section class="PanelCenter">
+    <%=render :partial => '/home/featured_quizzes'%>    
+    <div class="CList" id = "editorial_quizzes">  
+      
+      <%=render :partial => '/contests/contests',:locals => {:contests => @featured_contests,:heading => "Editorial Picks - Quizzes",:quiz_type => "e",:action_name => "featured"}%>       
+    </div>
+    <div class="CList" id = "popular_quizzes">
+      <%=render :partial => '/contests/contests',:locals => {:contests => @popular_contests,:heading => "Popular Quizzes",:quiz_type => "p",:action_name => "most_played"}%>
+    </div>
+    <div class="CList" id = "recent_quizzes">
+      <%=render :partial => '/contests/contests',:locals => {:contests => @recent_contests,:heading => "Recent Quizzes",:quiz_type => "r",:action_name => "most_recent"}%>
+    </div>
+    <div class="FavCat">
+      <ul>
+        <li>
+          <a href='<%=contests_path( {:controller => "quizzes", :action => "most_recent"})%>'>
+            <span class="Sprite IcoQuiz"></span>Quizzes
+          </a> 
+        </li>
+        <li>
+          <a href='<%=contests_path({:controller => "hangman", :action => "most_recent"})%>'>
+            <span class="Sprite IcoHang"></span> Hangman 
+          </a>
+        </li>
+        <li>
+          <a href='<%=contests_path({:controller => "crosswords", :action => "most_recent"})%>'>
+            <span class="Sprite IcoCross"></span> Crossword
+          </a>
+        </li>
+        <li>
+          <a href='<%=contests_path({:controller => "personality_tests", :action => "most_recent"})%>'>
+            <span class="Sprite IcoPersnlty"></span> Personality 
+          </a>
+        </li>
+      </ul>
+      <div class="Clear"></div>
+    </div>
+    <div class="AdBlock BoxBdr"> Ad Space</div>        
+    <article>
+      <strong class="FloatLeft">
+        Contests2Win is India's first Web 2.0 contesting site with User Generated Content.
+      </strong>
+      <a href="#" id="example-show" class="showLink" onclick="showHide('example');return false;">
+        More<span class="Sprite ArrowDwn"></span>
+      </a>
+      <div class="Clear"></div>
+      <div id="example" class="more">
+         <p>
+          Contests2Win is India's first Web 2.0 contesting site with User Generated Content. We have over 13000 Live Online Contests and have given away prizes worth Crores in the last many years! These free online contests span channels like Quizzes, Hangman games, Crossword Puzzles, Betting games, Personality Tests. Answer these quiz questions, collect points and redeem prizes.
+          So just select from the Topics and Channels you want to play and access your favourite contests and get ready to win prizes!<br><br>
+          Have something to say about our contests? Do post your comments about our free online contests and feel free to share them with your friends. Just make use of the Comments section and Share options present below our online contests. Once you finish playing a contest on our website, you can also choose from our 'Related Section', present on the right hand side of the games like Quizzes, to play other similar online contests<br><br>
+          Love Contests2Win and our free online quizzes? Keep yourself updated with the latest contests, prizes and news from us by liking us on Facebook and Twitter. Just click on the 'Like' button present on all our pages.
+        </p>
+          <a href="#" id="example-hide" class="hideLink" onclick="showHide('example');return false;">
+            Less<span class="Sprite ArrowUp"></span>
+          </a>
+      </div>
+    </article>
+  </section>
+</section>
+
+<script type="text/javascript">
+
+function contests_pagination(page,quiz_type){
+  $.get("/",{page:page,quize_type:quiz_type },function(){});
+}
+</script>

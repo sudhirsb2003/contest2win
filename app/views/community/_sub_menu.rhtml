@@ -1,0 +1,20 @@
+<div id="left">
+	<div class="section">
+  <h5>Browse</h5>
+  <ul>
+    <% ['summary','best_creators','winners'].each do |action| %>
+    <li<%= ' class="current"' if action == params[:action] %>><%= link_to_unless action == params[:action], action.humanize, community_path(:action => action, :time => params[:time]) %></li>
+    <% end %>
+  </ul>
+	</div>
+
+	<div class="section">
+  <h5>Time</h5>
+  <ul>
+    <% ['Last 30 Days','Last 7 Days'].each do |time| %>
+    <li<%= ' class="current"' if time == params[:time] %>><%= link_to_unless time == params[:time], time, community_path(:time => time, :action => params[:action], :controller => params[:controller]) %></li>
+    <% end %>
+  </ul>
+	</div>
+<br clear="all"/>
+</div><!--left-->

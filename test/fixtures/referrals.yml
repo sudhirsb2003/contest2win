@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  referrer_id: 1
+  referred_id: 1
+  referred_on: 2009-03-25 18:39:21
+  accepted_on: 2009-03-25 18:39:21
+  pp_threshold_reached_on: 2009-03-25 18:39:21
+  creation_threshold_reached_on: 2009-03-25 18:39:21
+
+two:
+  referrer_id: 1
+  referred_id: 1
+  referred_on: 2009-03-25 18:39:21
+  accepted_on: 2009-03-25 18:39:21
+  pp_threshold_reached_on: 2009-03-25 18:39:21
+  creation_threshold_reached_on: 2009-03-25 18:39:21

@@ -1,0 +1,9 @@
+--- 
+user: c2w_portal
+group: c2w_portal
+cwd: /var/www/apps/c2w_portal/current
+port: "9000"
+environment: staging
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 5

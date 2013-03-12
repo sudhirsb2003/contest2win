@@ -1,0 +1,66 @@
+question_1_option_1:
+  id: 1
+  question_id: 1
+  position: 0
+  points: 2
+  text: 'question 1 - option 1'
+
+question_1_option_2:
+  id: 2
+  question_id: 1
+  position: 1
+  points: -1
+  text: 'question 1 - option 2'
+
+question_2_option_1:
+  id: 3
+  question_id: 2
+  position: 0
+  points: -1
+  text: 'question 2 - option 1'
+
+question_2_option_2:
+  id: 4
+  question_id: 2
+  position: 1
+  points: 2
+  text: 'question 2 - option 2'
+
+poll_question_option_1:
+  id: 5
+  question_id: 5
+  position: 1
+  text: 'question 2 - option 2'
+
+poll_question_option_2:
+  id: 6
+  question_id: 5
+  position: 2
+  text: 'question 2 - option 2'
+
+faceoff_question_option_1:
+  id: 7
+  question_id: 6
+  position: 1
+  text: 'question 2 - option 2'
+
+faceoff_question_option_2:
+  id: 8
+  question_id: 6
+  position: 2
+  text: 'question 2 - option 2'
+
+
+twister_1_question_1_option:
+  id: 9
+  question_id: 7
+  text: 'test your answer'
+  points: 1
+
+prediction_option1:
+  question: prediction_question
+  text: India
+  
+prediction_option2:
+  question: prediction_question
+  text: NZ

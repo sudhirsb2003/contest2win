@@ -1,0 +1,44 @@
+<% @title = 'Create' %>
+
+<% unless (campaigns = Campaign.creation.live.running.find(:all, :limit => 5)).empty? %>
+<div class="creation_campaign_links">
+<h2>Creation Campaigns Live:</h2>
+<ul class="side_by_side pipes">
+<% campaigns.each_with_index do |campaign, i| %>
+	<li <%= 'class="last"' if i==campaigns.size-1 %>><%= link_to_contest campaign %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+
+<div style="background-color:#f4f4f4" class="nav">
+<div class="create_contest">
+<%= link_to '<img src="/images/create/quiz.gif" alt="Create a Quiz"/>', contests_path(:controller => 'quizzes', :action => :new) %>
+Like regular quizzes, only cooler. Ask multiple-choice questions on any subject and have others answer them. Right answers score a point.
+<%= link_to 'Create a Quiz &raquo;', contests_path(:controller => 'quizzes', :action => :new) %>
+<br /><%= link_to 'example', contests_path(:controller => 'quizzes') %>
+</div>
+
+<div class="create_contest">
+<%= link_to '<img src="/images/create/hangman.gif" alt="Create a Hangman"/>', contests_path(:controller => 'hangman', :action => :new) %>
+Play it with paper & pencil or on c2w, Hangman is as much fun! Ask a question & hang those who can’t guess the missing letters of the right answer. 7 mistakes and its game over.
+<%= link_to 'Create a Hangman &raquo;', contests_path(:controller => 'hangman', :action => :new) %>
+<br /><%= link_to 'example', contests_path(:controller => 'hangman') %>
+</div>
+
+<div class="create_contest">
+<%= link_to '<img src="/images/create/crossword.gif" alt="Create a Crossword"/>', contests_path(:controller => 'crosswords', :action => :new) %>
+Cryptic, easy or out of this world! Create your own Crossword &amp; share it with the world! Add a few clues to the answers &amp; you have your own puzzle!
+Take care of your spellings though, make sure they're correct.
+<%= link_to 'Create a Crossword &raquo;', contests_path(:controller => 'crosswords', :action => :new) %>
+<br /><%= link_to 'example', contests_path(:controller => 'crosswords') %>
+</div>
+
+<div class="create_contest">
+<%= link_to '<img src="/images/create/personality-test.gif" alt="Create a Personality Test"/>', contests_path(:controller => 'personality_tests', :action => :new) %>
+Put your powers of perception to good use and play shrink on c2w! Create Personality tests &amp; help people discover interesting things about themselves. Add personalities, allot scores, then add questions and voila!
+<%= link_to 'Create a Personality Test &raquo;', contests_path(:controller => 'personality_tests', :action => :new) %>
+<br /><%= link_to 'example', contests_path(:controller => 'personality_tests') %>
+</div>
+
+</div>

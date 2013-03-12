@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+a_users_credits:
+  id: 1
+  user_id: 1
+  created_on: <%= DateTime.now %>
+  amount: 100000
+  description: 'whatever'
+
+another_user_signup_bonus:
+  id: 2
+  user_id: 2
+  created_on: <%= DateTime.now %>
+  amount: 80
+  description: 'signup bonus'

@@ -1,0 +1,75 @@
+<h1 >Contact Us </h1>
+<div style="float:right;width:250px;margin-right:50px;padding-top:15px">
+<div class="info_box">
+  <h3>Media:</h3>
+  <p>For press inquiries contact us at <a href="mailto:press@c2w.com" class="contactus_link">press@c2w.com</a></p>
+</div>
+<div class="info_box">
+  <h3>Sales:</h3>
+  <p>For all advertising inquiries please contact us at <a href="mailto:sales@c2w.com" class="contactus_link">sales@c2w.com</a></p>
+</div>
+<div class="info_box">
+  <h3>Partnerships / Alliances:</h3>
+  <p>If you would like to partner with us, drop in a mail at <a href="mailto:alliances@c2w.com" class="contactus_link">alliances@c2w.com</a></p>
+</div>
+<div class="info_box">
+  <h3>Jobs:</h3>
+  <p>We are always on the look out for talented people. If you want to join us drop in your CV at <a href="mailto:jobs@c2w.com" class="contactus_link">jobs@c2w.com</a></p>
+</div>
+</div>
+<div style="width:600px">
+    <%= error_messages_for :contact_us, :sub => {:name => 'Your Name', :c2wID => 'Your c2w ID', :email_address => 'Your Email Address', :message => 'Message' } %>
+
+  <p style="margin-top:10px;margin-bottom:20px">
+    If you need help, please visit our <a href="/pg/<%= "in" %>/faqs" target="_blank"><strong>FAQs</strong></a> page.
+    We've answered most common issues users have.<br />
+    Also be sure to check out the c2w <a href="http://blog.contests2win.com" target="_blank"><strong>Blog</strong></a> for issues regarding <a href="http://blog.contests2win.com/c2w-ad-account-google-ad-sense-make-money/" target="_blank" >AdAccount</a>, <a href="http://blog.contests2win.com/tutorial/" target="_blank">Help with Creating Contests</a> etc.
+  </p>
+
+  <h3> Site Security Issues:</h3>
+  <p style="margin-bottom:20px">If you want to report a bug or any security issue with c2w.com, please send us a mail at <a href="mailto:webmaster@c2w.com" class="contactus_link">webmaster@c2w.com </a></p>
+
+  <h3>Inappropriate Content:</h3>
+    <p style="margin-bottom:20px">Nearly 99% of the games on c2w are created by our users. To report inappropriate content please send a mail to <a href="mailto:content@c2w.com" class="contactus_link">content@c2w.com</a></p>
+
+  <h3>Copyright Issues:</h3>
+    <p style="margin-bottom:20px">If you are the copyright owner of a video or image and feel it has been uploaded without your permission, please send us a mail at <a href="mailto:copyright-issues@c2w.com" class="contactus_link">copyright-issues@c2w.com</a></p>
+
+  <h3>Prizes:</h3>
+  <p style="margin-bottom:20px">  For all queries regarding prizes and redemption, send your mails to <a href="mailto:prizes@c2w.com" class="contactus_link">prizes@c2w.com</a></p>
+
+  <h3>Others:</h3>
+  <% form_for :contact_us, @contact_us, :html => {:onsubmit => '$("submit_button").disable()'} do |f| %>
+  <div class="row">
+  <div>
+    <label for="name" class="field_name">Name <%= reqd %></label>
+    <%= f.text_field :name, :maxlength => 100, :size => 30 %>
+  </div>
+  <div>
+    <label for="c2wID" class="field_name">c2w ID </label>
+    <%= f.text_field :c2wID, :maxlength => 100, :size => 30 %>
+  </div>
+  </div>
+  <div class="row">
+  <label for="email_address" class="field_name">Email Address <%= reqd %></label>
+  <%= f.text_field :email_address, :maxlength => 100, :size => 30 %>
+  </div>
+  <div class="row">
+  <label for="message" class="field_name">Message <%= reqd %></label>
+  <%= f.text_area :message, :rows => 4, :cols => 28 %>
+  </div>
+  <%= submit_tag " Send ", :id => 'submit_button' %>
+  <% end %>
+
+<div style="margin-top:20px">
+<h3>Our Address:</h3>
+Contests2win India Pvt. Ltd.<br />
+42, Film Center, 4th Floor, 68, Tardeo,<br />
+Mumbai -   400034. India<br />
+<b>Call us at:</b> +91-22-23511497/98<br />
+<b>Fax us at:</b> +91-22-23511499
+</div>
+<div style="margin-top:30px"><a href="/static/contact-us/map_big.htm" target="_blank"><img src="/static/contact-us/map_small2.gif" width="335" height="286" alt="map to C2W"/></a></div>
+<div style="margin-left:100px; margin-top:10px"><a href="/static/contact-us/map_big.htm" target="_blank">Click here to Enlarge</a></div>
+
+</div>

@@ -1,0 +1,12 @@
+#disable_ads: true
+default_bcc_address: nikhilgupte@gmail.com
+crm_email_address: nikhilgupte@gmail.com
+cricket_bookie_transfer_url: 'http://betting.nikhilgupte.com/players/transfer'
+
+facebook_app_id: '132948616734'
+facebook_api_key: '55a9eda0d9265d0a6a29907405c05a3c'
+facebook_app_secret: 'ec5d5d9e97e23e79dfbf1b5709c30238'
+
+crossword_generator_prog: /Users/nikhil/Projects/c2w/C2W-Portal/misc/crossword/crucigramista15
+
+prizes_email_address: nikhil@c2w.com

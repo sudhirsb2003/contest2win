@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <id>1202</id>
+  <score>2</score>
+  <completed>true</completed>
+  <questions-answered>2</questions-answered>
+  <questions-remaining>0</questions-remaining>
+  <correct-count>2</correct-count>
+  <success>100.0</success>
+  <latest-answer>
+    <correct>true</correct>
+    <id>6434</id>
+    <points>1</points>
+    <options>
+      <option>
+        <text>Homer</text>
+        <score>90</score>
+      </option>
+      <option>
+        <text>Marge</text>
+        <score>10</score>
+      </option>
+      <option>
+        <text>Bart</text>
+        <score>0</score>
+      </option>
+      <option>
+        <text>Lisa</text>
+        <score>0</score>
+      </option>
+      <option>
+        <text>Maggie</text>
+        <score>0</score>
+      </option>
+    </options>
+  </latest-answer>
+</response>

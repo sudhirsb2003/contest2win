@@ -1,0 +1,41 @@
+<% unless params[:query].blank? %>
+<% @title = "Search results for '#{params[:query]}'" %>
+<% else %>
+<% @title = "Search" %>
+<% end %>
+
+<form action="/search" style="margin-bottom:10px">
+  <input type="text" name="query" size="60" value="<%= params[:query] %>"/>
+  <input type="submit" value="Search" style="font-size:small"/>
+</form>
+
+<% unless @results.nil? || @results.empty? %>
+<h3 style="margin-bottom:10px">Found <%= @results.total_entries %> matches.</h3>
+<div id="search_results">
+<ul>
+  <% @results.each {|result| %>
+    <li class="contest <%= cycle('odd','even') %>">
+			<% if result.is_a?(Contest) %>
+      <div class="thumb"><%= link_to image_tag_for_contest(result), (result.url_attributes) %></div>
+      <div style="margin-left:70px">
+      <h3><%= link_to h(result.title), contest_url(result.url_attributes) %></h3>
+      <span><%= result[:type].humanize %> by <%= link_to_user result.username %></span>
+      <br /><%= textilize_without_paragraph h(result.description) %></div>
+			<% else %>
+ 			<div class="thumb"><%= show_user_image(result, 'thumb') %></div>
+      <div style="margin-left:70px">
+      <h3>User: <%= link_to_user result.username %></h3>
+			<%= h result.full_name %>
+			</div>
+			<% end %>
+      </li>
+  <% } %>
+</ul>
+</div>
+<div class="pagination_links"><%= will_paginate @results %></div>
+
+<% else %>
+  <% unless params[:query].blank? %>
+    Sorry, no matches found.
+  <% end %>
+<% end %>

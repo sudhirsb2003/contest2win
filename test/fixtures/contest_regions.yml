@@ -1,0 +1,9 @@
+text_quiz_1_in:
+  contest_id: 1 #text_quiz_1
+  region: India
+  loyalty_points_enabled: true
+
+text_quiz_1_us:
+  contest_id: 1 #text_quiz_1
+  region: US
+  loyalty_points_enabled: false

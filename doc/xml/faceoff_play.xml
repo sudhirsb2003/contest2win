@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<question>
+  <content-type>Video</content-type>
+  <id>6764</id>
+  <question>vid 2 V/S vid 1</question>
+  <creator>nikhil</creator>
+  <options>
+    <option>
+      <id>16033</id>
+      <text>vid 2</text>
+      <entry>
+        <video>http://c2w.free.aurigalogic.com/static/videos/simpsons.flv</video>
+      </entry>
+    </option>
+    <option>
+      <id>16034</id>
+      <text>vid 1</text>
+      <entry>
+        <video>http://c2w.free.aurigalogic.com/static/videos/simpsons.flv</video>
+      </entry>
+    </option>
+  </options>
+</question>

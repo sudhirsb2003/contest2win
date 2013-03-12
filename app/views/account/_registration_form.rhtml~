@@ -1,0 +1,108 @@
+<%= error_messages_for :user, :header_message => 'Failed to create your account!', :sub => {:username => 'Display Name', :eula => 'Terms &amp; conditions and Privacy Policy'} %>
+<% form_for :user, @user, :url => account_link(:action => :register) do |f| %>	
+<div class="row">
+  <label for="user_email" class="field_name">Email <%= reqd %></label>
+  <%= f.text_field :email, :size => 20 %>
+  <span class="tip">Please enter your most used Email address as this is where you'll be contacted on winning a prize</span>
+</div>
+<div class="row">
+  <label for="user_username" class="field_name">Display Name <%= reqd %></label>
+  <%= f.text_field :username, :size => 20 %>
+  <span class="tip">Note: Your Display Name is your permanent c2w ID that is displayed to the c2w community</span>
+</div>
+
+<div class="row">
+  <div>
+  <label for="user_password" class="field_name">Password <%= reqd %></label>
+  <%= f.password_field :password %>
+  </div>
+  <div>
+  <label for="user_password_confirmation" class="field_name">Confirm Password <%= reqd %></label>
+  <%= f.password_field :password_confirmation %>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+  <label for="user_first_name" class="field_name">First Name</label>
+  <%= f.text_field :first_name, :size => 20 %>
+  </div>
+  <div>
+  <label for="user_last_name" class="field_name">Last Name</label>
+  <%= f.text_field :last_name, :size => 20 %>
+  </div>
+<br clear="left" />
+</div>
+
+<div style="border-bottom:1px solid;font-size:larger">Please enter your address &amp; other details as this is where you'll be <b class="highlight">contacted on winning a prize</b>.</div>
+<div class="row">
+  <label for="dispatch_address_line_1" class="field_name">Address<%= reqd %></label>
+  <div>
+  <span class="tip" style="display:inline">Line #1</span> <%= f.text_field :address_line_1, :size => 70, :maxlength => 255 %>
+  </div>
+  <div style="margin-top:5px">
+  <span class="tip" style="display:inline">Line #2</span> <%= f.text_field :address_line_2, :size => 70, :maxlength => 255 %>
+  </div>
+</div>
+ 
+<div class="row">
+  <div>
+  <label for="user_city" class="field_name">City <%= reqd %></label>
+  <%= f.text_field :city, :size => 20, :style => 'width:150px' %>
+  </div>
+  <div>
+  <label for="user_pin_code" class="field_name">Pin Code/ZIP Code</label>
+  <%= f.text_field :pin_code, :size => 20, :style => 'width:150px' %>
+  </div>
+</div>
+<div class="row">
+  <div>
+  <label for="user_country" class="field_name">Country <%= reqd %></label>
+  <%= f.country_select :country, ['India', 'United States', 'United Kingdom'], {:include_blank => true} %>
+  </div>
+  <div id="state_list">
+  <label for="user_state" class="field_name">State <%= reqd %></label>
+  <%= text_field 'user', :state, :style => 'width:150px' %>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+  <label for="user_mobile_number" class="field_name">Mobile Number <%= reqd %></label>
+  <%= f.text_field :mobile_number, :size => 20, :style => 'width:150px' %>
+  <span class="tip">This is the number that we'll call you on when you win a prize</span>
+  </div>
+
+</div>
+
+<div class="row">
+  <div>
+  <label class="field_name">Gender <%= reqd %></label>
+  <ul class="options">
+    <li><label for="user_gender_female">Female</label> <%= f.radio_button :gender, 'Female' %></li>
+    <li><label for="user_gender_male">Male</label> <%= f.radio_button :gender, 'Male' %></li>
+  </ul>
+  </div>
+  <div>
+  <label class="field_name">Date of Birth <%= reqd %></label>
+  <%= f.date_select :date_of_birth, :end_year => 1930, :start_year => (Date.today.year),
+      :order => [:day, :month, :year], :include_blank => true %>
+  </div>
+</div>
+
+<div class="row">
+<%= check_box_tag 'subscribe_to_newsletter' %> <label for="subscribe_to_newsletter">
+Yes, I want to receive updates and special offers from c2w.com and other sponsor brands.</label>
+</div>
+<div class="row">
+<%= f.check_box :eula %> <label for="user_eula">I have read the <%= link_to 'privacy policy', comatose_wcms_path(:region => 'in', :page => 'privacy'), :target => '_blank' %> and agree to the 
+<%= link_to 'terms &amp; conditions', comatose_wcms_path(:region => 'in', :page => 'terms'), :target => '_blank' %> of c2w.com.</label>
+</div>
+<%= submit_tag "Sign Up" %>
+<input type="hidden" name="ref" value="<%= params[:ref] if request.get? && params[:ref] && !params[:ref].starts_with?('/account') %>"/>
+<% if @referred_by %>
+<input type="hidden" name="referred_by" value="<%= @referred_by.username %>"/>
+<% end %>
+<% end %>
+</div>
+</div>

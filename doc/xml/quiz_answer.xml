@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <id>1207</id>
+  <score>21</score>
+  <completed>true</completed>
+  <questions-answered>12</questions-answered>
+  <questions-remaining>0</questions-remaining>
+  <correct-count>11</correct-count>
+  <success>92</success>
+  <latest-answer>
+    <correct>false</correct>
+    <id>6403</id>
+    <points>0</points>
+  </latest-answer>
+</response>

@@ -1,0 +1,27 @@
+<title><%= @title %> | Quizzes, Crosswords, Hangman, Personality Tests and Trivia Games</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<%= stylesheet_link_tag 'style','form','default2' %>
+
+<% if @contest && @contest.is_a?(Crossword) %>
+  <%= stylesheet_link_tag 'window', 'alphacube', :cache => 'windowfx' %>
+<% end %>
+<%= javascript_include_tag 'protoaculous.1.8.2.min', 'application', 'lightbox', 'ajax-dynamic-content', 'ajax', 'ajax-tooltip', 'niftycube', :cache => true %>
+
+<!--[if IE]>
+<link href="/stylesheets/ie_sux.css" media="all" rel="Stylesheet" type="text/css" />
+<![endif]-->
+<% if @rss_link %>
+  <link rel="alternate" type="application/rss+xml" title="<%= @title %> RSS Feed" href="<%= @rss_link %>" />
+<% end %>
+
+<script type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'>
+</script>
+<script type='text/javascript'>
+  <% BANNERS.values.each do | banner| %>
+    GA_googleAddSlot("ca-pub-0315343485054261", "<%= banner %>");
+  <% end %>
+</script>
+<script type='text/javascript'>
+  GA_googleFetchAds();
+</script>

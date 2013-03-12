@@ -1,0 +1,38 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+live:
+  id: 1
+  faceoff_id: 6 #contests(:faceoff_1)
+  user_id: 2 # users(:another_user)
+  title: 'Test'
+  description: 'Test'
+  status: <%= Entry::STATUS_LIVE %>
+  created_on: <%= DateTime.now %>
+
+pending:
+  id: 2
+  faceoff_id: 6 #contests(:faceoff_1)
+  user_id: 2 # users(:another_user)
+  title: 'Test'
+  description: 'Test'
+  status: <%= Entry::STATUS_APPROVAL_PENDING %>
+  created_on: <%= DateTime.now %>
+
+draft:
+  id: 3
+  faceoff_id: 6 #contests(:faceoff_1)
+  user_id: 2 # users(:another_user)
+  title: 'Test'
+  description: 'Test'
+  status: <%= Entry::STATUS_DRAFT %>
+  created_on: <%= DateTime.now %>
+
+live2:
+  id: 4
+  faceoff_id: 6 #contests(:faceoff_1)
+  user_id: 2 # users(:another_user)
+  title: 'Test'
+  description: 'Test'
+  status: <%= Entry::STATUS_LIVE %>
+  created_on: <%= DateTime.now %>
+
+

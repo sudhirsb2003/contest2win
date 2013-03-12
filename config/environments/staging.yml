@@ -1,0 +1,14 @@
+include_analytics_code: true
+#default_bcc_address: amit.g17@gmail.com
+#crm_email_address: amit.g17@gmail.com
+cricket_bookie_transfer_url: 'http://betting.nikhilgupte.com/players/transfer'
+
+#facebook
+facebook_app_id: '112711707396'
+facebook_api_key: 'fe5c2ab869a418c6e51ed21a9f791eba'
+facebook_app_secret: '79691b90b4a69144ebbf75e444a9788d'
+
+fb_template_trivia_result: "115397322396"
+fb_template_personality_test_result: "115400337396"
+fb_template_opinion_result: "115400802396"
+fb_template_bet_placed: "115401217396"

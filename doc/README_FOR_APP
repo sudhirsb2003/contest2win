@@ -1,0 +1,99 @@
+= XML API -- RESTful API for playing contests
+
+== Quiz
+Basic steps
+1. Get a quiz - _http://domain/quizzes/QUIZ_ID/SLUG/details.xml [sample[link:../xml/quiz_details.xml]]
+   * QUIZ_ID - id of the quiz
+   * SLUG - slug of the quiz. This can be anything actually...
+2. Get the current status of the quiz - _http://domain/quizzes/QUIZ_ID/SLUG/contest_response.xml [sample[link:../xml/quiz_answer.xml]]
+3. Get a question - _http://domain/quizzes/QUIZ_ID/SLUG/play.xml [sample[link:../xml/quiz_play.xml]]
+4. Submit an Answer - _http://domain/quizzes/QUIZ_ID/SLUG/answer.xml?question_id=QUESTION_ID&answer[question_option_id]=OPTION_ID
+5. Skip a Question - _http://domain/quizzes/QUIZ_ID/SLUG/answer.xml?question_id=QUESTION_ID&commit=Skip
+6. Receive Response as XML [sample[link:../xml/quiz_answer.xml]]
+   Once completed, the +completed+ of the response is true.
+7. Play Again - _http://domain/quizzes/QUIZ_ID/SLUG/play.xml [sample[link:../xml/quiz_play.xml]]
+
+   Once completed, you must call play_again to play the quiz once more. The output of play_again is the same
+   as step# 2. Attempts to call +play+ on a completed contest will yield the same +response+.
+
+Steps for Polls and Faceoffs are exactly the same as above.
+
+== Related Contests
+
+Get the the related contests - _http://domain/quizzes/QUIZ_ID/SLUG/related.xml [sample[link:../xml/related.xml]]
+
+
+
+== Sample Outputs
+
+=== Quiz details.xml
+:include:xml/quiz_details.xml
+
+=== Quiz play.xml
+:include:xml/quiz_play.xml
+
+=== Quiz answer.xml
+:include:xml/quiz_answer.xml
+
+=== Poll details.xml
+:include:xml/poll_details.xml
+
+=== Poll play.xml
+:include:xml/poll_play.xml
+
+=== Poll answer.xml
+:include:xml/poll_answer.xml
+
+=== Faceoff details.xml
+:include:xml/faceoff_details.xml
+
+=== Faceoff play.xml
+:include:xml/faceoff_play.xml
+
+=== Faceoff answer.xml
+:include:xml/faceoff_answer.xml
+
+=== Error in answer.xml
+:include:xml/error.xml
+
+
+== Hangman
+Basic steps
+1. Get a hangman - _http://domain/hangman/HANGMAN_ID/SLUG/details.xml [sample[link:../xml/hangman_details.xml]]
+   * HANGMAN_ID - id of the hangman
+   * SLUG - slug of the hangman. This can be anything actually...
+2. Get a question - _http://domain/hangman/HANGMAN_ID/SLUG/play.xml [sample[link:../xml/hangman_play.xml]]
+3. Submit a Guess - _http://domain/hangman/HANGMAN_ID/SLUG/answer.xml?guess[question_id]=QUESTION_ID&guess[value]=CHAR
+   * CHAR is a character which the user guessed
+4. Receive Response as XML [sample[link:../xml/hangman_guess.xml]]
+   * A guess is an interim response. This is unlike other contests where a single answer is sufficient
+     a question since in a hangman, multiple guesses comprise of an answer.
+5. Receive Final Response as XML [sample[link:../xml/hangman_answer.xml]]
+   Once completed, the +completed+ of the response is true.
+6. Play Again - _http://domain/hangman/HANGMAN_ID/SLUG/play.xml [sample[link:../xml/hangman_play.xml]]
+
+   Once completed, you must call play_again to play the hangman once more. The output of play_again is the same
+   as step# 2. Attempts to call +play+ on a completed contest will yield the same +response+.
+7. Skip the question - _http://domain/hangman/HANGMAN_ID/SLUG/skip.xml?question_id=QUESTION_ID
+   Skipping the question returns the next question or the final response if the last question was
+   skipped.
+
+=== Hangman details.xml
+:include:xml/hangman_details.xml
+
+=== Hangman play.xml
+:include:xml/hangman_play.xml
+
+=== Hangman answer.xml (interim)
+:include:xml/hangman_guess.xml
+
+=== Hangman answer.xml (final)
+:include:xml/hangman_answer.xml
+
+=== Hangman in answer.xml (invalid guess)
+:include:xml/hangman_invalid_guess.xml
+
+=== Related Contests
+:include:xml/related.xml
+
+

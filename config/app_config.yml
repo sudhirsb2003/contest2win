@@ -1,0 +1,76 @@
+# number of prize points to award for each right answer
+prize_points_per_right_answer: 5
+
+# prize points to assign when a user signs-up
+sign_up_bonus_credits: 100
+
+# prize points to assign when a user migrates her account
+migration_bonus_credits: 0
+
+# The period in days after which the prize expires if not claimed.
+prize_expires_after_in_days: 7
+
+# prize points to assign when a user's contest is approved
+contest_approved_bonus_credits: 25
+
+# prize points for daily login (once in 24 hrs)
+daily_login_bonus_credits: 20
+
+# The minimum amount over or at which TDS is applicable
+min_amount_for_tds: 5000
+
+# tds percentage
+tds_percentage: 30.9
+
+# temprorary directory
+tmp_dir: /tmp/c2w_app
+
+# full path to the program that generates the crossword grid
+crossword_generator_prog: /usr/local/bin/crucigramista15
+
+# full path to the program that converts videos into flv
+video_conversion_command: /usr/local/bin/ffmpeg
+
+# sms alert details
+sms_service_username: Contest2win
+sms_service_password: contest2win123
+sms_attempts: 3
+
+# path to the binary file containing the IP database (http://www.maxmind.com/app/geolitecountry)
+geoip_file_path: /usr/local/share/GeoIP/GeoIP.dat
+
+# email addresses
+prizes_email_address: prizes@c2w.com
+crm_email_address: crm@c2w.com
+notification_email_id: 'notifications@c2w.com'
+notification_email_address: 'Alerts@C2W <notifications@c2w.com>'
+
+adsense_publisher_id: pub-0315343485054261
+
+# AdSense API parameters
+adsense_developer_email: adsensedeveloper1@google.com
+# moved to settings table in db
+#adsense_developer_password: Q6R3l6a483
+adsense_api_url: https://sandbox.google.com
+adsense_developer_url: code.google.com
+
+# common params
+adsense_associate_account_command: "/script/adsense/AssociateAccount.py"
+adsense_create_account_command: "/script/adsense/CreateAccount.py"
+adsense_generate_code_command: "/script/adsense/GenerateAdCodeSnippet.py"
+adsense_get_approval_status_command: "/script/adsense/GetApprovalStatus.py"
+adsense_get_association_status_command: "/script/adsense/GetAssociationStatus.py"
+adsense_add_syndication_service_command: "/script/adsense/AddSyndicationService.py"
+adsense_get_syndication_service_command: "/script/adsense/GetSyndicationService.py"
+adsense_get_developer_site_data: "/script/adsense/GetDeveloperSiteData.py"
+
+#facebook
+facebook_app_id: '215242840576'
+facebook_api_key: '800a4568f45c040653edc996283fc1db'
+facebook_app_secret: 'eff1ddb39dca9185efb31669b69456f5'
+fb_template_trivia_result: "239940335576"
+fb_template_personality_test_result: "239971875576"
+fb_template_opinion_result: "239999315576"
+fb_template_bet_placed: "240388650576"
+
+ssl_enabled: false

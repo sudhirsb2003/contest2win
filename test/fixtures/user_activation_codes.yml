@@ -1,0 +1,5 @@
+activation_pending_user:
+  id: 1
+  user_id: 6
+  code: 1234
+

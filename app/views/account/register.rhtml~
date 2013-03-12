@@ -1,0 +1,10 @@
+<% @title = "Sign Up" %>
+<% if @referred_by %>
+<div class="large">You were referred to by <%= link_to_user @referred_by.username %></div>
+<% end %>
+
+<p>
+	Already a registered user? <%= link_to 'Log in', {:action => 'login'} %> here.
+</p>
+<%= render :partial => 'registration_form' %>
+

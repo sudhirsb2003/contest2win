@@ -1,0 +1,28 @@
+### On the DB server for root user
+#minute hour    mday    month   wday    command
+0	1	*	*	*	/mnt/db-backups/dump.sh
+
+
+### On the Web/App server for user c2w
+
+RAILS_ENV=production
+PATH=/usr/local/bin:/bin:/usr/bin:$PATH
+#minute hour    mday    month   wday    command
+
+1 0 * * * /var/www/apps/c2w/current/script/runner "User.update_loyalty_points"
+19 15 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Question.settle"
+2 22 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Referral.credit_referral_bonus"
+
+5,15,25,35,45,55 * * * * /var/www/apps/c2w/shared/cachedel.sh
+
+0,10,20,30,40,50 * * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Video.convert_pending"
+5,15,25,35,45,55 * * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "SmsAlert.send_pending_smses"
+
+40 6 * * *  cd /var/www/apps/c2w/current && rake ts:in &> /var/www/apps/c2w/shared/log/index.log
+30 14 * * *  cd /var/www/apps/c2w/current && rake ts:in &> /var/www/apps/c2w/shared/log/index.log
+
+# Upload approved entries to S3
+45 5 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Video.upload_to_s3"
+45 6 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Entry.upload_to_s3"
+45 6 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Question.upload_to_s3"
+45 7 * * * cd /var/www/apps/c2w/current && /var/www/apps/c2w/current/script/runner "Response.delete_old_by_unknown_users"

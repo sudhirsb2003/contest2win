@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+##
+# Recursively deletes files from a directory (relative to the cache directory)
+# if they are older than the specified date.
+#
+# Author: Nikhil Gupte <nikhil AT aurigalogic DOT com>
+#
+# This file should be kept in RAILS_ROOT/scripts
+# USAGE: cachedel [dir-relative-to-cache-dir] <age-in-minutes>
+##
+
+RAILS_ROOT = File.join(File.dirname(__FILE__), '..')
+
+# change this if your cache dir is elsewhere.
+# WARNING: This should only be used if you have a dir exclusively for caching
+CACHE_DIR = File.expand_path('public/cache', RAILS_ROOT)
+
+############# You don't need to modify anything below this line ##########################
+class Fixnum
+  def minutes() self * 60 end
+  def ago() Time.now - self end
+end
+
+def del_old_files(dir_path, max_age)
+  Dir.foreach(dir_path) do |file|
+    unless file == '.' || file == '..'
+      file = "#{dir_path}/#{file}"
+      if deletable?(file, max_age)
+        print "- #{file} [#{File.ctime(file)}].\n"
+        File.delete(file)
+      else
+        print "+ #{file} [#{File.ctime(file)}].\n"
+      end  
+      del_old_files(file, max_age) if File.directory?(file)
+    end  
+  end  
+end
+
+def deletable?(file, max_age)
+  !File.directory?(file) && File.ctime(file) < max_age.ago
+end
+
+if ARGV.size > 0 && ARGV[0] != 'help'
+  begin
+    dir = File.expand_path(ARGV[0], CACHE_DIR)
+    raise "path-to-directory must be a sub directory of #{CACHE_DIR}" unless dir.index(CACHE_DIR) == 0
+    max_age = (ARGV[1] || 10).to_i
+    print "Deleting files from \"#{dir}\" older than #{max_age} minutes\n"
+    del_old_files(dir, max_age.minutes);
+  rescue Exception => err
+    print err.to_s + "\n"
+    exit(1)
+  end
+else
+  print "Deletes files older than the specified max age from the specified directory relative to the cache directory
+SYNTAX:
+    cachedel [path-to-directory] <max-age-in-minutes>
+  WHERE:
+    path-to-directory is relative to #{CACHE_DIR}
+    max-age-in-minutes defaults to 10
+EXAMPLE:
+    cachedel home 20
+    will delete files from #{CACHE_DIR}/home
+"
+  exit(0)
+end

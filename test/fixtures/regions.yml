@@ -1,0 +1,11 @@
+Worldwid:
+  domain_prefix: www
+  name: Worldwid
+
+India:
+  domain_prefix: in
+  name: India
+
+US:
+  domain_prefix: us
+  name: United States

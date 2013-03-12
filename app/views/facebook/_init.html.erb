@@ -1,0 +1,69 @@
+<% if false %>
+<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+<script type="text/javascript">
+
+//<![CDATA[
+  var FB_QUEUE = []; // use this array to add FB mehtods that should be invoked after all the dependencies are loaded
+  Element.observe(window,'load', function() {
+    FB_RequireFeatures(["XFBML"], function() {
+      FB.Facebook.init('<%= AppConfig.facebook_api_key %>','/xd_receiver.html', {"ifUserConnected":fbConnected,"ifUserNotConnected":fbNotConnected});
+      FB_QUEUE.each(function(m) {m.call()});
+    });
+  });
+function fbConnected() {
+  <% if session[:facebook_id].nil? %>
+    <%= remote_function(:url => facebook_path(:action => :login, :ref => "#{request.url}")) %>
+  <% end %>
+}
+function fbNotConnected() {
+  <% if session[:facebook_id] %>
+    <%= remote_function :url => facebook_path(:action => :logged_out) %>
+  <% elsif params[:s] == 'fb' && @contest %>
+      window.parent.location.href = "http://www.facebook.com/login.php?v=1.0&api_key=<%= AppConfig.facebook_api_key %>&next=<%= contest_url(@contest.url_attributes) %>";
+  <% end %>
+}
+//]]>
+</script>
+<% else %>
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<%= AppConfig.facebook_app_id %>', // App ID
+      channelUrl : 'http://<%= request.host_with_port %>/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        <% unless fb_authorized? %>
+          <%= remote_function(:url => facebook_path(:action => :login, :ref => "#{request.url}")) %>
+        <% end %>
+      } else if (response.status === 'not_authorized') {
+        // the user is logged in to Facebook, 
+        // but has not authenticated your app
+      } else {
+        // the user isn't logged in to Facebook.
+      }
+    });
+  };
+
+  function fbLogout() {
+    <% if fb_authorized? %>
+      <%= remote_function(:url => facebook_path(:action => :logged_out)) %>
+    <% end %>
+  }
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+<% end %>

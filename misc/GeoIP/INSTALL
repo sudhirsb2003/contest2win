@@ -1,0 +1,63 @@
+Installion instructions for the Ruby API with a workaround for Mac, contributed by Eric Hansen
+November 13th, 2006
+==================================================================
+
+ 1. Download the C API from http://www.maxmind.com/download/geoip/api/c/
+ 2. Do the following to build and install GeoIP:
+{{{
+./configure
+make
+make check
+make install
+}}}
+ 3. Download the ruby API from http://www.maxmind.com/download/geoip/api/ruby/
+ 4. Do the following to build and install GeoIP ruby: 
+{{{
+        ruby extconf.rb ruby extconf.rb --with-geoip-include=/usr/local/include
+        make
+        make install
+}}}
+ 5. Test:
+{{{
+        rubytest
+}}}
+
+'''Important Note:''' there are a couple off issues with the download that prevent the ruby API from working on the mac.  The problem is that the mac is case-sensitive, but does not distinguish between files with the same name but different case.  You need to do the following: 
+ 1. When you untar GeoIP ruby, rename the file geoip.h to geoiplocal.h
+ 2. Modify the file geoip.c to change
+{{{
+#include "geoip.h"
+}}}
+to this:
+{{{
+#include "geoiplocal.h"
+}}}
+ 3. Modify the file extconf.rb.
+ 3.1. Comment out the lines:
+{{{
+unless have_library('iconv','iconv_open') or
+    have_library('c','iconv_open') or
+    have_library('recode','iconv_open')
+  crash(<<EOL) 
+need libiconv.
+
+        Install libiconv or try passing some of the following options
+        to extconf.rb:
+
+        --with-iconv-dir=/path/to/iconv
+        --with-iconv-lib=/path/to/iconv/lib
+        --with-iconv-include=/path/to/iconv/include 
+EOL
+end
+}}}
+ 3.2. Change the following line:
+{{{
+$CFLAGS = '-g -Wall' + $CFLAGS
+}}}
+adding a space after -Wall to look like:
+{{{
+$CFLAGS = '-g -Wall ' + $CFLAGS
+}}}
+
+You may also need to build using:
+#ARCHFLAGS="-arch i386" ruby extconf.rb

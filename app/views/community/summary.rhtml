@@ -1,0 +1,47 @@
+<% cache(@community_cache_key) do %>
+<!--b:cache <%= "#{@community_cache_key} #{Time.now}" %>-->
+<%= render :partial => 'sub_menu' %>
+<div id="main_center">
+
+<% unless @winners.empty? %>
+<div class="winners">
+<h2>Winners <span>(<%= params[:time] %>)</span></h2>
+<ul>
+<% @winners.each do |winner| %>
+  <li><div class="thumb"><%= show_user_image(winner.user, 'thumb') %></div>
+  <span class="congrats">Congrats!</span> <%= link_to_user winner.user.username %> won <%= h winner.contest_prize.prize.title %><br />
+  on <%= short_date(winner.confirmed_on) %> in the <%= link_to h(winner.contest_prize.contest.title), contest_path(winner.contest_prize.contest.url_attributes)  %></li>
+<% end %>
+</ul>
+<div class="more"><%= link_to 'view all', :action => :winners %></div>
+</div>
+<% end %>
+
+<div class="recent_logins" style="width:225px;float:right;">
+<h2>Recently Logged In</h2>
+<ul>
+<% @recent_logins.each do |user| %>
+  <li><div class="thumb"><%= show_user_image(user, 'thumb') %></div><%= link_to_user(user.username, 9) %></li>
+<% end %>
+</ul>
+</div>
+
+<div class="best_creators" style="width:370px;float:left">
+<h2>Best Creators <span>(<%= params[:time] %>)</span></h2>
+<ul>
+<% @best_creators.each do |user| %>
+  <li><div class="thumb"><%= show_user_image(user, 'thumb') %></div>
+  <%= link_to_user(user.username, 9) %>
+  Votes <b><%= number_with_delimiter(user.total_score) %></b><br />
+  Created <b><%= number_with_delimiter(user.num_contests) %></b> games</li>
+<% end %>
+<% if @best_creators.size.odd? %>
+	<li></li>
+<% end %>
+</ul>
+<div class="more"><%= link_to 'view all', :action => :best_creators %></div>
+</div>
+
+</div><!-- main_center -->
+<!--e cache <%= @community_cache_key %>-->
+<% end %>

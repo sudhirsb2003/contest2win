@@ -1,0 +1,49 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quiz_admin:
+  id: 1
+  name: 'Quiz Skin'
+  description: 'boo'
+  contest_type: 'Quiz'
+  image: 'file.jpg'
+  file: 'file.swf'
+  expired: false
+  only_admin: true
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+
+quiz_everyone:
+  id: 2
+  name: 'Quiz Skin2'
+  description: 'boo'
+  contest_type: 'Quiz'
+  image: 'file.jpg'
+  file: 'file.swf'
+  expired: false
+  only_admin: false
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+
+quiz_expired:
+  id: 3
+  name: 'Quiz Skin Expired'
+  description: 'boo'
+  contest_type: 'Quiz'
+  image: 'file.jpg'
+  file: 'file.swf'
+  expired: true
+  only_admin: false
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+
+poll_everyone:
+  id: 4
+  name: 'Poll Skin'
+  description: 'boo'
+  contest_type: 'Poll'
+  image: 'file.jpg'
+  file: 'file.swf'
+  expired: false
+  only_admin: false
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+

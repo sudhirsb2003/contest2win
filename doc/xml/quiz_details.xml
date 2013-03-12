@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <description>Identify the Grand Prix from the circuit.</description>
+  <ends-on>2020-01-01</ends-on>
+  <id>119</id>
+  <title>Formula 1 Circuits</title>
+  <type>Quiz</type>
+  <number-of-questions>12</number-of-questions>
+  <creator>nikhil</creator>
+  <skin>http://c2w.free:3000/public/uploads/skin/file/02/N2/file.swf</skin>
+  <url>http://c2w.free:3000/quizzes/119/Formula-1-Circuits</url>
+</quiz>

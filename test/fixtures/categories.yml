@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  name: cat1
+  slug: cat1
+  description: test cat 1
+  created_on: 2007-12-05 14:13:00.607514
+  updated_on: 2007-12-05 14:13:00.607514
+another:
+  id: 2
+  name: cat2
+  slug: cat2
+  description: test cat 2
+  created_on: 2007-12-05 14:13:00.607514
+  updated_on: 2007-12-05 14:13:00.607514

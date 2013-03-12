@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<question>
+  <content-type>Image</content-type>
+  <id>6761</id>
+  <question>Identify the character</question>
+  <creator>nikhil</creator>
+  <image>
+    <thumbnail>http://c2w.free.aurigalogic.com/uploads/question/image/67/61/N6761/thumb/file.png</thumbnail>
+    <medium>http://c2w.free.aurigalogic.com/uploads/question/image/67/61/N6761/medium/file.png</medium>
+    <large>http://c2w.free.aurigalogic.com/uploads/question/image/67/61/N6761/large/file.png</large>
+    <original>http://c2w.free.aurigalogic.com/uploads/question/image/67/61/N6761/file.png</original>
+  </image>
+  <options>
+    <option>
+      <id>16026</id>
+      <text>Moe Szyslak</text>
+    </option>
+    <option>
+      <id>16027</id>
+      <text>Barnie</text>
+    </option>
+    <option>
+      <id>16028</id>
+      <text>Lenny</text>
+    </option>
+  </options>
+</question>

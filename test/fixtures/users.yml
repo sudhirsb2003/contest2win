@@ -1,0 +1,85 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+a_user:
+  id: 1
+  username: 'nikhil'
+  password: <%= User.sha1('jim277') %>
+  email: 'nikhilgupte@gmail.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_USER %>
+  region_id: 2
+
+another_user:
+  id: 2
+  username: 'nikhil2'
+  password: <%= User.sha1('jim277') %>
+  email: 'nikhilgupte2@gmail.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_USER %>
+  region_id: 2
+
+an_admin:
+  id: 3
+  username: 'admin'
+  password: <%= User.sha1('jim277') %>
+  email: 'ngupte@aurigalogic.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_ADMIN %>
+  region_id: 2
+
+user4:
+  id: 4
+  username: 'nikhil4'
+  password: <%= User.sha1('jim277') %>
+  email: 'nikhilgupte4@gmail.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_USER %>
+  region_id: 2
+
+a_moderator:
+  id: 5
+  username: 'moderator'
+  password: <%= User.sha1('jim277') %>
+  email: 'moderator@aurigalogic.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_MODERATOR %>
+  region_id: 2
+
+activation_pending_user:
+  id: 6
+  username: 'activation_pending_user'
+  password: <%= User.sha1('password') %>
+  email: 'activation_pending_user@gmail.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_ACTIVATION_PENDING %>
+  level: <%= User::LEVEL_USER %>
+  region_id: 2
+
+us_user:
+  username: 'us_user'
+  password: <%= User.sha1('jim277') %>
+  email: 'us_user@gmail.com'
+  created_on: <%= DateTime.now %>
+  updated_on: <%= DateTime.now %>
+  last_logged_in_on: <%= DateTime.now %>
+  status: <%= User::STATUS_LIVE %>
+  level: <%= User::LEVEL_USER %>
+  region_id: 3
+
+

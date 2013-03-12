@@ -1,0 +1,60 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+nikhil:
+  id: 1
+  first_name: 'Nikhil'
+  last_name: 'Gupte'
+  address: '23 Parineeta'
+  city: 'Mumbai'
+  state: 'Maharashtra'
+  country: 'India'
+  pin_code: '4000057'
+  gender: 'M'
+  date_of_birth: '1976-07-27'
+  date_of_registration: '2003-12-11'
+  email: 'nikhilgupte@gmail.com'
+  points: 78
+  mobile_number: 'm12340987'
+  contact_number: 'c12340987'
+  password: 'my old password'
+  userid: 'nsg'
+
+jim:
+  id: 2
+  first_name: 'Jim'
+  last_name: 'Morrison'
+  address: 'Whiskey-a-go-go'
+  city: 'Los Angeles'
+  state: 'California'
+  country: 'United States'
+  pin_code: '90210'
+  gender: 'M'
+  date_of_birth: '1943-12-08'
+  date_of_registration: '2003-12-11'
+  email: 'jim@doors.com'
+  points: 90
+  password: "jim's old password"
+  userid: 'jim12345'
+  mobile_number: 'm12340987'
+  contact_number: 'c12340987'
+
+
+# Janis has negative points
+janis:
+  id: 3
+  first_name: 'Janis'
+  last_name: 'Joplin'
+  address: 'Whiskey-a-go-go'
+  city: 'San Fransisco'
+  state: 'California'
+  country: 'United States'
+  pin_code: '90210'
+  gender: 'M'
+  date_of_birth: '1943-12-08'
+  date_of_registration: '2003-12-11'
+  email: 'janis@doors.com'
+  points: -90
+  password: "janis's old password"
+  userid: 'janis'
+  mobile_number: 'm12340987'
+  contact_number: 'c12340987'
+

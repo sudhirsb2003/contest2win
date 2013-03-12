@@ -1,0 +1,13 @@
+p1:
+  contest_id: 11
+  title: A
+  description: MyString
+  minimum_score: 0
+  maximum_score: 3
+
+p2:
+  contest_id: 11
+  title: B
+  description: MyString
+  minimum_score: 4
+  maximum_score: 7

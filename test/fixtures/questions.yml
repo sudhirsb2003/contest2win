@@ -1,0 +1,100 @@
+question_1:
+  id: 1
+  contest_id: 1
+  user_id: 1
+  question: 'test 1'
+  status: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+question_2:
+  id: 2
+  contest_id: 1
+  user_id: 1
+  question: 'test 2'
+  status: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+live:
+  id: 3
+  contest_id: 1 #contests(:text_quiz_1)
+  user_id: 2 # users(:another_user)
+  question: 'Test'
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= DateTime.now %>
+  updated_on: <%= Time.now %>
+
+pending:
+  id: 4
+  contest_id: 1 #contests(:text_quiz_1)
+  user_id: 2 # users(:another_user)
+  question: 'Test'
+  status: <%= Question::STATUS_APPROVAL_PENDING %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+poll_quesiton:
+  id: 5
+  contest_id: 3 #contests(:text_poll_1)
+  user_id: 2 # users(:another_user)
+  question: 'Test'
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+faceoff_quesiton:
+  id: 6
+  contest_id: 6 #contests(:faceoff_1)
+  user_id: 2 # users(:another_user)
+  question: 'Test'
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+twister1_quesiton:
+  id: 7
+  contest_id: 7 #contests(:twister_1)
+  user_id: 2 # users(:another_user)
+  question: 'ESTT UORY SNAREW' # TEST YOUR ANSWER
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+draft:
+  id: 8
+  contest_id: 1 #contests(:text_quiz_1)
+  user_id: 2 # users(:another_user)
+  question: 'Test'
+  status: <%= Question::STATUS_DRAFT %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+twister_question_valid:
+  id: 9
+  contest_id: 7 #contests(:twister_1)
+  user_id: 2 # users(:another_user)
+  question: 'ESTT UORY SNAREW' # TEST YOUR ANSWER
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+twister_question_invalid:
+  id: 10
+  contest_id: 7 #contests(:twister_1)
+  user_id: 2 # users(:another_user)
+  question: 'ESTT UORY SNAREW tttttt uuuuuuu iiiiiii yyyyy ooooooo ffffff ffffff' # TEST YOUR ANSWER
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+prediction_question:
+  contest: prediction
+  user_id: 1
+  question: 'who will win?'
+  status: <%= Question::STATUS_LIVE %>
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  ends_on: <%= 20.minutes.from_now %>
+  betting_limit: 200
+

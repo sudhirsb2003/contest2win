@@ -1,0 +1,188 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+text_quiz_1:
+  id: 1
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'Quiz'
+  content_type: <%= Contest::CONTENT_TYPE_IMAGE %>
+  others_can_submit_entries: true
+  loyalty_points_enabled: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  status: <%= Contest::STATUS_LIVE %>
+  user_id: 1
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  
+
+text_quiz_2:
+  id: 2
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'Quiz'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: false
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: <%= 1 %>
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+text_poll_1:
+  id: 3
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'Poll'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: <%= 1 %>
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+text_poll_2:
+  id: 4
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'Poll'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: false
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: <%= 1 %>
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  status: <%= Contest::STATUS_DRAFT %>
+
+faceoff_1:
+  id: 6
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'Faceoff'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: 1 # users(:a_user)
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+twister_1:
+  id: 7
+  title: 'Twister test'
+  description: 'description'
+  slug: 'title'
+  type: 'Twister'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: 1 # users(:a_user)
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  status: <%= Contest::STATUS_LIVE %>
+
+faceoff_optimization:
+  id: 8
+  title: 'Faceoff for Optimization'
+  description: 'description'
+  slug: 'title'
+  type: 'Faceoff'
+  content_type: <%= Contest::CONTENT_TYPE_TEXT %>
+  others_can_submit_entries: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: 1 # users(:a_user)
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  status: <%= Contest::STATUS_DRAFT %>
+
+rateme_1:
+  id: 9
+  title: 'Twister test'
+  description: 'description'
+  slug: 'title'
+  type: 'RateMe'
+  content_type: <%= Contest::CONTENT_TYPE_IMAGE %>
+  others_can_submit_entries: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  user_id: 1 # users(:a_user)
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+  status: <%= Contest::STATUS_LIVE %>
+
+quiz_for_youtube_url:
+  id: 10
+  title: 'yt'
+  description: 'description'
+  slug: 'title'
+  type: 'Quiz'
+  content_type: <%= Contest::CONTENT_TYPE_IMAGE %>
+  others_can_submit_entries: true
+  loyalty_points_enabled: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  status: <%= Contest::STATUS_LIVE %>
+  user_id: 1
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+ 
+personality_test_1:
+  id: 11
+  title: 'title'
+  description: 'description'
+  slug: 'title'
+  type: 'PersonalityTest'
+  content_type: <%= Contest::CONTENT_TYPE_IMAGE %>
+  others_can_submit_entries: true
+  loyalty_points_enabled: true
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  status: <%= Contest::STATUS_LIVE %>
+  user_id: 1
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+
+prediction:
+  title: 'prediction'
+  description: 'description'
+  slug: 'title'
+  type: 'Prediction'
+  content_type: <%= Contest::CONTENT_TYPE_IMAGE %>
+  others_can_submit_entries: false
+  starts_on: <%= Time.now %>
+  ends_on: <%= Time.now + 10.days %>
+  status: <%= Contest::STATUS_LIVE %>
+  user_id: 1
+  username: 'nikhil'
+  category_id: 1
+  created_on: <%= Time.now %>
+  updated_on: <%= Time.now %>
+ 

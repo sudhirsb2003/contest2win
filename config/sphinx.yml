@@ -1,0 +1,6 @@
+production:
+  searchd_file_path: /var/sphinx/c2w
+staging:
+  searchd_file_path: /var/sphinx/c2w
+development:
+  #searchd_file_path: /var/sphinx/c2w

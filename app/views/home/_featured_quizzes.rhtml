@@ -1,0 +1,14 @@
+<h1>Featured Quizzes <%=@featured_quizzes.size%></h1>
+<div class="FavSlider">
+  <ul>
+    <%@featured_quizzes.each_with_index do |contest,index|%>
+      <li class = "<%=index == 4 ? 'active' : nil %>">
+        <a href="#"><span class="Sprite IcoS IcoS<%=index+1%>"></span><%=h contest.title%></a>
+        <div class="FsDetail"> 
+          <%=image_tag_for_contest(contest)%>
+        </div>
+      </li>
+    <%end%>
+
+  </ul>
+</div>
