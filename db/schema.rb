@@ -338,7 +338,7 @@ ActiveRecord::Schema.define(:version => 20121001143439) do
     t.string   "video_url"
     t.string   "image"
     t.datetime "created_on",                                            :null => false
-    t.datetime "updated_on",         :default => '2012-03-22 15:43:49', :null => false
+    t.datetime "updated_on",         :default => '2013-04-07 19:12:09', :null => false
     t.integer  "video_id"
     t.integer  "total_points",       :default => 0
     t.string   "username"
@@ -607,14 +607,14 @@ ActiveRecord::Schema.define(:version => 20121001143439) do
     t.integer  "contest_id",                                               :null => false
     t.integer  "score",                 :default => 0,                     :null => false
     t.datetime "created_on",                                               :null => false
-    t.datetime "updated_on",            :default => '2012-03-22 15:43:48', :null => false
+    t.datetime "updated_on",            :default => '2013-04-07 19:08:25', :null => false
     t.integer  "view_level",            :default => 100,                   :null => false
     t.integer  "answers_count",         :default => 0,                     :null => false
     t.string   "session_id"
     t.integer  "correct_answers_count", :default => 0,                     :null => false
     t.string   "type",                  :default => "Response",            :null => false
     t.boolean  "old_response",          :default => false,                 :null => false
-    t.datetime "finished_on",           :default => '2012-03-22 15:43:49'
+    t.datetime "finished_on",           :default => '2013-04-07 19:12:14'
   end
 
   add_index "responses", ["contest_id"], :name => "index_responses_on_contest_id"
@@ -725,8 +725,8 @@ ActiveRecord::Schema.define(:version => 20121001143439) do
     t.string   "mobile_number"
     t.string   "favourite_topics"
     t.string   "favourite_prizes"
-    t.integer  "status",                            :default => 1,       :null => false
-    t.integer  "level",                             :default => 0,       :null => false
+    t.integer  "status"
+    t.integer  "level"
     t.datetime "last_logged_in_on"
     t.datetime "created_on",                                             :null => false
     t.datetime "updated_on",                                             :null => false

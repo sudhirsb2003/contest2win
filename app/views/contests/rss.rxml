@@ -1,0 +1,60 @@
+@contests = @contests.to_a
+xml.instruct!
+
+# RSS2 rxml template based on: http://snippets.dzone.com/posts/show/558
+xml.rss "version" => "2.0", \
+        "xmlns:dc" => "http://purl.org/dc/elements/1.1/", \
+        "xmlns:media" => "http://search.yahoo.com/mrss/" do
+
+    xml.channel do
+
+        xml.title       @title
+        xml.link        url_for(:controller => 'contests', :action => params[:action], :format => 'atom')
+        xml.pubDate     CGI.rfc1123_date(@contests.first.updated_on) if @contests.any?
+
+        @contests.each do |contest|
+            xml.item do
+                xml.title       contest.title
+                xml.link        contest_url(contest.url_attributes)
+                xml.description contest.description
+      if image = contest.question_with_image
+        if image.content_type == Contest::CONTENT_TYPE_YT_VIDEO
+          xml.enclosure :url => image.external_video_img_url
+        elsif image.content_type == Contest::CONTENT_TYPE_VIDEO
+          xml.enclosure :url => "http://#{request.host_with_port}/uploads/video/image/#{image.video.image_relative_path('thumb')}?#{image.updated_on.to_i}"
+        else
+          question_or_entry = 'question'
+          xml.enclosure :url => "http://#{request.host_with_port}/uploads/#{question_or_entry}/image/#{image.image_relative_path('thumb')}?#{image.updated_on.to_i}"
+        end  
+      elsif skin = contest.skin
+        xml.enclosure :url => "http://#{request.host_with_port}/uploads/skin/image/#{skin.image_relative_path('thumb')}?#{skin.updated_on.to_i}"
+      end
+
+                #img = contest.image ? contest.image : (contest.skin && contest.skin.image ? contest.skin : nil)
+                #xml.enclosure :url => "http://#{request.host}#{url_for(url_for_file_column(img, :image, 'thumb'))}", :type => "image/jpg" if img
+
+                xml.pubDate     CGI.rfc1123_date contest.updated_on
+                xml.guid        contest_url(contest.url_attributes)
+                xml.author      contest.user.username
+
+#                xml.media :group do
+#                    xml.media :title, img.name
+#                    xml.media \
+#                        :content, :type => "#{img.mime}", :medium => "image", \
+#                        :url => "#{img.url}"
+#                        xml.media :credit, "#{img.credit.txt}", \
+#                                :role => "#{img.credit.role}" 
+#                    xml.media :description, "#{img.desc}", :type => 'plain'
+#                    xml.media :keywords, "#{img.tags}"
+#                    xml.media :thumbnail, \
+#                        :width => "#{img.thumbnail.widh}", \
+#                        :height => "#{img.thumbnail.height}", \
+#                        :url => "#{img.thumbnail.url}"
+#                end
+            end
+        end
+
+    end
+end
+
+

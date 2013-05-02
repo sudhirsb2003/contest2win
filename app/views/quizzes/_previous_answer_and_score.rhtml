@@ -1,0 +1,25 @@
+<% if @contest_response -%>
+<% if prev_answer = @contest_response.answers.last %>
+<h3 class="panel_title tab"><span>Previous</span></h3>
+<div id="previous_answer">
+<div style="text-align:center;font-weight:bold;margin:5px 0;"><%= h prev_answer.question.question %></div>
+<% if prev_answer.question.content_type == Contest::CONTENT_TYPE_IMAGE %>
+<div class="thumb_image"><%= image_tag(url_for_file_column(prev_answer.question, 'image', 'thumb'), :style => 'margin:auto;display:block;') %></div>
+<% end %>
+<ol>
+	<% prev_answer.question.options.each do |option| %>
+	<li <%= "style='font-weight:bold'" if option == prev_answer.option %>>
+		<%= h option.text %>
+		<% if option == prev_answer.option %>
+		<%= image_tag('icons/tick.gif', :alt => 'Correct') if prev_answer.correct? %>
+		<%= image_tag('icons/cross.gif', :alt => 'Wrong') unless prev_answer.correct? %>
+		<% end %>
+	</li>
+	<% end %>
+</ol>
+  <%= render :partial => 'contests/score',
+			:locals => { :contest_response => @contest_response} \
+				if @contest_response %>
+</div>
+<% end %>
+<% end -%>

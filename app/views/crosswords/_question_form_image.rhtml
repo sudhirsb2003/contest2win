@@ -1,0 +1,10 @@
+<div class="row" id="qf_img_form">
+	<label for="question_image">Image</label> <small>(JPG/GIF/PNG Only)</small><br />
+	<input id="questions_<%= index %>_image_temp" name="questions[<%= index %>][image_temp]" type="hidden" value="<%= @question.image_temp %>" /><input id="questions_<%= index %>_image" name="questions[<%= index %>][image]" size="30" type="file" />
+    <span class="tip" style="display:block">Please upload an image up to 600kb in size and greater than a passport-sized image.</span>
+	<% if img_url =  url_for_file_column('question', 'image') %>
+	<br />
+    <%= link_to image_tag(url_for_file_column('question', 'image', 'thumb'),
+			:style => 'border:1px solid #ccc;margin-top:2px'), img_url, :target => '_blank' %>
+	<% end %>
+</div>

@@ -1,0 +1,16 @@
+<% @title = h "#{@contest.title}: Preview Question" %>
+
+<%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %>
+
+<div style="height:100%">
+	<h3><%= h @question.question %></h3>
+	<div class="large_letters" style="margin:10px 0">
+		<%= @question.answer %>
+	</div>
+</div>
+<br clear="left"/>
+<%= form_tag contest_url(@contest.url_attributes(:question_id => @question.id, :controller => 'hangmans', :action => 'confirm_question')) %>
+<%= submit_tag "Done!" %>
+<%= submit_tag "Edit" %>
+<%= submit_tag "Save and continue adding..." %>
+</form>

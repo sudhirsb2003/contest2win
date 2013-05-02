@@ -1,0 +1,28 @@
+<%= error_messages_for [:question, :video], :sub => {:original_file => 'Video file'} %>
+<div class="row">
+	<label for="question_question" class="field_name">Question</label>
+	<%= f.text_field :question, :maxlength => 100, :size => 90 %>
+	<span class="tip">Maximum 100 characters</span>
+</div>
+<%= render :partial => 'contests/question_media_form', :locals => {:f => f} %>
+<%#= f.hidden_field :question %>
+<div class="row">
+  <label for="options[0]_text">Answer</label><br />
+  <% @question.options.each_with_index { |option, index| %>
+    <% fields_for "options[#{index}]", option do |o| %>
+      <%= o.text_field :text, :maxlength => 100, :size => 60 %>
+	  <%= o.hidden_field :id %>
+
+    <% if logged_in?(:admin) %>
+    </div>
+	  <label for="options[<%= index %>]_points">Points</label>
+	  <%= o.text_field :points, :maxlength => 3 %>
+    <div class="row">
+    <% end %>
+    <% end %>
+  <% } %>
+</div>
+
+<%= submit_tag "Save", :style => 'margin-top:10px;', :id => 'submit_button' %></td>
+<%= link_to "Cancel", contest_url(@question.contest.url_attributes(:action => 'questions')),
+		:confirm => 'Are you really sure?', :class => 'cancel_button' %>

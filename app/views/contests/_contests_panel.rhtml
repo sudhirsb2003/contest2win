@@ -1,0 +1,13 @@
+<div id="contests_panel">
+<div class="tabbed_panel">
+  <ul class="tabs">
+		<li id="related_tab" class="selected"><a href="#" onclick="showTab('related', '#contests_panel', loadContestsTab);return false;">Related</a></li>
+		<li id="more_from_user_tab"><a href="#" onclick="showTab('more_from_user', '#contests_panel', loadContestsTab);return false;">More from user</a></li>
+  </ul>
+	<div class="tab_body">
+	<div id="related_body"><%= render :partial => 'contests/contests_panel_body', :locals => {:contests => @contest.related} %></div>
+	<div id="more_from_user_body" class="to_fetch"></div>
+	</div><!-- tab_body -->
+</div>
+<script type="text/javascript"> function loadContestsTab(tab) { <%= remote_function :url => {:action => :by_user} %> } </script>
+</div><!-- contest_panel -->

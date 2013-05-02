@@ -1,0 +1,7 @@
+<% @title = 'New Personality Test' %>
+
+<% form_for :contest, @contest, :html => {:onsubmit => '$("submit_button").disable()'} do |f| %>
+<%= render :partial => 'contests/form', :locals => {:f => f} %>
+<!--<%= submit_tag "Continue...", :id => 'submit_button' %>-->
+<% end %>
+<%= render :partial => 'contests/disclaimer' %>

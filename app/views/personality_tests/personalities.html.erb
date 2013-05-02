@@ -1,0 +1,40 @@
+<% @title = "#{h @contest.title}: Personalities" %>
+<div id="contest_body">
+<% @contest.personalities.each do |personality| %>
+  <% if personality.errors.blank? %>
+    <div class="personality" id="personality_container_<%= personality.id %>">
+      <div id="personality_<%= personality.id %>">
+        Score: <b><%= personality.minimum_score %></b> to <b><%= personality.maximum_score %></b>
+        Users: <b><%= "#{personality.similar_users}%" rescue 'N/A' %></b>
+        <br />
+        <% if personality.image %> <div class="thumb"><%= image_tag(url_for_file_column(personality, :image, 'thumb'), :alt => h(personality.title)) %></div> <% end %>
+        <b><%= h(personality.title) %></b>
+        <div style="margin:5px 0"><%= hyperlink_links(personality.description) %></div>
+        <% if personality.editable?(current_user) %>
+          <ul class="side_by_side pipes">
+            <li><%= link_to 'Edit', @contest.url_attributes(:action => :edit_personality, :personality_id => personality.id) %></li>
+            <li class="last"><%= link_to_remote 'Delete', :url => {:action => :delete_personality, :personality_id => personality.id}, :confirm => 'Delete this personality?', :loading => "Element.remove('personality_container_#{personality.id}')" %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @contest.personality_addable?(current_user) %>
+  <div id="add_personality_form" style="display:none;border-bottom:1px solid #bbb;padding-bottom:10px;"><h2>Add Personality</h2><%= render :partial => 'personality_form'  %></div>
+    <script type="text/javascript">
+      function toggle_add_personality() {
+	      $('add_personality_form').toggle();	
+      }
+      <%= 'toggle_add_personality()' if !@personality.errors.empty? || @contest.personalities.empty? %>
+    </script>
+
+    <% if !@contest.personalities.empty? %>
+      <div class="large" style="text-align:center;margin:10px 0">
+        <%= link_to_function 'Add more Personalities', "toggle_add_personality()" %>
+        <% if @contest.draft? %> | <%= link_to 'Add Questions &raquo;', @contest.url_attributes(:action => :add_question) %><% end %>
+      </div>
+    <% end %>
+<% end %>
+</div>

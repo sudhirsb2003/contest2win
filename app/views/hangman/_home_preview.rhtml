@@ -1,0 +1,12 @@
+<div class="col1" style="margin-right:10px">
+<table><tr><td class="img">
+<%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %>
+</td><td class="text">
+<div style="width:240px;overflow:hidden">
+<h3>Q. <%= h truncate(@question.question, 50) %></h3>
+<span style="letter-spacing:15px;font-size:14pt;position:relative"><%= truncate(@question.fill_in_the_blanks(), 30, '') %></span>
+<%= link_to 'PLAY', contest_path(@contest.url_attributes.merge({:only_path => true})), {:class => 'play_button'} %>
+</div>
+</td></tr></table>
+<br clear="left"/>
+</div>

@@ -1,0 +1,219 @@
+    	<div class="BreadCrumb">
+            	<a href="#">Home</a> »
+                <a href="/contests/most_recent">Play</a> »
+                <a href="#">New <%= (@contest.class.name)%> </a>
+            </div>
+
+
+    	<aside class="PanelRight">
+     
+             <div class="BoxBdr AdBlock">
+            </div>
+            <div class="BoxBdr AdBlock">
+            </div>
+            <div class="BoxBdr">
+    	    	<img src="images/fb_app.jpg" width="297" height="282" alt="fb app">
+            </div>
+            <div class="BoxBdr TwiApp">
+		    	<img src="images/twi_app.jpg" width="298" height="262" alt="twiiter app">
+            </div>
+      </aside>
+
+
+
+<%= error_messages_for :contest, :sub => { :category_ids => 'Categories' } %>
+<% if logged_in?(:admin) %>
+<div class="row">
+<label class="field_name" for="contest_campaign_id">Campaign</label>
+<% @contest.campaign_id = params[:campaign_id] if params[:campaign_id] %>
+<%= f.select :campaign_id, Campaign.creation.supporting(@contest.class.name).live.running.collect{|c| [c.title, c.id]}, :include_blank => 'None' %>
+</div>
+<% else %>
+<% campaign_id = @contest.campaign_id || params[:campaign_id]
+  if campaign_id
+	campaign = Campaign.creation.find(campaign_id)
+%>
+<%= image_tag(url_for_file_column(campaign.brand, :logo), :alt => '', :style => 'float:right') if campaign.brand %>
+<h3>Campaign: <%= h(campaign.title) %></h3>
+<%= tip "Your game will be added to the #{h(campaign.title)} campaign." %>
+<%= f.hidden_field :campaign_id , :value => campaign_id%>
+<% end %>
+<% end %>
+
+      	<section class="PanelCenter">
+          <div class="DipCon">
+          	<h1>New <%= @contest.class %> Quiz</h1>
+          	<div class="Enter-Hangman-Step">
+            	<ul>
+                	<li class="active">
+                    	<a href="<% @contest.class %>">Enter <%= @contest.class %> Details</a>
+                        <span class=""></span>
+                    </li>
+                 	<li class="">
+                	<span class="Back-Arrow"></span>
+                	<a href="create_hangman_quiz_step2.html">Add Questions</a>
+                    <span class="Front-Arrow"></span>
+                </li>
+                    <li class="last">
+                        <span class="Back-Arrow"></span>
+                        <a href="create_hangman_quiz_step3.html">Preview your Quiz</a>
+                       <span class="Front-Arrow"></span>
+                    </li>
+                </ul>
+              <div class="Clear"></div>
+            </div>
+            <div class="SListBox hangman-quiz-block">
+            	<form action="" method="post" name="hangman_quiz">
+                	<ul>
+                    
+                	<li>
+                        <label>Title <%= reqd %></label>
+	<%= f.text_field :title, :maxlength => 100, :size => 70 %>
+                        <p>
+                            Give your <%= @contest.class %> a suitable title. The more intresting the titlt, the more it is likely to be played.....
+                    
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+                        <label>Categories <%= reqd %></label>
+ 	<% categories = Category.all %>
+	<%= f.select :category_ids, categories.collect {|c| [c.name, c.id]}, {}, :multiple => true, :size => 10 %>
+                        <p>
+                           Pick a suitable category for your quiz from the drop down list.  For example.......
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+                        <label>Description</label>
+	<%= f.text_area :description, :rows => 5, :cols => 50, :id => 'contest_description' %>
+                        <p>
+                           Write a brief description and let every one knows what they are soppose to do in the game.<br><br>
+                           <span class="Words-Remaining">350</span> Words Remaining.
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+
+                    <li>
+                     <% content_for :head do %>
+			<!-- Skin CSS file -->
+  			<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css">
+			  <!-- Utility Dependencies -->
+			  <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script> 
+			  <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script> 
+			  <!-- Needed for Menus, Buttons and Overlays used in the Toolbar -->
+			  <script src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"></script>
+			  <!-- Source file for Rich Text Editor-->
+  			<script src="http://yui.yahooapis.com/2.9.0/build/editor/simpleeditor-min.js"></script>
+				  <% javascript_tag do %>
+				  var myEditor = new YAHOO.widget.SimpleEditor('contest_description', {
+				    height: '200px',
+				    width: '522px',
+				    dompath: false, //Turns on the bar at the bottom
+				    handleSubmit: true,
+				    toolbar: {
+			            titlebar: 'Description',
+				      buttons: [
+				        { group: 'textstyle', buttons: [
+				          { type: 'push', label: 'Bold', value: 'bold' },
+				          { type: 'push', label: 'Italic', value: 'italic' },
+				          { type: 'push', label: 'HTML Link CTRL + SHIFT + L', value: 'createlink', disabled: true }
+				        ]},
+				      ]
+				    }
+				  });
+				  myEditor.render();
+			  <% end %>
+			<% end %>
+
+                    </li>
+                    <li>
+                        <label>Tags <%= reqd %> (Enter one or more tags, <b>separated by commas</b>)</label>
+	<%= f.text_field :tag_list, :size => 70, :maxlength => 255%>
+                        <p>
+                          Tags are words used to describe your game so it can easily be found by other users....
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+                        <label>Add Brand</label>
+                         <% if logged_in?(:admin) && campaign_id.nil? %>
+                          <% brands = Brand.find_available %>
+                            <% unless brands.empty? %>
+                               <label for="contest_brand" class="field_name">Brand</label>
+                                 <%= f.select :brand_id, brands.collect {|c| [c.name, c.id]},{:include_blank => true } %>
+				<% end %>
+			    <% end %>
+
+
+
+                        <p>
+                           Pick a suitable category for your quiz from the drop down list.  For example.......
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+<% if @contest.show_others_can_add_option? %>
+	<label for="contest_others_can_submit_entries">Allow others to add stuff</label>
+	<%= f.check_box :others_can_submit_entries, :value => true  %>
+    <span class="tip">
+      Allow other users to add questions and entries to my <%= @contest.class %>.
+    </span>
+<% end %>
+<% if logged_in?(:admin) %>
+                        <label>Starts on</label>
+    <%= f.date_select :starts_on, :start_year => 2007, :order => [:day, :month, :year] %>
+<% end %>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+<% if logged_in?(:admin) %>
+                        <label>Ends on</label>
+<%= f.date_select :ends_on, :start_year => Date.today.year, :order => [:day, :month, :year], :disabled => @contest.never_ends? %>      
+    <label for="contest_never_ends">Never ends</label>
+    <%= f.check_box :never_ends, {:onclick => '$("contest_ends_on_1i").disabled = this.checked;$("contest_ends_on_2i").disabled = this.checked;$("contest_ends_on_3i").disabled = this.checked;'}, 'true', 'false' %>
+<% end %>                  <div class="Clear"></div>
+                    </li>
+                     <li>
+                        <label>Skin *</label>
+<% unless campaign_id %>
+<% skins = Skin.find_by_type(@contest.class, current_user) %>
+<div class="row" <%= 'style="display:none"' unless skins.size > 1 %>>
+	<label for="contest_skin" class="field_name">Skin <%= reqd %></label>
+	<%= f.select :skin_id, skins.collect {|c| [c.name, c.id]} %>
+    <%= link_to_function 'Browse Skins', 'Element.toggle("skin_browser")' %>
+</div>
+<%= render :partial => 'contests/skin_browser', :locals => {:skins => skins} if skins.size > 1 %>
+<% end %>                          <div class="Clear"></div>
+                        <p>
+                          Choose a particular skin for your quiz. Theme represent the background of our quiz. You can also add your own image and can create a new theme.
+                          <br><br>
+                          <span class="Browse-Skins"><a href="#">Browse Skins</a></span>
+                        </p>
+                        <div class="Clear"></div>
+                    </li>
+                    <li>
+                     	<label>&nbsp;</label>
+<% if @contest.show_others_can_add_option? %>
+                        <div class="FloatLeft"><br>
+	<label for="contest_others_can_submit_entries">Allow others to add stuff</label>
+	<%= f.check_box :others_can_submit_entries, :value => true  %>
+<% end %>
+                        </div>
+                        <div class="Clear"></div>
+                     </li>
+                    <li>
+                    	<%= submit_tag "Proceed to next step", :class=>"Proceed-to-next-step", :span=>"next-step" %>
+                        <div class="Clear"></div>
+                    </li>
+                   </ul>
+                </form>
+             	<div class="Clear"></div>
+             </div>
+             <div class="Clear"></div>
+          </div>
+          
+        </section>
+    </section>
+
+

@@ -1,0 +1,18 @@
+<% unless @contests.empty? %>
+<div style="background:#FFFFFF url(../images/bg_404error.gif);height:20px;width:100%;font-size:14px;color:#000000;font-weight:bold;margin:0;padding:5pt 0pt 0pt 20px"><%= @region.www? ? 'Featured' : 'Contests with Prizes' %></div>
+<div id="contests" style="background-color:#F4F4F4;width:100%;"> 
+    <% @contests.each_slice(3) do |slice| %>
+    <ul style="height:100px;border-bottom:1px solid #76B916;overflow:hidden;padding:10px 0;">
+      <% slice.each do |contest| %>
+        <li style="float:left;margin:0 2px 0 10px;width:130px;text-align:center;">
+        <div class="thumb" style="float:none;margin:auto">
+        <%= link_to image_tag_for_contest(contest), contest_url(contest.url_attributes), {:target => "_parent"} %></div>
+        <%= link_to h(truncate(contest.title, 18)), contest_url(contest.url_attributes),:title => (h(contest.title) if contest.title.length >  18),:target=>"_parent" %><br/>
+        <span><%= contest.class.to_s.titlecase %> by <%= link_to(truncate(contest.user.username, 12), user_url(:username => contest.user.username, :only_path => true),{:target => "_parent"}  )   %></span>
+        </li>
+      <% end %>
+    </ul>
+    <div style="clear:both"></div>
+    <% end %>
+</div><!-- content -->
+<% end %>

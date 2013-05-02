@@ -1,0 +1,14 @@
+<div class="col1" style="margin-right:10px">
+<table><tr><td class="img">
+<%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %>
+</td><td style="padding-left:30px;vertical-align:top">
+<h3>Q. <%= h truncate(@question.question, 50) %></h3>
+<ol>
+  <% @question.options.find(:all, :limit => 4).each {|option| %>
+  <li><%= h(truncate(option.text, 50)) %></li> 
+  <% } %>
+</ol>
+<%= link_to 'PLAY', contest_path(@contest.url_attributes.merge({:only_path => true})), {:class => 'play_button'} %>
+</td></tr></table>
+<br clear="left"/>
+</div>

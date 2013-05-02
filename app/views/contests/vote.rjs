@@ -1,0 +1,7 @@
+if logged_in?
+	page.replace "vote_for_#{@contest.id}", :partial => 'votes', :locals => {:contest => @contest}
+	page.insert_html :bottom, "vote_for_#{@contest.id}", "<script type='text/javascript'>Nifty('#vote_for_#{@contest.id}','big');</script>"
+	#if 'false' == params[:vote]
+else
+	page.alert('Sorry, You need to login before casting a vote!');
+end		

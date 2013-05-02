@@ -1,0 +1,43 @@
+<div id="left">
+	<div class="section">
+  <h5>Channels</h5>
+  <ul>
+    <li<%= ' class="current"' if 'contests' == params[:controller] %>><%= link_to_unless 'contests' == params[:controller], 'All', contests_path(:overwrite_params => {:controller => 'contests', :page => nil}) %></li>
+    <% ['quizzes', 'hangman', 'crosswords', 'personality_tests'].each do |controller_name| %>
+    <li<%= ' class="current"' if controller_name == params[:controller] %>><%= link_to_unless controller_name == params[:controller], controller_name.humanize, contests_path(:overwrite_params => {:controller => controller_name, :page => nil}) %></li>
+    <% end %>
+  </ul>
+	</div>
+
+	<div class="section">
+  <h5>Category</h5>
+  <ul>
+    <li<%= ' class="current"' if params[:catid].nil? %>><%= link_to_unless params[:catid].nil?, 'All', contests_path(:overwrite_params => {:catid => nil, :page => nil}) %></li>
+    <% Category.all.each {|c| %>
+    <li<%= ' class="current"' if c.id.to_s == params[:catid] %>><%= link_to_unless c.id.to_s == params[:catid], h(c.name), contests_path(:overwrite_params => {:catid => c.id, :page => nil}) %></li>
+    <% } %>
+  </ul>
+	</div>
+
+	<% unless (campaigns = Campaign.creation.live.running).empty? %>
+ 	<div class="section">
+  <h5>Campaigns</h5>
+  <ul>
+    <% campaigns.each {|c| %>
+    <li<%= ' class="current"' if c.id.to_s == params[:campaign_id] %>><%= link_to_unless c.id.to_s == params[:campaign_id], h(c.title), contests_path(:overwrite_params => {:campaign_id => c.id, :page => nil, :action => :most_played}) %></li>
+    <% } %>
+  </ul>
+	</div>
+	<% end %>
+  
+	<div class="section">
+  <% unless ['most_recent', 'prize_points'].include?(params[:action]) %>
+  <h5>Time</h5>
+  <ul>
+    <% ['This Week', 'This Month','All Time'].each do |time| %>
+    <li<%= ' class="current"' if time == @time %>><%= link_to_unless time == @time, time, contests_path(:overwrite_params => {:time => time, :page => nil}) %></li>
+    <% end %>
+  </ul>
+  <% end %>
+	</div>
+ </div><!--left-->

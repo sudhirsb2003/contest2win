@@ -1,0 +1,24 @@
+<%= error_messages_for :referral_mail %>
+<% remote_form_for :referral_mail, @referral_mail, :url => {:action => :send_referral_mail}, :html => {:onsubmit => '$("referral_submit_button").disable()'} do |f| %>
+<div class="row" style="margin-top:35px">
+<a id="import_contacts_link" class="nav" style="" href="#" onclick="window.open('/import_contacts', 'import', 'width=600,height=500,scrollbars=1');return false"><img src="/images/import-contacts-logos.jpg" alt="Import email addresses" style="display:block;"/>Import email addresses</a>
+  <label for="referral_mail_to_email_addresses" class="field_name">To Email Addresses</label>
+  <%= f.text_area :to_email_addresses, :rows => 2, :style => 'width:400px' %>
+  <span class="tip">You may enter multiple email addresses separated by commas</span>
+</div> 
+
+<div class="row">
+  <label for="referral_mail_message" class="field_name">Message</label>
+  <div style="background-color:#eee;padding:5px;font-size:14px">
+  Hi,<br /><br />
+  <%= f.text_area :message, :rows => 3, :style => 'width:600px', :value => @referral_mail.nil? || @referral_mail.message.blank? ? "I'm having a great time on C2W.com playing a whole lot of cool games. And the best part about it is, you can win REAL prizes here! Can’t wait to have you on board." : @referral_mail.message %>
+<p>
+Just click on the link below &amp; follow the very simple registration process.<br />
+<%= link_to "http://#{request.host_with_port}/account/register?referred_by=#{@user.username}", "http://#{request.host_with_port}/account/register?referred_by=#{@user.username}" %>
+</p>
+See you there!<br /><%= h @user.name %> <%= "aka #{@user.username}" unless @user.full_name.blank? %>
+</div> 
+</div> 
+<%= submit_tag 'Send!', :id => 'referral_submit_button' %>
+<% end %>
+

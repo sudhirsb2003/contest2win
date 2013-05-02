@@ -1,0 +1,7 @@
+<% @title = "#{h @question.contest.title}: Edit Question" %>
+
+<% form_for :question, @question, :url => { :id => @contest.id, :action => "edit_question", :question_id => @question.id },
+		:html => {:multipart => true, :onsubmit => '$("submit_button").disable()'} do |f| %>	
+<%= render :partial => 'question_form', :locals => {:f => f} %>
+<% end %>
+

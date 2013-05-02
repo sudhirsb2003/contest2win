@@ -1,0 +1,15 @@
+<h2>You have completed this game!</h2>
+<div class="final_score">You Scored: <b><%= number_with_delimiter(@contest_response.score) %></b></div>
+<% if @contest.is_a?(PersonalityTest) %>
+	<% if personality = @contest_response.personality %>
+	<% if personality.image %> <div style="float:right;margin-left:5px" class="thumb"><%= image_tag(url_for_file_column(personality, :image, 'thumb'), :alt => h(personality.title)) %></div> <% end %>
+	Your Personality is <b><%= h personality.title %></b><br />
+	<%= @contest_response.personality.similar_users %>% users were like you.
+	<div>
+	<%= hyperlink_links(personality.description) %>
+	</div>
+	<%= link_to 'Embed you personality', :controller => 'personalities', :action => :badge, :id => personality %>
+<% end %>
+<% end %>
+<h3><%= link_to 'Have another go?', contest_url(@contest.url_attributes(:action => :play_again)) %></h3>
+

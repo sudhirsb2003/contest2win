@@ -1,0 +1,10 @@
+<% @title = "#{h @contest.title}: Edit" %>
+
+<% form_for :contest, @contest, :url => contest_url(@contest.url_attributes(:action => "edit")),
+    :html => {:onsubmit => '$("submit_button").disable()'} do |f| %>	
+<%= render :partial => 'contests/form', :locals => {:f => f} %>
+
+<%= submit_tag "Save", :id => 'submit_button' %></td>
+<%= link_to "Cancel", contest_url(@contest.url_attributes), :class => 'cancel_button', :confirm => 'Cancel operation?' %>
+<% end %>
+

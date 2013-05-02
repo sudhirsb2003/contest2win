@@ -1,0 +1,6 @@
+<div>
+<%= render :partial => 'question_form', :locals => {:question => question, :index => index} if question  %>
+<div id="more_clues">
+<%= link_to_remote '+Add more', :url => {:action => :add_more, :id => @contest.id, :index => index + 1}, :loading => loading_indicator_small('more_clues'), :html=>{:class=>"Add-More"} %>
+</div>
+</div>

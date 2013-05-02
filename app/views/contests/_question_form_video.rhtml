@@ -1,0 +1,26 @@
+<% fields_for 'video', video = @question.video do |video_form| %>
+<div id="qf_vid_form" class="media_tab_body">
+<div class="row">
+	<label for="video_original_file">Video</label> <small>(<%= Video::VALID_INPUT_FILE_FORMATS.to_sentence %> Only)</small><br />
+	<%= file_column_field 'video', 'original_file' %>
+    <span class="tip" style="display:block">Please upload a video up to 20 mb in size.</span>
+	<% if @question.video && video_url = url_for_file_column(video, 'original_file') %>
+	<br />
+    <%= link_to 'Uploaded Video', video_url, :target => '_blank' %>
+	<% end %>
+</div>
+<div class="row">
+	<% if logged_in?(:admin) %>
+	<label for="video_image">Image</label> <small>(JPG/GIF/PNG Only)</small><br />
+	<%= file_column_field 'video', 'image' %>
+    <span class="tip" style="display:block">Please upload an image up to 600kb in size.</span>
+	<br />
+	<% end %>
+	<%= show_question_thumb(@question) if @question.has_video? %>
+</div>
+<div class="row">
+<span class="large_letters">PLEASE BE PATIENT, THIS MAY TAKE SEVERAL MINUTES.  ONCE COMPLETED, YOU WILL SEE A CONFIRMATION MESSAGE.</span>
+<p style="font-size:smaller">By clicking "Save", you are representing that this video does not violate c2w.com's <%= link_to 'terms of use', comatose_wcms_url(:region => "in", :page => 'terms'), :target => '_blank' %> and that you own all copyrights in this video or have express permission from all copyright owners to upload it.</p>
+</div>
+</div>
+<% end %>

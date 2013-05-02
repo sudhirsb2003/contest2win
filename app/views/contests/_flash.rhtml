@@ -1,0 +1,21 @@
+<%= render_flash_for_contest @contest %>
+<% if fb_authorized? && @contest_response.present? && !Rails.env.production? %>
+<a href="#" onclick="contestFinished(<%= @contest_response.id %>)">Test FB Wall Post</a>
+<% end %>
+<script type='text/javascript'>
+function contestFinished(response_id) {
+  <% if fb_authorized? %>
+  <%= remote_function :url => {:action => :post_to_facebook}, :with => "'response_id='+response_id" %>
+  <% end %>
+}
+
+</script>
+
+<% content_for :head do %>
+<meta property="og:title" content="<%= h @contest.title %>" /> 
+<meta property="og:description" content="<%= h @contest.description %>" /> 
+<meta property="og:image" content="<%= @contest.default_image %>" /> 
+<meta property="og:video" content="<%= swf_url(@contest) %>"/>
+<meta property="og:video:height" content="386" /> 
+<meta property="og:video:width" content="425" /> 
+<% end %>

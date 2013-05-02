@@ -1,0 +1,10 @@
+<div id="add_option_link">
+  <%= link_to_function 'Add Another Option', "addOption(#{index})" %>
+</div>
+<script type="text/javascript">function addOption(index) {
+  if ($$('div.option').length < 5) {
+    new Ajax.Request('/personality_tests/add_option?index=' + index, {asynchronous:true, evalScripts:true});
+  } else {
+    alert('Sorry, you cannot have more than 5 options!');
+  }
+}</script>

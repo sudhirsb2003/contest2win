@@ -1,0 +1,7 @@
+<% @title = "#{@contest.title}: Add Question" %>
+
+<% form_for :question, @question, :url => { :action => "add_question", :id => @contest.id },
+		:html => {:multipart => true, :onsubmit => '$("submit_button").disable()' } do |f| %>	
+<%= render :partial => 'question_form', :locals => {:f => f} %>
+<% end %>
+<%= render :partial => 'contests/disclaimer' %>

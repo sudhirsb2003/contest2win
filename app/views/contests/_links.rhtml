@@ -1,0 +1,70 @@
+<% my_latest_response = get_my_latest_response(@contest) %>
+<div class="contest_action_links">
+  <ul class="side_by_side pipes">
+    <% if @contest.available? %>
+      <% if my_latest_response && my_latest_response.completed? -%>
+        <li><%= link_to_unless_current "Play Again", contest_path(@contest.url_attributes(:action => 'play_again')) %></li>
+      <% else -%>
+        <li><%= link_to_unless_current "Play", contest_path(@contest.url_attributes) %></li>
+      <% end %>
+    <% end %>
+    <% if !@contest.ended? %>
+      <% unless @contest.is_a?(Crossword) %>
+        <li><%= link_to_unless_current "View Questions",
+            contest_path(@contest.url_attributes(:action => 'questions')),
+            :title=> ' View the complete list of questions in this game.' %></li>
+        <% end %>
+    <% else %>
+      <li>
+        <% if @contest.is_a?(Crossword) %>
+          <%= link_to_unless_current "View Solution", contest_path(@contest.url_attributes(:action => 'solution')) %>
+        <% else %>
+          <%= link_to_unless_current "View Answers", contest_path(@contest.url_attributes(:action => 'questions')) %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if @contest.questions_addable?(current_user) -%>
+      <li><%= link_to_unless_current "Add a Question", contest_path(@contest.url_attributes(:action => :add_question)), :title => 'Add your own question or entry to this game.' %></li>
+      <% end %>
+      <% if my_latest_response && !@contest.is_a?(Crossword) %>
+      <li><%= link_to_unless_current "Your Answers",
+          contest_path(@contest.url_attributes(:action => 'contest_response', :response_id => my_latest_response.id)),
+          :title => 'View the answers you have submitted in this game.' %></li>
+      <% end %>
+    <% if @contest.is_a?(PersonalityTest) && (logged_in?(:moderator) || current_user?(@contest.user_id)) %>
+      <li><%= link_to_unless_current "Personalities", contest_path(@contest.url_attributes(:action => 'personalities')) %></li>
+    <% end %>
+    <% if @contest.has_rankings? && @contest.available? %>
+      <li><%= link_to_unless_current "Rankings", contest_path(@contest.url_attributes(:action => 'rankings')) %></li>
+    <% end %>
+    <% if @contest.editable?(current_user) then %>
+      <li><%= link_to_unless_current "Edit", contest_path(@contest.url_attributes(:action => 'edit')) %></li>
+    <% end %>
+    <% if @contest.has_prizes? %>
+      <li><%= link_to_unless_current 'Winners',
+        contest_path(@contest.url_attributes(:action => :winners)), :title => 'See the winners of this game.' %></li>
+    <% end %>
+    <li><a href="#" onclick="window.open('<%= url_for(contest_path(@contest.url_attributes(:action => :share))) %>', 'share', 'width=580,height=530,resizable=yes,scrollbars=1,status=0');return false;" title="Share"><b>Share</b></a></li>
+    <li style="width:128px;background:url(/images/facebook_share_icon.gif) no-repeat;"><a style="padding:0 0 0 16px" href="http://www.facebook.com/sharer.php?u=<%=  url_for(contest_url(@contest.url_attributes)) %>" title="Share on Facebook" target="_fb">Share on Facebook</a></li>
+    <li><a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= h @contest.cta_text %>">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+    <li class="last"><a href="#" onclick="show_copyright_violation_form();return false">Report Copyright Violation</a></li>
+  </ul>
+  <script type="text/javascript">
+    //<![CDATA[
+    function show_copyright_violation_form() {
+      $('send_copyright_violation_via_email').toggle();
+      if($('send_copyright_violation_via_email').innerHTML.strip() == '') {
+        $('send_copyright_violation_via_email').innerHTML = 'Loading...';
+<%= remote_function :url => contest_path(@contest.url_attributes(:action => 'report_copyright_violation'))%>
+    }
+  }
+  //]]>
+  </script>
+  <%= render :partial => 'contests/myspace' %>
+  <br clear="all"/>
+  <%= render :partial => 'contests/admin_ops' %>
+  <br clear="all"/>
+</div><!-- contest_action_links -->
+<div id="send_copyright_violation_via_email" style="display:none"></div><!-- send_copyright_violation_via_email --><br clear="all"/>   
+<%= render :partial => 'contests/stats', :locals => {:contest => @contest} %>

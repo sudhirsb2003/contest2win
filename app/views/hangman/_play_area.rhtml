@@ -1,0 +1,10 @@
+<div id="play_area" class="hangman">
+	<h3><%= h @question.question %></h3>
+	<div style="float:left"><%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %></div>
+	<div id="fill_in_the_blanks">
+		<%= render :partial => 'fill_in_the_blanks' %>
+	</div>
+    <h3 id="score_area">Score up for grabs: <span id="points_up_for_grabs"><%= @contest_response ? @contest_response.possible_score(@question.id) : @question.options.first.points %></span></h3>
+
+	<%= render :partial=> 'keys' %>
+</div>

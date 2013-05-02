@@ -1,0 +1,23 @@
+<div id="keys">
+<% remote_form_for :guess, @guess, :url => {:action => :answer, :id => @contest.id}, :html => {:id => 'hangman_form'},
+    :loading => ajax_loading_indicator('fill_in_the_blanks') do |f| %>	
+	<%= f.hidden_field :question_id, :value => @question.id %>
+	<%= f.hidden_field :value %>
+<% guesses = @contest_response ? @contest_response.guesses_as_string(@question.id) : '' %>
+<% keys = ('A'..'Z').to_a + ('0'..'9').to_a %>
+<ul>
+  <% keys.each {|k| %>
+	<li id="key_<%= k %>">
+	<% unless guesses.index(k) %>
+	  <%= link_to_function k, "$('guess_value').value = '#{k}';$('hangman_form').onsubmit();" %>
+	<% else %>  
+		<span class="<%= @question.answer.upcase.index(k) ? 'correct' : 'wrong' %>"><%= k %></span>
+	<% end %>  
+	</li>
+  <% } %>	
+</ul>
+<br clear="left"/>
+<% end %>
+<br />
+<%= link_to "Skip", contest_url(@contest.url_attributes(:action => :skip, :question_id => @question.id)), :class => 'cancel_button' %>
+</div>

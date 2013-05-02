@@ -1,0 +1,30 @@
+Hey <%= @user.username %>,
+
+<p>
+Thank you for joining c2w.com!
+</p>
+
+<p>
+Now's the time to say goodbye to boredom, 'cause you're never going to see it again!<br/>
+Here's what you can do on c2w:
+
+<ul>
+<li><a href="<%= @controller.url_for(:controller => 'contests', :action => :most_played) %>">Play</a> thousands of games </li>
+<li>Don't like the ones we have? Then <a href="<%= @controller.url_for(:controller => 'contests', :action => 'create') %>">Create</a> your own games.</li>
+<% unless @user.region.www? %><li>Enter <a href="<%= @controller.url_for(:controller => 'contests', :action => 'prizes') %>">Contests</a> &amp; WIN prizes.</li><% end %>
+<li>Share games with friends.</li>
+<li>Add entries to games you like.</li>
+<li>Speak your mind. Post comments on games and topics.</li>
+<li>Take your games everywhere. Embed them on your blogs and websites!</li>
+<% unless @user.region.www? %><li>Stack up <a href="<%= @controller.url_for(:controller => 'prizes', :action => 'prize_points') %>">Prize Points</a> &amp; redeem them for some cool assured prizes!</li><% end %>
+</ul>
+</p> 
+
+Exciting, isn't it? So fasten your seatbelts &amp; login right away!
+
+<p>
+<a href="<%= @controller.url_for(:controller => 'home') %>"><%= @controller.url_for(:controller => 'home') %></a>
+</p>
+
+<br />
+ - The c2w Team

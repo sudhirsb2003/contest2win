@@ -1,0 +1,16 @@
+<div id="responses_panel">
+<div class="tabbed_panel">
+  <ul class="tabs">
+		<li id="recent_players_tab" class="selected"><a href="#" onclick="showTab('recent_players', '#responses_panel');return false;">Recent Players</a></li>
+		<% if @contest.scorable? %>
+		<li id="top_players_tab"><a href="#" onclick="showTab('top_players', '#responses_panel', loadTopPlayersTab);return false;">Top Players</a></li>
+		<% end %>
+  </ul>
+	<div class="tab_body">
+	<div id="recent_players_body"><%= render :partial => 'contests/responses_panel_body', :locals => {:responses => @contest.responses.recent_plays.find(:all, :order => 'responses.contest_id', :limit => 5)} %></div>
+	<div id="top_players_body" class="to_fetch"></div>
+	</div><!-- tab_body -->
+</div>
+<script type="text/javascript"> function loadTopPlayersTab(tab) { <%= remote_function :url => {:action => :top_players} %> } </script>
+
+</div><!-- responses_panel -->

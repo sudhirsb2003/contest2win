@@ -131,11 +131,11 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    LEVEL_ADMIN <= level
+    #LEVEL_ADMIN <= level
   end
 
   def moderator?
-    LEVEL_MODERATOR <= level
+    #LEVEL_MODERATOR <= level
   end
 
   def crm?

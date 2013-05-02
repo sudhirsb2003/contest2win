@@ -1,0 +1,7 @@
+<% related = contest.related(5) %>
+<% unless related.empty? %>
+<h4>If you liked playing this <%= contest[:type] %>, you may find the following games interesting...</h4>
+<% related.each do |related| -%>
+  <%= render :partial => "contests/row", :locals => {:contest => related, :contest_response => nil} %>
+<% end %>
+<% end %>

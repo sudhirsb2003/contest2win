@@ -1,0 +1,8 @@
+<ul class="faceoff_entries">
+  <% entries.each { |entry| %>
+  <li><div class="thumb"><%= show_entry_thumb(entry) %></div>
+  <b><%= entry.title %></b>
+  in <%= link_to_contest entry.faceoff %>
+</li>
+  <% } %>
+</ul>

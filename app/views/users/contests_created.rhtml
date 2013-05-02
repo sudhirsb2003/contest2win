@@ -1,0 +1,9 @@
+<% @title = 'Created' %>
+<% if @contests.empty? %>
+  <div class="empty">None found!</div>
+<% else %>
+  <%= simple_paginate @contests, params[:offset], 20 %>
+  <%= render :partial => 'contests_created', :locals => {:contests => @contests} %>
+  <%= simple_paginate @contests, params[:offset], 20 %>
+<% end %>
+

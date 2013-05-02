@@ -1,0 +1,18 @@
+<% if @contest_response -%>
+<% if prev_answer = @contest_response.answers.last %>
+<div id="previous_answer">
+<h3 class="panel_title tab"><span>Previous</span></h3>
+<div style="text-align:center;font-weight:bold;margin:5px 0;"><%= h prev_answer.question.question %></div>
+<% if prev_answer.question.content_type == Contest::CONTENT_TYPE_IMAGE %>
+<div class="thumb_image"><%= image_tag(url_for_file_column(prev_answer.question, 'image', 'thumb'), :style => 'margin:auto;display:block;') %></div>
+
+<% end %>
+<div style="text-align:center;letter-spacing:3px;">
+	<%= prev_answer.question.answer %>
+</div>
+<%= render :partial => 'contests/score',
+			:locals => { :contest_response => @contest_response} \
+				if @contest_response %>
+</div>
+<% end %>
+<% end -%>

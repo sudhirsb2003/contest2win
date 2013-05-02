@@ -1,0 +1,52 @@
+<% @title = h @contest.title %>
+<% if @contest.ended? %>
+<h2 class="contest_ended">This game has expired.</h2>
+<% end %>
+
+    <div id="contest_body">
+	<%= draw_crossword(@contest) %>
+<div style="width:50%;float:left;">
+<h2>Across</h2>
+<ul>
+<% @contest.clues('across=true').each {|clue| %>
+	<li><%= clue.position %>. <a href="#" onclick="return enter_answer('<%= clue.question_id %>');"><%= h clue.question.question %> (<%= clue.length %>)</a>
+
+<% if clue.question.image %>
+<%= link_to '[View Image]', url_for_file_column(clue.question, :image), :rel => "lightbox[#{@contest.id}]", :title => h(clue.question.question) %>
+<% end %>
+
+</li>
+<% } %>
+</ul>
+</div>
+
+<div style="width:50%;float:right;">
+<h2>Down</h2>
+<ul>
+<% @contest.clues('across=false').each {|clue| %>
+	<li><%= clue.position %>. <a href="#" onclick="return enter_answer('<%= clue.question_id %>');"><%= h clue.question.question %> (<%= clue.length %>)</a>
+
+<% if clue.question.image %>
+<%= link_to '[View Image]', url_for_file_column(clue.question, :image), :rel => "lightbox[#{@contest.id}]", :title => h(clue.question.question) %>
+<% end %>
+
+</li>
+<% } %>
+</ul>
+</div>
+<br clear="all"/>
+
+<script src="/javascripts/crossword.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function enter_answer(question_id) {
+		return false;
+	}
+<% @contest.clues.each {|clue| %>
+	fill_in_answer('<%= clue.question.answer %>', <%= clue.row %>, <%= clue.col %>, <%= clue.across %>);
+<% } %>
+</script>
+</div>
+
+<% if @contest.editable?(current_user) %>
+<div style="text-align:center;margin:20px;font-size:20px"><%= link_to 'Edit Crossword', contest_url(@contest.url_attributes(:action => :add_questions)) %></div>
+<% end %>

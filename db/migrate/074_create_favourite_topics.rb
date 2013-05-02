@@ -16,9 +16,9 @@ class CreateFavouriteTopics < ActiveRecord::Migration
     add_index :favourite_topics_users, [:user_id]
     foreign_key(:favourite_topics_users, :user_id, :users)
     foreign_key(:favourite_topics_users, :favourite_topic_id, :favourite_topics)
-    ['Movies','Music','Trivia','Gadgets','Technology','Cars','Sports','Politics'].each {|t|
-        FavouriteTopic.create(:name => t)
-    }
+    #['Movies','Music','Trivia','Gadgets','Technology','Cars','Sports','Politics'].each {|t|
+    #    FavouriteTopic.create(:name => t)
+    #}
 
 
   end

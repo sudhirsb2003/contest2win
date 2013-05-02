@@ -1,0 +1,7 @@
+<% @title = 'Account Activation Failed!' %>
+
+<p>You may Request a new Activation Email</p>
+
+<%= render :partial => 'resend_activation_request_form' %>
+
+<%= javascript_tag "$('resend_activation_request_form').show()" %>

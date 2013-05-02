@@ -1,0 +1,8 @@
+	<ul>
+		<li><%= link_to_unless_current 'Popular', {:action => 'popular'} %></li>
+		<li><%= link_to_unless_current 'Featured', {:action => 'featured'} %></li>
+		<li><%= link_to_unless_current 'Recent', {:action => 'recent'} %></li>
+		<li><%= link_to_unless_current 'Tags', {:action => 'tags'} %></li>
+		<li><%= link_to_unless_current 'Completed', {:action => 'completed'} %></li>
+		<li><strong><%= link_to_unless_current "Create a #{@controller.controller_name.singularize.capitalize}", {:action => 'new'} %></strong></li>
+	</ul>

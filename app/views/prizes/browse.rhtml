@@ -1,0 +1,24 @@
+<div id="main_center">
+<% cache(@prizes_browse_key) do %>
+<!--b:cache <%= "#{@prizes_browse_key} #{Time.now}" %> -->
+	<%= will_paginate @prizes %>
+  <%=link_to "Subscribe to NEW contests with Prize Points" ,"http://www.feedburner.com/fb/a/emailverifySubmit?feedId=2373402", { 'target' => "_blank", :class => 'fb_link' } %>
+
+  <% unless @prizes.empty? %>
+  <% @prizes.each_slice(7) do |slice| %>
+  <ul class="prizes">
+    <% slice.each do |prize| %>
+      <li><%= link_to_function image_tag(url_for_file_column(prize, :thumbnail), :alt => h(prize.title)),
+          "ajax_showTooltip('#{prizes_path(:action => :popup, :id => prize.id)}',this)",
+          :href => prizes_path(:action => :show, :id => prize),
+          :title => h(prize.title) %></li>
+    <% end %>
+  </ul>
+  <% end %>
+	<%= will_paginate @prizes %>
+  <% else %>
+  <div class="empty">Sorry, No prizes matching the specified criteria!</div>
+  <% end %>
+<!--e:cache <%= @prizes_browse_key %> -->
+<% end %>
+</div>

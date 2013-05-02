@@ -1,0 +1,22 @@
+<% unless @users.empty? %>
+<table class="list">
+<% @users.each_with_index do |@user, index| %>
+<tr class="<%= cycle('even','odd')%>">
+  <td style="width:20px;font-size:15px;padding:2px;text-align:right;"><%= index + 1 %></td>
+  <td style="width:52px;position:relative">
+    <% if url_for_file_column('user', 'picture', 'thumb') %>
+      <%= link_to(image_tag(url_for_file_column('user', 'picture', 'thumb'), :style => 'border:1px solid #ccc;margin-top:2px'), user_url(:username => @user.username)) %>
+    <% elsif 'Male' == @user.gender %>
+      <%= link_to(image_tag('user_without_image.gif', :style => 'margin-top:2px'), user_url(:username => @user.username)) %>
+    <% else %>  
+      <%= link_to(image_tag('female_user_without_image.gif', :style => 'border:1px solid #ccc;margin-top:2px'), user_url(:username => @user.username)) %>
+    <% end -%>
+  </td>  
+  <td><%= link_to_user @user %></td>
+  <td class="numeric"><%= @user.total_score %></td>
+</tr>  
+<% end %>
+</table>
+<% else %>
+  Sorry, no statistics available!
+<% end %>

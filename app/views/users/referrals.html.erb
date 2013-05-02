@@ -1,0 +1,80 @@
+<% @title =  "#{h(@user.username)}'s Referrals" %>
+<% if logged_in?(:moderator) %>
+<h3>My Details (for admins and moderators only)</h3>
+<span class="tip">Email:</span> <%= mail_to @user.email %><br /><span class="tip">Address:</span> <%= @user.location %>
+<% end %>
+<% unless @referrals.empty? %>
+<table class="list">
+<thead>
+<tr><th>User</th><th style="width:75px">Joined on</th><th>Account Status</th><th class="numeric">Prize Points Earned</th><th class="numeric">Contests Created</th></tr>
+</thead>
+<tbody>
+  <% @referrals.each do |r| %>
+  <tr class="<%= color = cycle('odd','even') %>">
+  <td><%= link_to_user r.referred.username %> <%= "(#{r.referred.full_name})" unless r.referred.full_name.blank? %></td>
+  <td><%= short_date r.created_on %></td>
+  <td><%= r.referred.status_text %></td>
+  <td class="numeric"><%= r.referred.net_pp_earned %></td>
+  <td class="numeric"><%= r.referred.contests_created.live.count %></td></tr>
+  <% if logged_in?(:moderator) %><tr class="<%= color %>">
+  <td colspan="5">
+  <a style="display:block;text-align:right;font-size:9px" onclick="$('referral_<%= r.id %>').toggle();return false;" title="Show/hide" href="#">Details</a>
+  <div id="referral_<%=r.id%>" style="display:none">
+  <span class="tip">Email:</span> <%= mail_to r.referred.email %><br /><span class="tip">Address:</span> <%= r.referred.location %>
+  </div>
+  </td></tr><% end %>
+  <% end %>
+</tbody>
+</table>
+<%= simple_paginate @referrals, params[:offset], 20 %>
+<% else %>
+<div class="empty">No Referrals as yet!</div>
+<% end %>
+
+<% if current_user?(@user) %>
+<p> Hi <%= h(@user.username) %>,</p>
+<p>
+Are you ready to get your friends in on the action at C2W? Super! All you have to do is get your friends to sign up &amp; play. What’s in it for you? Loads of Prize Points! Score every time your friends score. Isn’t that awesome?</p>
+<p>So don’t wait any longer. The sooner you get your buddies to sign up, the sooner you can begin hauling up the scores.</p>
+<p><b>Note:</b> Do not create fake accounts. You'll simply end up getting banned and will lose all your prize points.</p>
+
+<p>
+<b>Send the following link to invite your friends and earn Prize Points!</b><br />
+<%= link_to "http://#{request.host_with_port}/account/register?referred_by=#{@user.username}", "http://#{request.host_with_port}/account/register?referred_by=#{@user.username}", :style => 'text-decoration:none' %>
+</p>
+<p><b>OR</b></p>
+<b>Send your friends this invitation mail</b>
+
+<div id="referral_mail_sent" style="text-align:center;padding:10px;display:none" class="large">
+  Email Sent. <a href="#" onclick="$('referral_mail_form').show();$('referral_mail_sent').hide();$('referral_submit_button').enable();return false;">Send more?</a>
+</div>
+<div id="referral_mail_form">
+<%= render :partial => 'referral_mail_form' %>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+function setContacts(contacts) {
+	current = $('referral_mail_to_email_addresses').value;
+	if (current != '') current += ', ';
+	$('referral_mail_to_email_addresses').value = current + contacts;
+}
+//]]>
+</script>
+
+<p>
+<h4>What more can you do?</h4>
+You can add C2W.com banners on your blog or website. Copy-paste your referral link &amp; send it to your pals via chat and email. Scrap them on Orkut and Facebook!
+</p>
+
+<p>
+<h4>How do Referrals work?</h4>
+It’s simple. You get rewarded for getting your buddies onto c2w.com.
+</p>
+
+<p>
+<h4>What do I get in return?</h4>
+If your friend has signed up &amp; created 10 contests which are approved, then you get 500 Prize Points!<br />
+If your friend has signed up &amp; earned a total of 2000 Prize Points, by playing Contests with Prize Points, then you get 500 Prize Points.<br />
+</p>
+<% end %>

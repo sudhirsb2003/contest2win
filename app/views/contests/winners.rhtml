@@ -1,0 +1,27 @@
+<% @title = "#{h @contest.title}: Winners" %>
+<div id="contest_body">
+<% unless @winners.empty? %>
+<ul class="winners">
+  <% @winners.each {|winner| %>
+  <li>
+	<% unless winner.entry %>
+	<div class="thumb"><%= show_user_image(winner.user, 'thumb') %></div>
+  <%= link_to_user winner.user.username, 12 %><br />
+  WON <b><%= h winner.contest_prize.prize.title %></b>
+  <span><%= time_ago_in_words winner.created_on %> ago</span>
+	<% else %>
+	<% entry = winner.entry %>
+	<div class="thumb"><%= show_thumb(entry) %></div>
+	<b><%= h(truncate(entry.title, 10)) %></b><br />
+  by <%= link_to_user winner.user.username, 12 %><br />
+  WON <b><%= h winner.contest_prize.prize.title %></b>
+  <span><%= time_ago_in_words winner.created_on %> ago</span>
+	<% end %>
+	</li>
+  <% } %>
+</ul>
+<%= will_paginate @winners %>
+<% else %>
+<div class="empty">Winners are yet to be announced</div>
+<% end %>
+</div><!--contest_body-->

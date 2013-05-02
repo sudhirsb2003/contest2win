@@ -1,0 +1,14 @@
+<div id="left">
+  <!--
+	<div class="section">
+  <h5>Category</h5>
+  <ul>
+    <li<%= ' class="current"' if params[:id].nil? %>><%= link_to_unless params[:id].nil?, 'All', prizes_path(:id => '', :winning_date => params[:winning_date], :contest_type => params[:contest_type]) %></li>
+    <% PrizeCategory.find_available.each {|c| %>
+    <li<%= ' class="current"' if c.id.to_s == params[:id] %>><%= link_to_unless c.id.to_s == params[:id], h(c.name), prizes_path(:id => c.id, :winning_date => params[:winning_date], :contest_type => params[:contest_type]) %></li>
+    <% } %>
+  </ul>
+	</div>
+  -->
+  
+</div><!--left-->

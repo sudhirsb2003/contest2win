@@ -1,0 +1,6 @@
+<ul class="vote_thumbs">
+<li><%= link_to_remote ' ',
+		{:url => {:id => @contest.id, :controller => 'contests', :action => :vote, :vote => :true},
+        :update => {:success => 'votes'}},
+        :title => 'Vote Up', :id => 'up_vote' %> <%= number_with_delimiter(@contest.net_votes) %></li>
+</ul>

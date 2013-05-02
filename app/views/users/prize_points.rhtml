@@ -1,0 +1,22 @@
+<% @title =  "#{h(@user.username)}'s Prize Points" %>
+<% if @user.prize_points > 0 %><div style="text-align:right"><a href="/prizes?contest_type=prize_points&winning_date=This+Year">Redeem these cool prizes with your Prize Points</a></div><% end %>
+<h2>Account Summary</h2>
+<table class="form">
+<tr><td>Net Points</td><td><b><%= number_as_pp(@user.prize_points) %></b></td></tr>
+</table>
+<h2>Transactions</h2>
+<% unless @transactions.empty? %>
+<table class="list">
+<thead>
+<tr><th style="width:75px">Date</th><th>Description</th><th></th><th class="numeric">Amount</th></tr>
+</thead>
+<tbody>
+  <% @transactions.each do |c| %>
+  <tr class="<%= cycle('even','odd') %> <%= c.cr_db %>"><td><%= short_date c.created_on %></td><td><%= c.description %></td><td><%= c.cr_db %></td><td class="numeric"><%= number_as_pp(c.amount.abs) %></td></tr>
+  <% end %>
+</tbody>
+</table>
+	<%= will_paginate @transactions %>
+<% else %>
+<div class="empty">No prizes redeemed as yet!</div>
+<% end %>

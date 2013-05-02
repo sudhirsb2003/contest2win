@@ -1,0 +1,42 @@
+<% @title = "#{h @contest.title}:" %>
+<%
+title_postfix = ''
+if @contest_response
+  if (current_user?(@contest_response.user)) || (session[:uuid] && @contest_response.session_id == session[:uuid])
+    title_postfix << ' Your Answers' 
+  else
+    title_postfix << " #{@contest_response.players_name}'s Answers"
+  end  
+else
+  title_postfix << ' Winners' 
+end -%>
+<% @title << title_postfix %>
+<div id="contest_body">
+
+<table class="list" cellpadding="0" cellspacing="0">
+<% answers = @contest_response.answers.paginate(:page => params[:page], :per_page => 10) -%>
+<% answers.each_with_index { |ans, index| -%>
+<% question = ans.question -%>
+<tr class="<%= cycle("even","odd") %>" id="question_<%= "#{question.id}" -%>">
+	<td class="numeric">Q<%= index + (answers.current_page-1)*answers.per_page + 1 -%></td>
+	<td style="width:80%">
+	<%= link_to_function h(question.question), "Effect.toggle('options_#{question.id}', 'blind')", {:style => 'display:block'}-%>
+	<div style="display:none;width:75%;" id="options_<%= question.id -%>">
+    <div style="float:right"><%= show_question_thumb(question) %></div>
+    <% if current_user?(@contest_response.user) %>
+    <%= ans.question.answer %>
+		<% end -%>
+	</div>
+	</td>
+	<td>
+		<%= ans.points -%> points
+    </td>
+</tr>
+<% } -%>
+</table>
+<%= will_paginate answers %>
+
+<% if answers.empty? %>
+<div class="empty">Not answered any questions as yet!</div>
+<% end -%>
+</div><!--contest_body-->

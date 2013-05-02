@@ -1,0 +1,16 @@
+  <div class="note" style="margin:0">
+  <h3>Important Note</h3>
+  <p>
+  As per the government law, under section 194(b) of the Income Tax Act, 1961, the tax on winning is <%= AppConfig.tds_percentage %>%.
+  </p>
+  <p>
+  TDS (Tax Deducted at Source) amount for your prize:  <%= number_to_currency(tds, :unit => 'Rs. ') %>/-
+  (<%= AppConfig.tds_percentage %>% of <%= number_to_currency(amount, :unit => 'Rs. ') %>/-) 
+  </p>
+  <p>
+  The TDS amount should be sent via Demand Draft (DD).  A DD of <%= number_to_currency(tds, :unit => 'Rs. ') %>/- must be
+  issued in favour of:<br />
+  'Contests2win.com India Private Limited' payable in Mumbai only.
+  </p>
+  </div>
+

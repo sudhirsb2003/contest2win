@@ -1,0 +1,70 @@
+<div class="box">
+<% if @prize.image %>
+  <div style="float:right">
+  <%= image_tag(url_for_file_column(@prize, :image)) %>
+  </div>
+<% else %>
+<% end %>
+
+<%= textilize_without_paragraph(h(@prize.description)) %>
+
+<% unless @prize.special_note.empty? %>
+<h3>Special Note</h3>
+<%= textilize_without_paragraph(h(@prize.special_note)) %>
+<% end %>
+
+<table class="prize_prices">
+<% unless @prize.credits.nil? || @prize.credits <= 0 %>
+<tr><th><h3>Prize Points</h3></th><td><h3><%= number_with_delimiter(@prize.credits.to_i) %></h3></td></tr>
+<% end %>
+<% if @prize.tds_applicable? %>
+<tr><th>TDS</th><td><%= number_to_currency(@prize.tds, :unit => @prize.region.india? ? 'Rs. ' : 'USD $') %></td></tr>
+<% end %>
+<% unless @prize.value.nil? %>
+<tr><th>Market Value</th><td><%= number_to_currency(@prize.value, :unit => @prize.region.india? ? 'Rs. ' : 'USD $') %></td></tr>
+<% end %>
+<tr><th>Available in</th><td><span class="flag <%= @prize.region.domain_prefix %>_flag"> <%= h(@prize.region.name) %> Only</span></td></tr>
+</table>
+</div><!--box-->
+<br clear="right"/>
+<% if @prize.redeemable? %>
+  <div class="summary" id="redeem_prize">
+  <% if @prize.redeemable_by_user?(current_user) %>
+    <h3 style="margin-bottom:10px">You have enough prize points to get this prize!</h3>
+    <ul class="side_by_side" style="font-size:medium">
+      <li><%= link_to '<b>Redeem Now!</b>', :action => :redeem, :id => @prize %></li>
+    </ul>
+  <% elsif current_user.nil? %>
+    <h3 style="margin-bottom:10px">You need to <%= link_to_unless_current 'log in', account_link(:action => :login), :onclick => 'show_login();return false;' %> to redeem this prize!</h3>
+  <% else %>
+    <h3 style="margin-bottom:10px">
+		<% if current_user.region_id != @prize.region_id %>
+		Sorry, this prize is not available in your region.
+		<% else %>
+		Sorry, you don't have enough prize points to redeem this prize.
+		<% end %>
+		</h3>
+  <% end %>
+</div><!--summary-->
+<% end %>
+
+<% unless @contests.empty? %>
+<br clear="all"/>
+<h2>Play 2 Win</h2>
+<% if @prize.redeemable? %>You can also <b>win</b> this prize in the following contests...<% end %>
+  <% @contests.each_slice(4) do |slice| %>
+  <ul class="contests">
+    <% slice.each do |contest| %>
+      <li>
+        <div class="thumb"><%= link_to image_tag_for_contest(contest), contest_url(contest.url_attributes) %></div>
+        <%= link_to_contest contest %>
+        <span><%= contest.class.to_s.titlecase %> by <%= link_to_user contest.username %></span>
+        <% contest_prize = contest.contest_prizes.find_by_prize_id(@prize) %>
+        <small>ends in <b><%= distance_of_time_in_words Time.now, contest_prize.to_date.to_time.eod %></b></small>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+	<%= will_paginate @contests %>
+<% end %>
+

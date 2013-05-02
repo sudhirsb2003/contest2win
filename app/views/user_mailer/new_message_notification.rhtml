@@ -1,0 +1,13 @@
+Hey <%= @message.receiver.username %>,
+
+<p>
+<%= @message.sender.username %> has something to say to you. Find out what it is by clicking on the link below or just copy & paste it into your browser.<br/>
+<a href="<%= @controller.url_for(:controller => 'users', :username => @message.receiver.username, :action => :messages) %>"><%= @controller.url_for(:controller => 'users', :username => @message.receiver.username, :action => :messages) %></a>
+</p>
+
+<p>
+To view <%= @message.sender.username %>'s profile click on the link below or copy &amp; paste it into your browser.<br />
+<a href="<%= @controller.url_for(:controller => 'users', :username => @message.sender.username, :action => :profile) %>"><%= @controller.url_for(:controller => 'users', :username => @message.sender.username, :action => :profile) %></a>
+</p>
+
+- The c2w Team

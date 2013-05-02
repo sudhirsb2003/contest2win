@@ -162,7 +162,7 @@ class AccountController < ApplicationController
       when :post
         begin
           captcha_failed = nil
-          if ((@user = User.find_by_email(params[:user][:email]))
+          if ((@user = User.find_by_email(params[:user][:email])))
             unless verify_recaptcha
               flash.now[:notice] = 'Captcha verification failed.'
               captcha_failed = true

@@ -1,0 +1,13 @@
+<div id="skin_browser" style="display:none">
+<div id="skin_browser_content">
+<ul class="skins">
+  <% skins.each {|skin| %>
+  <li>
+  <div class="thumb"><%= link_to_function image_tag(url_for_file_column(skin, :image)), "$('contest_skin_id').value = #{skin.id};Element.hide('skin_browser');" %></div>
+  <%= h skin.name %><br />
+  <%= link_to_function 'Select', "$('contest_skin_id').value = #{skin.id};Element.hide('skin_browser');" %></span>
+  </li>
+  <% } %>
+</ul>
+</div>
+</div>

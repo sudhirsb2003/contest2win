@@ -1,0 +1,71 @@
+<% @title = "Redeem &raquo; #{h @prize.title}" %>
+<div class="box">
+<table class="prize_prices">
+<tr><th><h3>Prize Points</h3></th><td><h3><%= number_with_delimiter(@prize.credits.to_i) %></h3></td></tr>
+<% if @prize.tds_applicable? %>
+<tr><th>TDS</th><td><%= number_to_currency(@prize.tds, :unit => @prize.region.india? ? 'Rs. ' : 'USD $') %></td></tr>
+<% end %>
+</table>
+</div><!--box-->
+
+<div id="dispatch_form">
+<h2>Please confirm the following details to redeem your prize</h2>
+<%= error_messages_for :dispatch , :header_message => 'Redemption Failed!', :sub => {:pin_code => current_user.region.india? ? 'Pin Code' : 'ZIP Code'}%>
+<% form_for :dispatch, @dispatch, :url => {:action => :redeem, :id => @prize.id},
+    :html => {:onsubmit => '$("submit_button").disable()', :class => 'form'} do |f| %>	
+
+  <% unless current_user.facebooker? %>
+  <div class="row">
+      <label for="password" class="field_name">Confirm Password <%= reqd %></label>
+      <input type="password" name="password" size="30" id="password"/>
+  </div>
+  <% end %>
+
+   <div class="row">
+  <label for="dispatch_address_line_1" class="field_name">Address<%= reqd %></label>
+  <div>
+  <span class="tip" style="display:inline">Line #1</span> <%= f.text_field :address_line_1, :size => 70, :maxlength => 255 %>
+  </div>
+  <div style="margin-top:5px">
+  <span class="tip" style="display:inline">Line #2</span> <%= f.text_field :address_line_2, :size => 70, :maxlength => 255 %>
+  </div>
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_city" class="field_name">City <%= reqd %></label>
+      <%= f.text_field :city, :maxlength => 255, :size => 20 %>
+    </div>  
+    <div>
+      <label for="dispatch_pin_code" class="field_name"><%= current_user.region.india? ? 'Pin Code' : 'ZIP Code' %> <%= reqd %></label>
+      <%= f.text_field :pin_code, :maxlength => 255, :size => 20 %>
+    </div>  
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_country" class="field_name">Country <%= reqd %></label>
+			<%= h(@dispatch.country) %>
+    </div>  
+    <div>
+  		<label for="dispatch_state" class="field_name">State <%= reqd %></label>
+  		<%= text_field 'dispatch', :state, :style => 'width:150px' %>
+  	</div>
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_mobile_number" class="field_name">Mobile Number <%= reqd %></label>
+      <%= f.text_field :mobile_number, :maxlength => 255, :size => 20 %>
+    </div>  
+    <div>
+      <label for="dispatch_country" class="field_name">Phone Number</label>
+      <%= f.text_field :phone_number, :maxlength => 255, :size => 20 %>
+    </div>  
+  </div>
+  
+  <%= render :partial => 'prizes/tds_note', :locals => {:tds => @prize.tds, :amount => @prize.value} if @prize.tds_applicable? %>
+  <%= submit_tag "Redeem!", :style => 'margin-top:10px;', :id => 'submit_button' %>
+  <%= link_to 'Cancel', {:action => :show, :id => @prize}, :class => 'cancel_button' %>
+<% end %>
+</div><!--dispatch_form-->

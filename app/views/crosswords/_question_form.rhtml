@@ -1,0 +1,35 @@
+<% @question = question %>
+<% fields_for "questions[#{index}]", question do |f| %>
+<%= error_messages_for :question, :sub => {:answer => 'Word', :question => 'Clue' } %>
+<div class="row" id="q<%= index %>">
+	<div>   
+	   <label for="questions[<%= index %>]_answer" class="field_name">Word #<%= index + 1 %></label>
+	   <%= f.text_field :answer, :maxlength => 15, :size => 16 %>
+	</div>   
+	<div style="width:405px">
+	   <label for="questions[<%= index %>]_question" class="field_name">Clue #<%= index + 1 %>
+		(<a href="#" onclick="<% if question.id %> if(!confirm('Delete this question?')) {return false}; <%= remote_function(:url => {:controller => 'questions', :action => :delete, :question_id => question.id}) %>;<% end %> Element.remove('q<%= index %>'); return false;">Remove</a>)</label>
+	   <%= f.text_field :question, :maxlength => 100,:class=>"Add-Clue-Textbox" %>
+	</div>    
+                    	<div class="Right-div">
+	<a href="#" onclick="$('question_form_media_<%= index %>').toggle();return false;" class="Add-Image">Add Image</a>
+
+                        </div>
+<%= f.hidden_field :id %>
+	<div id="question_form_media_<%= index %>" class="question_form_media" style="margin-top:10px;<% if question.image.blank? %> display:none <% end %>">
+<%= render :partial => 'question_form_image', :locals => {:f => f, :index => index} %>
+</div>
+<script type="text/javascript">
+function toggle_image_video_upload(show) {
+	hide = (show == 'qf_img' ? 'qf_vid' : 'qf_img')
+	Element.removeClassName(hide + '_tab', 'current');
+	Element.hide(hide + '_form');
+	Element.addClassName(show + '_tab', 'current');
+	Element.show(show + '_form');
+	return false;
+}
+	toggle_image_video_upload('<%= @question.video ? 'qf_vid' : 'qf_img' %>');
+	</script>
+	<% end %>
+</div>
+

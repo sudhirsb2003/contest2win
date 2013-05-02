@@ -1,0 +1,26 @@
+<% cache(key = "#{params[:controller]}/#{@contest.id}/prizes#{Time.now.to_i/5.minutes.to_i}") do %>
+<!--b:cached <%= "#{key} - #{Time.now}" %>-->
+<% contest_prizes = @contest.contest_prizes.running.all(:limit => 5) %>
+<% unless contest_prizes.empty? %>
+<div id="prizes_panel">
+  <h2>WIN!</h2>
+  <ul>
+  <% contest_prizes.each {|contest_prize| %>
+  <li><div class="thumb"><%= link_to_function image_tag(url_for_file_column(contest_prize.prize, :thumbnail), :alt => h(contest_prize.prize.title)),
+          "ajax_showTooltip('#{prizes_url(:action => :popup, :id => contest_prize.prize.id)}',this)",
+          :href => prizes_url(:action => :show, :id => contest_prize.prize),
+          :title => h(contest_prize.prize.title) %></div>
+  <%= contest_prize.quantity %> <b><%= h contest_prize.prize.title %></b>
+  <span>To be won by <%= short_date(contest_prize.to_date) %></span>
+	<% unless contest_prize.description.blank? %><span><%= h(contest_prize.description) %></span><% end %>
+	<span class="tip flag <%= contest_prize.region.domain_prefix %>_flag">Only for users from <b><%= h(contest_prize.region.name) %></b></span>
+  </li>
+  <% } %>
+  </ul>
+</div>
+<% end %>
+<% if @contest.loyalty_points_enabled? %>
+<div id="prize_points_panel"><h3>Win <%= AppConfig.prize_points_per_right_answer %> PRIZE POINTS PER <%= 'CORRECT' if @contest.scorable? %> ANSWER</h3>Your account will be updated within 24 hrs</div>
+<% end %>
+<!--e:cached <%= key %>-->
+<% end %>

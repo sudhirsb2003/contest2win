@@ -1,0 +1,20 @@
+<div id="play_area" class="quiz">
+<% form_remote_for :answer, @answer, 
+      :url => contest_url(@contest.url_attributes(:action => "answer", :question_id => @question.id)),
+      :loading => ajax_loading_indicator('play_area', 'Please wait...') do |f| %>
+	<h3><%= h @question.question %></h3>
+	<%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %>
+	<ol>
+	<% @question.options.each { |option| %>
+		<li>
+		<%= f.radio_button :question_option_id, option.id,
+				:onclick => "$('submit_button').disabled = false;" %>
+		<label for="answer_question_option_id_<%= option.id%>"><%= h option.text %></label>
+		</li>
+	<% } %>
+	</ol>
+<input type="button" id="submit_button" style='margin-right:40px' disabled="true" onclick='this.disabled = true;this.value = "Please wait..."; this.form.onsubmit()' value="Submit"/>
+<% end %>
+
+</div>
+<%= javascript_tag "window.onload()" %>

@@ -1,0 +1,35 @@
+<% @personality = Personality.new unless @personality %>
+<% form_for @personality, :url => {:action => @personality.new_record? ? :add_personality : :update_personality, :personality_id => @personality.id},
+		:html => {:multipart => true, :onsubmit => '$("submit_button").disable()'} do |f| %>
+<%= error_messages_for :personality %>
+<div class="row">
+	<label class="field_name" for="personality_title">Title <%= reqd %></label>
+	You are <%= f.text_field :title, :maxlength => 50 %>
+	<%= tip "should satisfy the following sentences: <ul><li>I am ...</li><li>You are ...</li><li>John is ...</li></ul>" %>
+</div>
+<div class="row">
+	<div>
+		<label class="field_name" for="personality_minimum_score">Minimum Score <%= reqd %></label>
+		<%= f.text_field :minimum_score, :maxlength => 4 %>
+	</div>
+	<div>
+		<label class="field_name" for="personality_maximum_score">Maximum Score <%= reqd %></label>
+		<%= f.text_field :maximum_score, :maxlength => 4 %>
+	</div>
+</div>
+<div class="row">
+	<label class="field_name" for="personality_description">Description (max 255)</label>
+	<%= f.text_area :description, :rows => 4, :cols => 60 %>
+</div>
+<div id="qf_img_form" class="media_tab_body row">
+	<label for="personality_image">Image</label> <small>(JPG/GIF/PNG Only)</small><br />
+	<%= file_column_field 'personality', 'image' %>
+    <span class="tip" style="display:block">Please upload an image up to 600kb in size and greater than a passport-sized image.</span>
+	<% if img_url =  url_for_file_column('personality', 'image') %>
+	<br />
+    <%= link_to image_tag(url_for_file_column('personality', 'image', 'thumb'),
+			:style => 'border:1px solid #ccc;margin-top:2px'), img_url, :target => '_blank' %>
+	<% end %>
+</div>
+<%= submit_tag 'Save', :id => 'submit_button' %> <%= link_to 'Cancel', @contest.url_attributes(:action => :personalities), :confirm => 'Cancel changes?', :class => 'cancel_button' %>
+<% end %>

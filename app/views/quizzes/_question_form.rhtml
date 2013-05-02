@@ -1,0 +1,22 @@
+<%= error_messages_for [:question, :video], :sub => {:original_file => 'Video file', :external_video_url => 'YouTube URL'} %>
+<div class="row">
+	<label for="question_question" class="field_name">Question</label>
+	<%= f.text_field :question, :maxlength => 100, :size => 70 %>
+	<span class="tip">Maximum 100 characters</span>
+</div>
+
+<%= render :partial => 'contests/question_media_form', :locals => {:f => f} %>
+
+<div id="options" class="emphasize_bg">
+<h3>Options</h3>
+<% @question.options.each_with_index { |option, index| %>
+	<%= render :partial => 'option_form', :locals => {:option => option, :index => index, :f => f} %>
+<% } %>
+</div>
+<%= render :partial => 'add_option_link', :locals => {:index => @question.options.size} %>
+
+<%= submit_tag "Save", :style => 'margin-top:10px;', :id => 'submit_button' %></td>
+<%= link_to "Cancel", contest_url(@question.contest.url_attributes(:action => 'questions')),
+		:confirm => 'Are you really sure?', :class => 'cancel_button' %>
+
+<%= render :partial => 'contests/disclaimer' %>

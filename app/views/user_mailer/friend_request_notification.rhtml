@@ -1,0 +1,10 @@
+Hey <%= @receiver.username %>,
+
+<p>
+<%= @sender.username %> has added you as a friend on c2w.<br/>
+To check <%= @sender.username %>’s profile click on the link below or copy &amp; paste it into your browser.<br/>
+<a href="<%= @controller.url_for(:controller => 'users', :username => @sender.username, :action => :profile) %>"><%= @controller.url_for(:controller => 'users', :username => @sender.username, :action => :profile) %></a>
+</p>
+<p>
+- The c2w Team
+</p>

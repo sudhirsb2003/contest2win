@@ -1,0 +1,8 @@
+<% @title = 'New Hangman' %>
+<div id="wrapper">
+<% form_for :contest, @contest, :html => {:onsubmit => '$("submit_button").disable()'} do |f| %>	
+<%= render :partial => 'contests/form', :locals => {:f => f} %>
+<%= submit_tag "Continue...", :class=>"Proceed-to-next-step" %></td>
+<% end %>
+<%= render :partial => 'contests/disclaimer' %>
+</div>

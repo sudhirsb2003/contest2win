@@ -1,0 +1,20 @@
+<% fields_for "classifications[#{index}]", classification do |o| %>
+<div id="classification_<%= index %>" style="border-bottom:3px solid #008">
+  <p>
+	<label for="classifications[<%= index %>]_range" class="field_name">Range</label>
+	<label for="classifications[<%= index %>]_from">from</label> <%= o.text_field :minimum_score, :maxlength => 4 %>
+	<label for="classifications[<%= index %>]_to">to</label> <%= o.text_field :maximum_score, :maxlength => 4 %>
+  </p>
+  <p>
+	<label for="classifications[<%= index %>]_description" class="field_name">Description</label>
+    <%= o.text_area :description, :style => 'height:100px' %>
+  </p>
+	<%= o.hidden_field :id %>
+	<%= link_to_remote 'remove',
+			:url => { :controller => 'contests', :action => 'remove_classification', :index => index, :id => classification.id },
+			:loading => "Element.remove('classification_#{index}');" %>
+
+<script>tinyMCE.execCommand('mceAddControl', true, 'classifications[<%= index %>]_description');</script>
+</div>
+
+<% end %>

@@ -1,6 +1,6 @@
 <section id="container">
 	<div class="BreadCrumb">
-    	<a href="#">Home</a> »
+    	<a href="/">Home</a> »
         <%=link_to "Play",contests_path(:action => "most_recent")%> »
         <%if params[:controller] != "contests"%>
             <%=link_to params[:controller].to_s.titleize, contests_path(:overwrite_params => {:action => 'most_recent',:page => nil}) if !params[:action].blank?%> »

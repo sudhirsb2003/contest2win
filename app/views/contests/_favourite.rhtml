@@ -1,0 +1,9 @@
+<% mode = current_user.nil? || current_user.favourite_contests.exists?(@contest) ? 'on' : 'off' %>
+<% mode_rev = mode == 'on' ? 'off' : 'on' %>
+<% msg = mode == 'on' ? 'Remove this game from your favourites.' : 'Bookmark this game as a favourite to play it again later.' %>
+<%= link_to_remote '',
+    {:url => contests_url(:controller => 'contests', :action => :toggle_favourite, :id => @contest.id),
+    :loading => "$('favourite_img_#{@contest.id}').src='/images/icons/heart_#{mode_rev}.gif'",
+    :update => {:success => 'favourite'}},
+    {:title => msg, :id => 'favourite_icon', :class => "favourite_#{mode}"} %>
+<%= number_with_delimiter(@contest.favourites.count) %>

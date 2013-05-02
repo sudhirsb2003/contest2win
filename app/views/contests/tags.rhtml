@@ -1,0 +1,18 @@
+<% cache(@contest_browse_key) do %>
+<!--b:cache <%= "#{@contest_browse_key} #{Time.now}" %> -->
+<%= render :partial => 'contests/sub_menu' %>
+<div id="main_center">
+<%= render :partial => 'contests/campaign_info' if @campaign %>
+<div id="content">
+<% if @tags %>
+  <div class="tag_cloud">
+  <% @tags.each do |tag| %>
+        <!--<%= link_to(h(tag.name), {:tag => tag.name, :time => params[:time], :id => params[:id], :catid => params[:catid], :controller => params[:controller], :action => :tags}, {:class => "tag#{(tag.count)}"}) %>-->
+        <%= link_to(h(tag.name), contests_path(:overwrite_params => {:tag => tag.name}), {:class => "tag#{(tag.count)}"}) %>
+  <% end %>
+  </div>
+<% end %>
+</div><!-- content -->			
+</div><!-- main_center -->			
+<!--e:cache <%= @contest_browse_key %> -->
+<% end %>

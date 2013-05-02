@@ -1,0 +1,15 @@
+<div id="side_panel">
+<%= render :partial => 'contests/prizes_panel' %>
+
+<div id="previous_answer_and_score"><% if (params[:no_flash] || @contest.skin.nil?) %>
+<%= render :partial => 'previous_answer_and_score' %>
+<% end %></div>
+
+<%= show_contest_banner(@contest) %>
+<% cache(key = "contests/#{@contest.id}/_side_panel_#{Time.now.to_i/20.minutes.to_i}") do %>
+<!--b:cache <%= "#{key} #{Time.now}" %> -->
+<%= render :partial => 'contests/contests_panel' %>
+<%= render :partial => 'contests/responses_panel' %>
+</div><!-- side_panel -->
+<!--e:cache <%= key %> -->
+<% end %>

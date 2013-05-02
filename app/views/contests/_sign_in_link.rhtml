@@ -1,0 +1,3 @@
+<% unless logged_in? %>
+<div id="please_sign_in">Save your progress! Please <%= link_to_remote 'Log in', :url => contests_url(:controller => 'contests', :action => :sign_in, :id => @contest.id) %></div>
+<% end %>

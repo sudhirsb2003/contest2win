@@ -1,0 +1,35 @@
+<% @title = "#{h @contest.title}: Questions" %>
+<div id="contest_body">
+<table class="list" cellpadding="0" cellspacing="0">
+<% @questions.each_with_index { |question, index| %>
+<tr class="<%= cycle("odd","even") %>" id="question_<%= "#{question.id}" %>">
+	<td class="numeric">Q<%= index + (@questions.current_page-1)*@questions.per_page + 1 %></td>
+	<td style="width:80%">
+	<%= link_to_function h(question.question), "Element.toggle('options_#{question.id}')" %>
+    <% unless question.live? %><small>(<%= question.draft? ? 'Draft' : 'Approval Pending' %>)</small><% end %>
+	<div style="<%= "display:none;" if params[:expand] != 'all' -%>width:75%;" id="options_<%= question.id %>">
+	<div style="float:right"><%= show_question_thumb(question) %></div>
+	<ol>
+	<% question.options.each { |option| %>
+		<li<%= " style='font-weight:bold'" if option.correct? && (@contest.ended? || question.editable?(current_user)) %>>
+        <%= h option.text %> <%= "(#{option.points})"  if (@contest.ended? || question.editable?(current_user)) %>
+		<%= image_tag("icons/tick.gif", :alt => 'Correct') if option.correct? && (@contest.ended? || question.editable?(current_user)) %>
+        </li>
+	<% } %>
+	</ol>
+	</div>
+	</td>
+	<td><%= link_to_user(question.username) %></td>
+	<td><%= link_to image_tag("icons/pencil.gif", :alt => 'Edit'), contest_url(@contest.url_attributes(:action => 'edit_question', :question_id => question.id)) if (question.editable?(current_user)) %></td>
+	<td><%= link_to_remote image_tag("icons/delete.gif", :alt => 'Delete'), :url => {:controller => 'questions', :action => 'delete',
+			:id => @contest.id, :question_id => question.id}, :confirm => 'Really delete this question?',
+			:loading => "Effect.Fade('question_#{question.id}');" if (question.deletable?(current_user))%></td>
+</tr>
+<% } %>
+</table>
+<%= will_paginate @questions %>
+
+<% if @questions.empty? %>
+<div class="empty">This game is empty :(</div>
+<% end %>
+</div><!--contest_body-->

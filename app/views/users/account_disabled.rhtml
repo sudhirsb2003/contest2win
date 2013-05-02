@@ -1,0 +1,7 @@
+<% @title = "#{@user.username}" %>
+<% if @user.activation_pending? %>
+This user hasn't activated his/her account as yet.
+<% else %>
+This user's account has been deactivated.
+<% end %>
+

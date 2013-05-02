@@ -1,0 +1,6 @@
+<form id="share_on_myspace" method="post" action="http://www.myspace.com/index.cfm?fuseaction=postto" target="_blank">
+<input type="hidden" name="t" value="<%= h @contest.title %>" />
+<input type="hidden" name="c" value="<%= h(@contest.embeddable? ? render_flash_for_contest(@contest) : @contest.description) %>" />
+<input type="hidden" name="u" value="<%= request.url %>" />
+<input type="hidden" name="l" value="LOCATION_GOES_HERE" />
+</form> 

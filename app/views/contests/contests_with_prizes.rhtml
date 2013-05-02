@@ -1,0 +1,11 @@
+<div class="contests_panel">
+<h2><%= @region.www? ? 'Featured Games' : 'Contests with Prizes' %></h2>
+<div class="contests">
+<ul>
+<% @contests.each {|contest| %>
+  <li><div class="thumb"><%= link_to image_tag_for_contest(contest), contest_url(contest.url_attributes), :target => '_blank' %></div>
+  <%= link_to h(truncate(contest.title, 18)), contest_url(contest.url_attributes), :target => '_blank' %>
+</li>
+  <% } %>
+</ul>
+</div>

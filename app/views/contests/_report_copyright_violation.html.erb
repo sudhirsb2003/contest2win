@@ -1,0 +1,32 @@
+<h3>Send Copyright Violation</h3>
+<div class="mandatory">All fields marked with a '<%= reqd %>' are mandatory</div>
+
+<%= error_messages_for :copyright_violation, :sub => {:from_email_address => 'Your Email Address', :from_name => 'Your Name', :contact => 'Telephone'}, :header_message => 'Failed to report copyright violation' %>
+
+<% remote_form_for :copyright_violation, @copyright_violation,
+ :url => contest_url(@contest.url_attributes(:action => 'report_copyright_violation')),
+ :loading => '$("submit_email_button").disable()' do |f| %>	
+
+  <div style="padding-right:68px">
+    <label for="from_name" class="field_name">Name <%= reqd %></label>
+    <%= f.text_field :from_name, :max => 25 %>
+  </div>
+  <div class="row">
+    <label for="contact" class="field_name">Telephone <%= reqd %></label>
+    <%= f.text_field :contact, :max => 25 %>
+  </div>
+  <div class="row">
+    <label for="from_email_address" class="field_name">Email ID <%= reqd %></label>
+    <%= f.text_field :from_email_address, :max => 50 %>
+  </div>
+  <div class="row">
+    <label for="message" class="field_name">Message <%= reqd %></label>
+    <%= f.text_area :message, :rows => 4, :cols => 28 %>
+  </div>
+
+<div><%= submit_tag " Send ", :id => 'submit_email_button' %>
+</div>
+<% end %>
+
+
+

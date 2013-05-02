@@ -1,0 +1,70 @@
+<a href="#" id="toggle_campaign" onclick="$('campaign_details').toggle();this.innerHTML = this.innerHTML == 'show' ? 'hide':'show';return false" style="display:block;float:right;margin-top:13px;width:40px;text-align:right"><%= params[:page] ? 'show' : 'hide' %></a>
+<div style="float:right;margin-top:13px;" class="tip">From <%= short_date @campaign.starts_on %> to <%= short_date @campaign.ends_on %></div>
+<h2><%= h(@campaign.title) %> Campaign</h2>
+<div style="<%= 'display:none' if params[:page] %>" id="campaign_details">
+<div>
+	<%= link_to_unless(@campaign.brand_url.blank?, image_tag(url_for_file_column(@campaign.brand, :logo), :alt => '', :style => 'float:right'), @campaign.brand_url, :target => '_blank') if @campaign.brand %>
+	<%= hyperlink_links(textilize_without_paragraph(h(@campaign.description))) %>
+</div>
+<br clear="all"/>
+<% unless (available_in_regions = @campaign.regions).collect(&:id).include? @region.id %>
+<div style="font-style:italic">This campaign is for users from <%= available_in_regions.collect(&:name).to_sentence %>.</div>
+<% end %>
+<% contest_prizes = @campaign.contest_prizes.running.regional(@region.id).all(:limit => 4) %>
+<% unless contest_prizes.empty? %>
+<div class="prizes">
+	<span style="float:right" class="tip flag <%= @region.domain_prefix %>_flag">Only for users from <b><%= h(@region.name) %></b></span>
+  <h2>Create and Win:</h2>
+  <ul>
+  <% contest_prizes.each {|contest_prize| %>
+  <li><div class="thumb"><%= link_to_function image_tag(url_for_file_column(contest_prize.prize, :thumbnail), :alt => h(contest_prize.prize.title)),
+          "ajax_showTooltip('#{prizes_url(:action => :popup, :id => contest_prize.prize.id)}',this)",
+          :href => prizes_url(:action => :show, :id => contest_prize.prize),
+          :title => h(contest_prize.prize.title) %></div>
+  <%= contest_prize.quantity %> <b><%= h contest_prize.prize.title %></b><br/>
+	<span class="tip">To be won by <%= short_date(contest_prize.to_date) %></span>
+	<% unless contest_prize.description.blank? %><div><%= h(contest_prize.description) %></div><% end %>
+  </li>
+  <% } %>
+  </ul>
+<br clear="left"/>
+</div>
+<% end %>
+
+<% play2win_prizes = @campaign.play2win_prizes.find(:all, :conditions => ['contest_prizes.region_id = ?', @region.id], :limit => 4) %>
+<% unless play2win_prizes.empty? %>
+<div class="prizes">
+	<span style="float:right" class="tip flag <%= @region.domain_prefix %>_flag">Only for users from <b><%= h(@region.name) %></b></span>
+  <h2>Play and Win:</h2>
+  <ul>
+  <% play2win_prizes.each {|prize| %>
+  <li><div class="thumb"><%= link_to_function image_tag(url_for_file_column(prize, :thumbnail), :alt => h(prize.title)),
+          "ajax_showTooltip('#{prizes_url(:action => :popup, :id => prize.id, :campaign_id => @campaign.id)}',this)",
+          :href => prizes_url(:action => :show, :id => prize),
+          :title => h(prize.title) %></div>
+  <b><%= h prize.title %></b>
+  </li>
+  <% } %>
+  </ul>
+<br clear="left"/>
+</div>
+<% end %>
+
+</div>
+<% if @campaign.creation_campaign? %>
+<% if @campaign.running? %>
+<div id="create_campaign_region">
+<ul>
+	<li><a href="#" onclick="return false" style="display:block">Create &raquo;</a>
+	<ul>
+	<% @campaign.contest_types.collect(&:contest_type).each do |contest_type| %>
+	<li><%= link_to contest_type, contests_path(:controller => contest_type.tableize.pluralize, :action => :new, :campaign_id => @campaign.id) %></li>	
+	<% end %>
+	</ul></li>
+</ul>
+</div>
+<% end %>
+
+
+<h2>PLAY!</h2>
+<% end %>

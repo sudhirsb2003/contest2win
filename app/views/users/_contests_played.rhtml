@@ -1,0 +1,11 @@
+<% responses.each_slice(4) {|slice| %>
+<ul class="contests">
+  <% slice.each { |response| %>
+  <% contest = response.contest %>
+  <li><div class="thumb"><%= link_to image_tag_for_contest(contest), contest_path(contest.url_attributes) %></div>
+  <%= link_to_contest contest %>
+  <span><%= "Score #{number_with_delimiter(response.score)}" if contest.scorable? %> (<%= time_ago_in_words response.updated_on %> ago)</span>
+</li>
+  <% } %>
+</ul>
+<% } %>

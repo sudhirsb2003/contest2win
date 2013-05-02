@@ -1,0 +1,3 @@
+page.replace 'play_area', :partial => 'quizzes/play_area'
+page.replace_html 'previous_answer_and_score', :partial => 'quizzes/previous_answer_and_score'
+page.visual_effect(:highlight, 'previous_answer', {:duration => 4.0})

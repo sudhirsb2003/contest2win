@@ -1,0 +1,21 @@
+  <ul>
+  <% unless responses.empty? %>
+  <% responses.each {|response| %>
+  <li class="<%= cycle('odd','even', :name => 'responses_panel') %>">
+	<div class="thumb"><%= show_user_image(response.user, 'thumb') %></div>
+	<%= link_to_user response.user.username, 12 %>
+	<%= "is #{h(response.personality.title)}" if response.contest.is_a?(PersonalityTest) && response.personality %>
+	<br />
+	<small>
+	<% if @contest.scorable? %>
+    Score: <%= number_with_delimiter(response.score) %><br />
+	<% end %>
+  <%= time_ago_in_words response.updated_on %> ago
+  </small>
+	</li>
+  <% } %>
+  <% else %>
+    <li class="empty">No players yet!</li>
+  <% end %>
+  </ul>
+

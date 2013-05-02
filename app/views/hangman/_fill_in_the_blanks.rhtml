@@ -1,0 +1,7 @@
+		<% @fill_in_the_blanks.each_word {|word| %>
+			<ul>
+				<% word.split(//).each {|a| %>
+			<li id='answer_<%= a %>'><%= a %></li>
+				<% } %>
+			</ul>
+		<% } %>

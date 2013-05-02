@@ -1,0 +1,19 @@
+<ul>
+<% unless contests.empty? %>
+  <% contests.each {|contest| %>
+  <li>
+	<div class="thumb"><%= link_to(image_tag_for_contest(contest), contest_path(contest.url_attributes)) %></div>
+  <%= link_to_contest(contest, 50) %><br />
+  <%= contest[:type].titlecase %> by <%= link_to_user contest.username %>
+	</li>
+  <% } %>
+  <% else %>
+    <li class="empty">
+		<% unless flash[:error] %>
+		None found!
+		<% else %>
+			<%= flash[:error] %>
+		<% end %>
+		</li>
+<% end %>
+</ul>

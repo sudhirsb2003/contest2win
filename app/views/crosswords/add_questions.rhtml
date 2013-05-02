@@ -1,0 +1,52 @@
+
+
+
+          <div class="DipCon">
+          	<h1>New Crossword</h1>
+          	<div class="Enter-Hangman-Step">
+            	<ul>
+                	<li class="first">
+                    	<a href="create_crossword_step1.html">Enter Crossword Details</a>
+                        <span class="Front-Arrow"></span>
+                    </li>
+                <li class="active">
+                	<span class="Back-Arrow"></span>
+                	<a href="create_crossword_step2.html">Add Questions</a>
+                    <span class=""></span>
+                </li>
+                <li class="last">
+                	<span class="Back-Arrow"></span>
+                	<a href="create_crossword_step3.html">Preview your Crossword</a>
+                    <span class="Front-Arrow"></span>
+                </li>
+
+                </ul>
+                  <div class="Clear"></div>
+            </div>
+
+
+
+
+
+
+
+            <div class="Create-Cressword">
+
+<% @title = "#{h @contest.title}: Add Words and Clues" %>
+
+<%= error_messages_for :contest, :header_message => 'Failed to create your crossword!' %>
+<% form_for :contest, @contest, :url => { :action => "add_questions", :id => @contest.id },
+		:html => {:multipart => true, :onsubmit => '$("submit_button").disable()'} do |f| %>	
+<% @questions.each_with_index {|question, i| %>
+<%= render :partial => 'question_form', :locals => {:question => question, :index => i}  %>
+<% } %>
+
+<%= render :partial => 'add_more', :locals => {:index => @questions.size - 1, :question => nil}  %><br>
+<b class="Generate-Pass"><%= submit_tag "Generate Crossword",:class=>"Red-button" %></b></td>
+<%= link_to "Cancel", contest_url(@contest.url_attributes(:action => 'questions')),
+		:confirm => 'Are you really sure?', :class => 'cancel_button' %>
+<% end %>
+<br><br><strong>NOTE:</strong> <i>You need to have atleast 10 words!</i>
+</div>
+
+<%= render :partial => 'contests/disclaimer' %>

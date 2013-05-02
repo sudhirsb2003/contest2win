@@ -1,0 +1,23 @@
+<!-- contests/_stats -->
+<table class="contest_stats">
+<tr><td rowspan="3" style="width:375px">
+  <ul>
+		<li>Tags: <%= @contest.tags.collect{ |t| link_to t.name, :controller => 'contests', :action => :tags, :time => 'All Time', :tag => h(t.name) }.to_sentence %></li>
+  	<li>Categories: <% @contest.categories.each do |category| %> <%= link_to h(category.name), contests_path(:action => :most_played, :catid => category.id) %><% end %></li>
+  	<li>Channel: <%= link_to h(@contest.class.name), contests_path(:action => :most_played) %></li>
+  	<% if @contest.campaign && @contest.campaign.running? && @contest.campaign.live? %><li>Campaign: <%= link_to h(@contest.campaign.title), contests_path(:campaign_id => @contest.campaign_id, :action => :most_played, :controller => 'contests') %></li><% end %>
+	</ul>
+	</td>
+  <td>Plays <b><%= number_with_delimiter(@contest.played) %></b></td></tr>
+  <tr><td style="font-weight:bold"><%= @contest.never_ends? ? 'Never Ends' : "Ends #{short_date(@contest.ends_on)}" %></td></tr>
+  <tr><td><div id="favourite" style="padding-top:3px"><%= render :partial => 'contests/favourite' %></div></td></tr>
+<tr>
+  <td>
+  <form action="" onsubmit="false">
+  <ul><% if @contest.embeddable? %><li><label title="Place this game on another website by copy- pasting the html code displayed here.">Embed:</label><input type="text" value="<%= h render_flash_for_contest(@contest, true) %>" readonly="readonly" onclick="select()"/></li><% end %>
+  <li><label>URL:</label><input type="text" value="<%= contest_url(@contest.url_attributes) %>" readonly="readonly" onclick="select()"/></li></ul>
+  </form></td>
+	<td><div id="votes"><%= render :partial => 'contests/votes' %></div></td>
+  </tr>
+</table>
+<!-- / contests/_stats -->

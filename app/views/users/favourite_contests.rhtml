@@ -1,0 +1,8 @@
+<% @title = 'Favourites' %>
+<% if @favourites.empty? %>
+  <div class="empty">None found!</div>
+<% else %>
+  <%= simple_paginate @favourites, params[:offset], 20 %>
+  <%= render :partial => 'favourite_contests', :locals => {:favourites => @favourites} %>
+  <%= simple_paginate @favourites, params[:offset], 20 %>
+<% end %>

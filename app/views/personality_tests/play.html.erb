@@ -1,0 +1,14 @@
+<% @title = h @contest.title %>
+<% if @contest.ended? %>
+<h2 class="contest_ended">This game has expired.</h2>
+<% end %>
+
+<% if @question || @finished -%>
+  <% if params[:no_flash] || @contest.skin.nil? %>
+    <div id="contest_body"><%= render :partial => @finished ? '/contests/finished': 'play_area' %></div>
+  <% else %>
+    <%= render :partial => 'contests/flash' %>
+  <% end -%>
+<% else %>
+<div id="contest_body" class="empty">Whopsy.... no questions in this game as yet!</div>
+<% end -%>

@@ -1,0 +1,47 @@
+<div id="left">
+<div class="user_profile_image">
+  <%= show_user_image(@user) %>
+</div>
+<div class="section">
+<h5><%= truncate(@user.username, 12) %></h5>
+<ul>
+  <li<%= ' class="current"' if params[:action] == 'profile' %>><%= link_to_unless_current 'Profile', user_path(:username => @user.username) %></li>
+  <li<%= ' class="current"' if params[:action] == 'contests_played' %>><%= link_to_unless params[:action] == 'contests_played', 'Played', user_path(:username => @user.username, :action => :contests_played) %></li>
+  <li<%= ' class="current"' if params[:action] == 'favourite_contests' %>><%= link_to_unless params[:action] == 'favourite_contests', 'Favourites', user_path(:username => @user.username, :action => :favourite_contests) %></li>
+  <li<%= ' class="current"' if params[:action] == 'contests_created' %>><%= link_to_unless params[:action] == 'contests_created', 'Created', user_path(:username => @user.username, :action => :contests_created) %></li>
+  <li<%= ' class="current"' if params[:action] == 'friends' %>><%= link_to_unless params[:action] == 'friends', "Friends (#{@user.number_of_friends})", user_path(:username => @user.username, :action => :friends) %></li>
+  <li<%= ' class="current"' if params[:action] == 'referrals' %>><%= link_to_unless params[:action] == 'referrals', 'Referrals', user_path(:username => @user.username, :action => :referrals) %></li>
+</ul>
+</div>
+<% if current_user?(@user) %>
+<div class="section">
+<h5>Account</h5>
+<ul>
+  <li<%= ' class="current"' if params[:action] == 'edit_profile' %>><%= link_to_unless_current 'Edit Profile', account_link(:action => :edit_profile) %></li>
+  <li<%= ' class="current"' if params[:action] == 'preferences' %>><%= link_to_unless_current 'Preferences', account_link(:action => :preferences) %></li>
+  <% unless @user.facebooker? %>
+  <li<%= ' class="current"' if params[:action] == 'change_password' %>><%= link_to_unless_current 'Change Password', account_link(:action => :change_password) %></li>
+  <% end %>
+	<% unless @user.region.www? %>
+  <li<%= ' class="current"' if params[:action] == 'prize_points' %>><%= link_to_unless params[:action] == 'prize_points', '<b>Prize Points</b>', user_path(:username => @user.username, :action => :prize_points) %></li>
+  <li<%= ' class="current"' if params[:action] == 'pending_prizes' %>><%= link_to_unless params[:action] == 'pending_prizes', 'Pending Prizes', user_path(:username => @user.username, :action => :pending_prizes) %></li>
+	<% end %>
+  <li<%= ' class="current"' if params[:action] == 'unapproved_contests' %>><%= link_to_unless params[:action] == 'unapproved_contests', 'Unapproved Games', user_path(:username => @user.username, :action => :unapproved_contests) %></li>
+  <li<%= ' class="current"' if params[:action] == 'unapproved_questions' %>><%= link_to_unless params[:action] == 'unapproved_questions', 'Unapproved Questions', user_path(:username => @user.username, :action => :unapproved_questions) %></li>
+</ul>
+</div>
+<% end %>
+      
+<% if logged_in?(:super_admin) %>
+<div class="section">
+<h5>Admin</h5>
+  <ul class="admin_ops">
+    <li>Role: <b><%= @user.role %></b></li>
+    <li>Account Status: <b><%= @user.status_text %></b></li>
+    <% if logged_in?(:super_admin) %>
+    <li><%= link_to 'Edit', account_management_path(:action => :edit, :id => @user.id), :popup => true, :target => "manage_user_#{@user.id}" %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+</div><!--left-->

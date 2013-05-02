@@ -1,0 +1,78 @@
+<% cache_flush_if current_user?(@user), cache_key = "/users/#{@user.username}/profile/#{Time.now.to_i/1.day.to_i}" do %>
+<!--b:cache <%= "#{cache_key} #{Time.now}" %> -->
+<%= "Cached on #{Time.now}" unless RAILS_ENV == 'production' %>
+<% @title = @user.full_name.blank? ? h(@user.username) : "#{h(@user.full_name)} (a.k.a. #{h(@user.username)})" %>
+<h2 id="top_band">
+<span class="tip flag <%= @user.region.domain_prefix %>_flag" style="float:right;"><%= h @user.country %></span>
+<%= @title %></h2>
+<div>
+<table class="user_profile" style="width:70%;background-color:#f4f4f4;">
+<tr><th style="width:40%;">Gender</th><td>
+<%= @user.gender %>
+</td></tr>
+<tr><th>Member since</th><td><%= @user.created_on.strftime('%d %b %y') %></td></tr>
+<tr><th>Last Login</th><td><%= @user.last_logged_in_on.nil? ? 'never' : "#{time_ago_in_words(@user.last_logged_in_on)} ago" %></td></tr>
+</table>
+
+<table class="user_profile user_score" style="width:178px">
+<% unless @user.region.www? %><tr><th style="width:20%;white-space:nowrap;padding:11px">Prize Points</th><td style="font-weight:bold;font-size:13pt;color:#76b916">
+<%= link_to number_with_delimiter(@user.prize_points.to_i), {:action => :prize_points}, {:class => "only_#{@user.id}", :style => 'display:none;color:#76b916'} %>
+<span style="color:#76b916" class="except_<%= @user.id %>"><%= number_with_delimiter(@user.prize_points.to_i) %></span>
+</td></tr><% end %>
+<tr style="border-bottom:1px solid #bbb"><th style="padding:11px">Played</th><td style="font-weight:bold;font-size:13pt;color:#76b916"><%= number_with_delimiter(@user.number_of_responses) %></td></tr>
+</table>
+</div>
+<br clear="all"/>
+
+<div class="except_<%= @user.id %>">
+<%= link_to 'Add as Friend', {:action => :add_friend}, :style => 'font-weight:bold;padding:5px;' %> -
+<%= link_to 'Ignore/Block', {:action => :ignore}, :style => 'padding:5px;' %>
+</div>
+
+<h2>Played</h2>
+<% responses = @user.responses.online.latest.find(:all, :order => 'responses.user_id', :limit => 8) %>
+<% unless responses.empty? %>
+<div class="section">
+  <%= render :partial => 'contests_played', :locals => {:responses => responses} %>
+  <div class="more"><%= link_to 'view all', user_path(:action => :contests_played) %></div>
+</div>
+<% end %>
+
+<h2>Favourites</h2>
+<% favourites = @user.favourite_contests.online.all(:limit => 8, :order => 'random()') %>
+<% unless favourites.empty? %>
+<div class="section">
+  <%= render :partial => 'favourite_contests', :locals => {:favourites => favourites} %>
+<div class="more"><%= link_to 'view all', user_path(:action => :favourite_contests) %></div>
+</div>
+<% end %>
+
+<h2>Created <span>(<%= number_with_delimiter(@user.contests_created.count) %>)</span></h2>
+<% contests = @user.contests_created.live.find(:all, :limit => 8) %>
+<% unless contests.empty? %>
+<div class="section">
+  <%= render :partial => 'contests_created', :locals => {:contests => contests} %>
+  <div class="more"><%= link_to 'view all', user_path(:action => :contests_created) %></div>
+</div>
+<% end %>
+
+<h2>Friends <span>(<%= number_with_delimiter(@user.number_of_friends) %>)</span></h2>
+<% friends = @user.friends.find(:all, :select => 'users.*, case when picture is not null then 0 else 1 end as img', :limit => 10, :order => 'img, random()') %>
+<% unless friends.empty? %>      
+<div class="section">
+<ul class="friends">
+<% friends.each {|friend| %>
+  <li id="friend_<%= friend.id %>"><div class="thumb"><%= show_user_image(friend, 'thumb') %></div><%= link_to_user(friend.username, 10) %>
+  (<%= friend.number_of_friends %>)<br />
+  <%= link_to_remote 'Remove', {:confirm => 'Really remove this friend?',
+      :url => user_path(:username => friend.username, :action => :remove_friend),
+      :loading => "new Effect.Fade('friend_#{friend.id}')"},
+      {:style => 'display:none', :class => "only_#{@user.id}"} %>
+  </li>
+  <% } %>
+</ul>
+<div class="more"><%= link_to 'view all', user_path(:action => :friends) %></div>
+</div>
+<% end %>
+<!--e:cache <%= cache_key %> -->
+<% end %>

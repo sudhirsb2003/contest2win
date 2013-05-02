@@ -1,0 +1,11 @@
+<table class="score">
+<tr>
+	<th>Answered</th><td> <%= contest_response.answers_count %> of <%= contest_response.contest.number_of_questions %></td>
+</tr>
+<tr>
+	<th>Score awarded</th><td><%= contest_response.answers.last.points %></td>
+</tr>
+<tr>
+	<th>Your total Score</th><td><%= contest_response.score %></td>
+</tr>
+</table>

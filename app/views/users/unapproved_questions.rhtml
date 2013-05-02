@@ -1,0 +1,30 @@
+<% @title = 'Unapproved Questions' %>
+<table class="list" cellpadding="0" cellspacing="0">
+<% @questions.each_with_index { |question, index| %>
+<tr class="<%= cycle("odd","even") %>" id="question_<%= "#{question.id}" %>">
+	<td><%= link_to h(question.contest.title), contest_url(question.contest.url_attributes) %></td>
+	<td class="numeric">Q</td>
+	<td style="width:70%">
+	<%= link_to_function h(question.question), "Element.toggle('options_#{question.id}')" %>
+    <small>(<%= question.draft? ? 'Draft':'Approval Pending' %>)</small>
+	<div style="<%= "display:none;" if params[:expand] != 'all' -%>width:75%;" id="options_<%= question.id %>">
+	<div style="float:right"><%= show_question_thumb(question) %></div>
+	<ol>
+	<% question.options.each { |option| %>
+		<li><%= h option.text %></li>
+	<% } %>
+	</ol>
+	</div>
+	</td>
+	<td><%= link_to image_tag('icons/pencil.gif', :alt => 'Edit'), contest_url(question.contest.url_attributes(:action => 'edit_question', :question_id => question.id)) if (question.editable?(current_user)) if question.draft? %></td>
+	<td><%= link_to_remote image_tag('icons/delete.gif', :alt => 'Delete'), :url => {:controller => 'questions', :action => 'delete',
+			:id => question.contest_id, :question_id => question.id}, :confirm => 'Really delete this question?',
+			:loading => "Effect.Fade('question_#{question.id}');" if (question.deletable?(current_user)) %></td>
+</tr>
+<% } %>
+</table>
+<%= will_paginate @questions %>
+
+<% if @questions.empty? %>
+  <div class="empty">No Unapproved Questions!</div>
+<% end %>

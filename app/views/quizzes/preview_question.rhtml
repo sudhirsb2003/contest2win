@@ -1,0 +1,17 @@
+<% @title = h "#{@contest.title}: Preview Question" %>
+
+<div class="question">
+	<b><%= h @question.question %></b>
+	<%= render :partial => 'shared/display_media', :locals => {:question => @question, :title => @question.question} %>
+
+	<ol>
+	<% @question.options.each { |option| %>
+		<li<%= " style='font-weight:bold'" if option.correct? %>><%= h option.text %></li>
+	<% } %>
+	</ol>
+</div>
+<%= form_tag contest_url(@contest.url_attributes(:question_id => @question.id, :action => 'confirm_question')) %>
+<%= submit_tag "Done!" %>
+<%= submit_tag "Edit" %>
+<%= submit_tag "Save and continue adding..." %>
+</form>

@@ -1,0 +1,23 @@
+<% fields_for "options[#{index}]", option do |o| %>
+<div class="row option" id="option_<%= index %>">
+    <div>
+	<label class="field_name" for="options[<%= index %>]_text">Option <%= index.to_i + 1 %> <%= reqd %></label>
+	<%= o.hidden_field :id %>
+	<%= o.text_field :text, :maxlength => 100, :size => 60 %>
+	</div>
+    <div>
+	  <label class="field_name" for="options[<%= index %>]_points">Points</label>
+	  <%= o.text_field :points, :maxlength => 3, :class => 'numeric' %>
+	</div>
+    <% if option.new_record? %>
+	<%= link_to_function 'remove', "Element.remove('option_#{index}')" %>
+    <% else %>
+	<%= link_to_remote 'remove',
+			:url => { :controller => 'questions', :action => 'remove_option', :index => index, :id => option.id },
+			:success => "Element.remove('option_#{index}');",
+			:failure => "alert('You need to have at least 2 options!')",
+            :confirm => 'Delete this option?' %>
+    <% end %>
+</div>
+
+<% end %>

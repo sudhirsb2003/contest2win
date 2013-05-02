@@ -1,0 +1,18 @@
+<% @title = h @contest.title %>
+<% if @contest.ended? %>
+<h2 class="contest_ended">This game has expired.</h2>
+<% end %>
+<% disable_skin = true %>
+<% if @contest.approval_pending? || params[:no_flash] || disable_skin || @contest.skin.nil? || @contest.skin.no_flash? %>
+	<% if @contest_response && @contest_response.completed? %>
+		<div style="padding:5px;text-align:center">
+		<h2>You have completed this game!</h2>
+		<div class="final_score">You Scored: <b><%= number_with_delimiter(@contest_response.score) %></b></div>
+		<h3><%= link_to 'Have another go?', contest_url(@contest.url_attributes(:action => :play_again)) %></h3>
+		</div>
+	<% end %>
+
+	<div id="contest_body"><%= render :partial => 'play_area' %></div>
+<% else %>
+    <%= render :partial => 'contests/flash' %>
+<% end %>

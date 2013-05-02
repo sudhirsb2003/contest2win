@@ -1,0 +1,8 @@
+<% @title = 'Played' %>
+<% if @responses.empty? %>
+  <div class="empty">None found!</div>
+<% else %>
+  <%= simple_paginate @responses, params[:offset], 20 %>
+  <%= render :partial => 'contests_played', :locals => {:responses => @responses} %>
+  <%= simple_paginate @responses, params[:offset], 20 %>
+<% end %>

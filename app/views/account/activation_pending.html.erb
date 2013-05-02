@@ -1,0 +1,11 @@
+<% @title = 'Account Activation Pending' %>
+
+<p>
+  You're just a step away from confirming your registration. An email has been sent to you on the address you just provided. Follow the instructions in it &amp; you'll be good to go go go!  
+</p>
+
+<p>
+  If you can't find it in your inbox, check your junk / spam folder. If you still can't find it, don't bother to call the police, just <a href="#" onclick="$('resend_activation_request_form').toggle();return false;">Request a new Activation Email</a>.
+</p>
+
+<%= render :partial => 'resend_activation_request_form' %>

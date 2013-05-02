@@ -1,0 +1,40 @@
+<script type="text/javascript">
+function show_question_form_media() {
+  if($('question_reuse_previous_media').checked) {
+    $('question_form_media').hide();
+  } else {
+    $('question_form_media').show();
+  }
+}
+</script>
+<% if @question.contest.has_questions? %>
+<div class="row">
+  <%= f.check_box :reuse_previous_media, :onclick => 'show_question_form_media()'; %>
+  <%= f.label :reuse_previous_media, "Re use image/video of the previous question" %>
+</div>
+<% end %>
+
+<div id="question_form_media" style="<%= 'display:none' if @question.reuse_previous_media? %>">
+<ul>
+<li id="qf_img_tab" class="current"><a href="#" onclick="return show_media_tab('qf_img');">Upload Image</a></li>
+<li id="qf_vid_tab"><a href="#" onclick="return show_media_tab('qf_vid');">Upload Video</a></li>
+<li id="qf_url_tab"><a href="#" onclick="return show_media_tab('qf_url');">Add YouTube Video</a></li>
+</ul>
+<%= render :partial => 'contests/question_form_image' %>
+<%= render :partial => 'contests/question_form_video', :locals => {:f => f} %>
+<%= render :partial => 'contests/question_form_video_url', :locals => {:f => f} %>
+</div>
+
+<%= f.hidden_field :content_type %>
+<script type="text/javascript">
+<% case @question.content_type
+ when Contest::CONTENT_TYPE_YT_VIDEO %>
+	show_media_tab('qf_url');
+<% when Contest::CONTENT_TYPE_VIDEO %>
+	show_media_tab('qf_vid');
+<% else %>
+	show_media_tab('qf_img');
+<% end %>
+</script>
+
+

@@ -1,0 +1,3 @@
+page.replace 'play_area', :partial => 'hangman/play_area'
+page.replace_html 'previous_answer_and_score', :partial => 'hangman/previous_answer_and_score'
+page.visual_effect(:highlight, 'previous_answer', {:duration => 4.0})

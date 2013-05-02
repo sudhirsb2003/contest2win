@@ -1,0 +1,40 @@
+<% if logged_in?(:moderator) %>
+<a href="#" class="admin_ops" onclick="Element.toggle('admin_options_<%= @contest.id %>'); return false" style="display:block">+ Manage</a>
+<div id="admin_options_<%= @contest.id %>" <%= 'style="display:none"' unless params[:manage] %>>
+<ul class="side_by_side pipes admin_ops" style="margin-top:3px">
+  <% if logged_in?(:admin) %>
+    <li><%= link_to 'Manage Prizes' ,prizes_management_url(:id => @contest.id, :action => :contest) %></li>
+    <li><% form_remote_for :contest, @contest,
+        :url => contest_moderation_url(:action => :toggle_locked_contest, :id => @contest.id) do |f| %>	
+    <label for="contest_locked">Locked</label>
+    <%= f.check_box :locked, { :onclick => 'this.form.onsubmit()' } %>
+    <% end %></li>
+    <li><% form_remote_for :contest, @contest,
+        :url => contest_moderation_url(:action => :toggle_featured_contest, :id => @contest.id) do |f| %>	
+    <label for="contest_featured">Featured</label>
+    <%= f.check_box :featured, { :onclick => 'this.form.onsubmit()' } %>
+    <% end %></li>
+    <li><% form_remote_for :contest, @contest,
+        :url => contest_moderation_url(:action => :toggle_loyalty_points_enabled, :id => @contest.id) do |f| %>	
+    <label for="contest_loyalty_points_enabled">Loyalty Points</label>
+    <%= f.check_box :loyalty_points_enabled, { :onclick => 'this.form.onsubmit()' } %>
+    <% end %></li>
+    <li><% form_remote_for :contest, @contest,
+        :url => contest_moderation_url(:action => :toggle_login_required, :id => @contest.id) do |f| %>	
+    <label for="contest_login_required">Login Required</label>
+    <%= f.check_box :login_required, { :onclick => 'this.form.onsubmit()' } %>
+    <% end %></li>
+
+  <% end %>
+  <li class="last">
+      <% if @contest.live? %>
+        <%= link_to 'Deactivate', contest_moderation_url(:action => :deactivate_contest, :id => @contest.id) -%>
+      <% elsif Contest::STATUS_DEACTIVATED == @contest.status %>
+        <%= link_to 'Activate', contest_moderation_url(:action => :activate_contest, :id => @contest.id) -%>
+      <% end %></li>
+  </ul>
+<br clear="all"/>
+
+</div>
+<% end %>
+

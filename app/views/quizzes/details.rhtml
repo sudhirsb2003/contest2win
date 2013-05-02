@@ -1,0 +1,46 @@
+<% latest_response = @quiz.responses.find_by_user_id(current_user.id, :order => 'created_on desc') if current_user %>
+
+<% @title = h @quiz.title %>
+
+<div class="contest_meta_info">Quiz By <%= link_to_user(@quiz.user) %> on <%= short_datetime(@quiz.created_on) %></div>
+
+<div style="float:left;width:200px">
+<div class="contest_stats small_curves">
+<%= render :partial => 'stats', :locals => {:quiz => @quiz} %>
+</div><!-- contest_stats -->
+<% if latest_response %>
+<div class="emphasize_bg2 small_curves" style="background-color:#c3f6b9;padding:10px;width:150px;clear:left;" >
+	<h3>Your Latest Score</h3>
+	<%= render :partial => 'score',
+			:locals => { :contest_response => latest_response}%>
+</div>
+<% end %>
+</div>
+
+
+<div style="margin-left:200px">
+<%= textilize @quiz.description %>
+
+<% if quiz_question = @quiz.questions.find(:first, :order => 'random()') %>
+<div class="quiz_teaser">
+<strong><%= h quiz_question.question %></strong>
+<%= image_tag(url_for_file_column(@quiz.latest_questions.first, 'image', 'thumb')) if @quiz.content_type == Contest::CONTENT_TYPE_IMAGE %>
+<ul>
+<% quiz_question.options.each { |option| %>
+	<li><%= h option.text %></li>
+<% } %>
+</ul>
+<br />
+<%= link_to '<h2>Play Now!</h2>', contest_url(@quiz.url_attributes(:action => :play)) %>
+</div><!-- quiz_teaser -->
+<% end %>
+
+<ul class="side_by_side">
+	<li>Tags: </li>
+<% @quiz.tags.each do |tag| %>
+	<li><%= link_to_function (h tag.name), "alert('TODO');" %></li> 
+<% end %>
+</ul>
+
+</div>
+<%= render :partial => 'contests/related_and_comments', :locals => {:contest => @quiz} %>

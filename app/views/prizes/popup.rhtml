@@ -1,0 +1,44 @@
+<a href="#" onclick="ajax_hideTooltip();return false;" class="close" title="Close">&times;</a>
+<h1><%= @prize.title %></h1>
+<% if @prize.image %>
+  <div class="img">
+  <%= image_tag(url_for_file_column(@prize, :image)) %>
+  </div>
+<% else %>
+<% end %>
+<div class="content">
+<div class="section">
+<h2>The Prize</h2>
+<%= textilize(truncate(@prize.description, 75)) %>
+<%= link_to 'more...', :action => :show, :id => @prize %>
+</div>
+
+<% cache cache_key = "/prizes/popup/#{@prize.id}_#{params[:campaign_id]}/#{Time.now.to_i/1.hour.to_i}" do %>
+<div class="section">
+<h2>Available in</h2>
+<span class="flag <%= @prize.region.domain_prefix %>_flag"> <%= h(@prize.region.name) %> Only</span>
+</div>
+
+<% conditions = params[:campaign_id] ? ['campaign_id = ?', params[:campaign_id].to_i] : nil %>
+<% play2win = @prize.contests.find(:all, :conditions => conditions, :limit => 5) %>
+<% unless play2win.empty? %>
+<div class="section">
+<h2>Play 2 Win</h2>
+<ul>
+  <% play2win.each {|contest| %>
+    <li><%= link_to h(truncate(contest.title, 30)), contest_url(contest.url_attributes) %> - <small><%= contest.type.to_s.titlecase %></small></li>
+  <% } %>
+</ul>
+</div>
+<% end %>
+<% end %>
+
+<% if @prize.redeemable? %>
+<div class="section">
+<h2>Buy with Prize Points</h2>
+<%= link_to 'Redeem Now!', {:action => :show, :id => @prize}, :style => 'float:right;' %>
+<b><%= number_with_delimiter(@prize.credits.to_i) %></b>
+</div>
+<% end %>
+
+</div>

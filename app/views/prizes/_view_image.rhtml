@@ -1,0 +1,13 @@
+<div id="popup_container">
+	<div id="popup_bg"></div>
+	<div id="popup">
+		<h2 id="popup_title">
+		<a href="#" onclick="Element.remove('popup_container');return false;" title="Close"><img src="/images/icons/close.gif" alt="Close"/></a>
+		<%= h prize.title %>&nbsp;
+		</h2>
+		<div id="popup_body" style="text-align:center">
+			<%= image_tag url_for_file_column(prize, 'image', 'large'), :alt => '' %>
+		</div>
+	</div>
+</div>
+<%= render :partial => 'shared/ie_popup_fix' %>

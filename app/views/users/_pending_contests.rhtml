@@ -1,0 +1,18 @@
+<% contests.each_slice(4) {|slice| %>
+<ul class="contests">
+  <% slice.each { |contest| %>
+  <li id="contest<%= contest.id %>"><div class="thumb"><%= link_to image_tag_for_contest(contest), contest_path(contest.url_attributes(:action => :questions)) %></div>
+	<%= "#{h(contest.campaign.title)}:" if contest.campaign %>
+  <%= link_to truncate(h(contest.title), 20), contest_path(contest.url_attributes(:action => :questions)) %>
+  <span><%= time_ago_in_words contest.created_on %> ago</span>
+  <span>(<%= contest.draft? ? 'Draft' : 'Approval Pending' %>)</span>
+  <span>
+  <%= link_to('Edit', contest_path(contest.url_attributes(:action => :questions))) if contest.editable?(current_user) %>
+  <%= link_to_remote('Delete', :url => contest.url_attributes(:action => 'delete'),
+     :confirm => 'Really delete this game? You cannot undo this.',
+     :loading => "Effect.Fade('contest#{contest.id}')") if contest.deletable?(current_user) %>
+  </span>
+</li>
+  <% } %>
+</ul>
+<% } %>

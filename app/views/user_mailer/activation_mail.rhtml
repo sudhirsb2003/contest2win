@@ -1,0 +1,10 @@
+Hey <%= @user.username %>,
+
+<p>
+Thank you for signing up on c2w.com. We can't wait to get this party started but before you can log-in, you need to activate your account. To get it up &amp; running please click on the link below or copy &amp; paste it into your browser.<br/>
+<a href="<%= @controller.url_for(:action => :activate, :u => @user.id, :c => @user.activation_code.code) %>"><%= @controller.url_for(:action => :activate, :u => @user.id, :c => @user.activation_code.code) %></a>
+</p>
+
+See you on the other side.<br/><br/>
+
+- The c2w Team

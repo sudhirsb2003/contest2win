@@ -1,0 +1,109 @@
+<% contest_prize = @short_listed_winner.contest_prize %>
+<% prize = contest_prize.prize %>
+<% @title = "Confirm Acceptance of #{h prize.title}" %>
+<h2>Prize: <%= @short_listed_winner.contest_prize.prize.title %></h2>
+
+<div class="box">
+<% if prize.image %>
+  <div style="float:right">
+  <%= image_tag(url_for_file_column(prize, :image)) %>
+  </div>
+<% else %>
+<% end %>
+
+<%= textilize_without_paragraph(h(prize.description)) %>
+
+<% unless prize.special_note.blank? %>
+<h3>Special Note</h3>
+<%= textilize_without_paragraph(h(prize.special_note)) %>
+<% end %>
+
+<% if prize.tds_applicable? %>
+<h3>TDS: <%= number_to_currency(prize.tds, :unit => 'Rs. ') %></h3>
+<% end %>
+</div><!--box-->
+<br clear="right"/>
+
+<% if @short_listed_winner.pending? %>
+<% if @dispatch.errors.empty? %>
+<div style="margin-top:10px" class="summary" id="confirm_prize">
+<h3 style="margin-bottom:10px">Do you accept this prize?</h3>
+<ul class="side_by_side" style="font-size:medium">
+  <li><%= link_to_function '<b>Yes, Of Course</b>', 'Element.toggle("dispatch_form");Element.toggle("confirm_prize");' %></li>
+  <li style="margin-left:40px"><%= link_to 'No, I Don\'t Like Winning',
+      {:username => @user.username, :action => :reject_prize, :id => @short_listed_winner.id},
+      :confirm => 'Really, really reject this prize???' %></li>
+</ul>
+</div><!--summary-->
+<% end %>
+
+<br clear="all"/>
+<div id="dispatch_form" <%= 'style="display:none"' if @dispatch.errors.empty? %>>
+<h2>Please confirm the following details to accept your prize</h2>
+<%= error_messages_for :dispatch, :header_message => 'Prize Confirmation Failed!',
+      :sub => {:ssn => 'Social Security Number', :pin_code => current_user.region.india? ? 'Pin Code' : 'ZIP Code'} %>
+<% form_for :dispatch, @dispatch, :url => {:username => @user.username, :id => @short_listed_winner.id},
+    :html => {:onsubmit => '$("submit_button").disable()', :class => 'form'} do |f| %>	
+
+	<% if @dispatch.paypal_account_id_required? %>
+	<div class="row">
+		<div><label for="dispatch_paypal_account_id" class="field_name">PayPal Account ID <%= reqd %></label>
+			<%= f.text_field :paypal_account_id %></div>
+		<div><label for="dispatch_paypal_account_id_confirmation" class="field_name">Confirm PayPal Account ID <%= reqd %></label>
+			<%= f.text_field :paypal_account_id_confirmation %></div>
+	</div>
+	<%= tip "If you don't have a PayPal account, please #{link_to 'register for it now!', 'http://paypal.com', :target => '_blank'} " %>
+	<div class="row">
+		<label for="dispatch_ssn" class="field_name">Social Security Number <%= reqd %></label>
+		<%= f.text_field :ssn %>
+	</div>
+	<% end %>
+
+  <div class="row">
+  <label for="dispatch_address_line_1" class="field_name">Address<%= reqd %></label>
+  <div>
+  <span class="tip" style="display:inline">Line #1</span> <%= f.text_field :address_line_1, :size => 70, :maxlength => 255 %>
+  </div>
+  <div style="margin-top:5px">
+  <span class="tip" style="display:inline">Line #2</span> <%= f.text_field :address_line_2, :size => 70, :maxlength => 255 %>
+  </div>
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_city" class="field_name">City <%= reqd %></label>
+      <%= f.text_field :city, :maxlength => 255, :size => 20 %>
+    </div>  
+    <div>
+      <label for="dispatch_pin_code" class="field_name"><%= current_user.region.india? ? 'Pin Code' : 'ZIP Code' %> <%= reqd %></label>
+      <%= f.text_field :pin_code, :maxlength => 255, :size => 20 %>
+    </div>  
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_country" class="field_name">Country <%= reqd %></label>
+			<%= h(@dispatch.country) %>
+    </div>  
+    <div>
+  		<label for="dispatch_state" class="field_name">State <%= reqd %></label>
+  		<%= text_field 'dispatch', :state, :style => 'width:150px' %>
+  	</div>
+  </div>
+  
+  <div class="row">
+    <div>
+      <label for="dispatch_mobile_number" class="field_name">Mobile Number <%= reqd %></label>
+      <%= f.text_field :mobile_number, :maxlength => 255, :size => 20 %>
+    </div>  
+    <div>
+      <label for="dispatch_country" class="field_name">Phone Number</label>
+      <%= f.text_field :phone_number, :maxlength => 255, :size => 20 %>
+    </div>  
+  </div>
+  
+  <%= render :partial => 'prizes/tds_note', :locals => {:tds => prize.tds, :amount => prize.value} if prize.tds_applicable? %>
+  <%= submit_tag "Gimme it!", :style => 'margin-top:10px;', :id => 'submit_button' %></td>
+<% end %>
+</div><!--dispatch_form-->
+<% end %>

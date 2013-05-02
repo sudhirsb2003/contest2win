@@ -1,0 +1,67 @@
+<% @title = 'Prize Points' %>
+
+<% cache(key = "/prizes/prize_points/#{@region.id}/#{Time.now.to_i/10.minutes.to_i}") do %>
+<!--b:cache <%= "#{key} #{Time.now}" %> -->
+<div style="width:300px;border:0px solid;float:right;">
+<h2>Latest Games with Prize Points</h2>
+<div id="contests" style="width:100%;background-color:#f4f4f4"> 
+    <% Contest.live.regional(@region.id).with_prize_points.find(:all, :limit => 4).each_slice(2) do |slice| %>
+    <ul style="height:100px;border-bottom:2px solid #fff;overflow:hidden;padding:10px 0;">
+      <% slice.each do |contest| %>
+        <li style="float:left;margin:0 2px 0 10px;width:130px;text-align:center;">
+        <div class="thumb" style="float:none;margin:auto">
+        <%= link_to image_tag_for_contest(contest), contest_path(contest.url_attributes), {:target => "_parent"} %></div>
+        <%= link_to h(truncate(contest.title, 18)), contest_path(contest.url_attributes),:title => (h(contest.title) if contest.title.length >  18),:target=>"_parent" %><br/>
+        <span><%= contest.class.to_s.titlecase %> by <%= link_to(truncate(contest.user.username, 12), user_path(:username => contest.user.username),{:target => "_parent"}  )   %></span>
+        </li>
+      <% end %>
+    </ul>
+    <div style="clear:both"></div>
+    <% end %>
+<div class="more"><a href="/contests/prize_points">view all</a></div>
+</div>
+
+<% prizes = Prize.regional(@region.id).most_redeemed.available %>
+<% unless prizes.empty? %>
+<div class="prizes">
+<h2>Most Redeemed Prizes</h2>
+    <% prizes.each_slice(4) do |slice| %>
+	<ul class="prizes" style="height:73px;border:0;padding-left:5px">
+      <% slice.each do |prize| %>
+      <li style="margin:5px"><%= link_to_function image_tag(url_for_file_column(prize, :thumbnail), :alt => h(prize.title)),
+          "ajax_showTooltip('#{prizes_path(:action => :popup, :id => prize.id)}',this)",
+          :href => prizes_path(:action => :show, :id => prize),
+          :title => h(prize.title) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+<div class="more" style="margin-top:2px"><a href="/prizes?contest_type=prize_points">view all</a></div>
+</div>
+<% end %>
+
+</div><!-- right -->
+<!--e:cache <%= key %> -->
+<% end %>
+
+<div class="prize_points" style="width:652px">
+<h2>What are Prize Points? How do I earn them?</h2>
+<ul class="fancy"><li>Prize Points are loyalty points earned by users for playing specific games to which Prize Points have been allotted.</li>
+<li>Games with prize points will have a little box on the top right showing how many prize points you can earn.</li>
+<li>To earn these prize points you just have to play and answer correctly.</li>
+<li>Prize Points earned on c2w can be redeemed for awesome guaranteed prizes in our Prize section. The more Prize Points you have, the more prizes you can redeem!</li>
+</ul>
+<div style="font-size:13pt;color:#488d00;padding-left:42px;margin:20px">Play <%= link_to 'these games', {:controller => 'contests', :action => :prize_points} %> to earn your Prize Points</div>
+
+<form style="background-color:#f4f4f4;width:550px;padding:0px 5px 15px 5px;margin:30px 0" action="http://www.feedburner.com/fb/a/emailverify" method="post" target="popupwindow" onsubmit="window.open('http://www.feedburner.com/fb/a/emailverifySubmit?feedId=<%= @region.india? ? "2373402" : "2795750" %>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><h4>Subscribe to new games with Prize Points:</h4>
+<input type="text" style="border:1px solid #488d00;padding:5px;width:440px;margin-right:5px;" name="email"/><input type="hidden" value="http://feeds.feedburner.com/~e?ffid=2373402" name="url"/><input type="hidden" value="Contests2win.com - Contests with Prize Points" name="title"/><input type="hidden" name="loc" value="en_US"/><input type="submit" value="Subscribe" /></form>
+
+<h2>What is the difference between Score and Prize Points?</h2>
+<ul class="fancy">
+<li><b>Prize Points</b> are won only on certain games &amp; can be redeemed for awesome prizes!</li>
+<li>A <b>score</b> is a number that judges your performance in a particular game &amp; cannot be redeemed.</li>
+</ul>
+
+<h2>How to spend Prize Points?</h2>
+<div style="padding:5px 20px">Simply redeem your Prize Points for super cool prizes of your choice in our prize section. Your Prize Points may run out but our prizes won't! So keep playing, earning &amp; redeeming more prize points!</div>
+<div style="font-size:13pt;color:#488d00;padding-left:42px;margin:20px">Redeem <%= link_to 'these cool prizes', prizes_path(:action => :browse, :contest_type => 'prize_points') %> with your Prize Points right now!</div>
+</div><!-- home_main -->

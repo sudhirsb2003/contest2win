@@ -1,0 +1,12 @@
+page.replace_html 'fill_in_the_blanks', :partial => 'fill_in_the_blanks'
+page.replace_html "key_#{@guess.value}", "<span class='#{@guess.correct? ? 'correct' : 'wrong'}'>#{@guess.value}</span>"
+
+unless @contest_response.finished_question(@guess.question_id)
+	page.replace_html "points_up_for_grabs", @contest_response.possible_score(@guess.question.id) unless @guess.correct?
+else	
+	page.replace_html 'score_area', :partial => 'answer_completed'
+	page.replace_html 'keys', link_to('Continue...', contest_url(@contest.url_attributes), :class => 'cancel_button')
+end	
+
+page.visual_effect(:pulsate, "answer_#{@guess.value}") if @guess.question.answer.upcase.index(@guess.value)
+

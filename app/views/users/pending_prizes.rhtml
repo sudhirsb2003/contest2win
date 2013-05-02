@@ -1,0 +1,28 @@
+<% @title =  "Pending Prizes" %>
+<table class="list" cellpadding="0" cellspacing="0">
+<thead>
+<tr>
+  <th colspan="2">Contest</th>
+  <th colspan="2">Prize</th>
+  <th class="numeric">Value (Credits)</th>
+  <th style="text-align:center;width:100px;">Confirm By</th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<% if @short_listed_winners.empty? %>
+<tr><td colspan="6" class="empty">Sorry, no pending prizes.</td></tr>
+<% end %>
+<% @short_listed_winners.each { |winner| %>
+<tr class="<%= cycle("even","odd") %>">
+  <td></td>
+  <td><%= link_to winner.contest_prize.contest.title, contest_url(winner.contest_prize.contest.url_attributes) %></td>
+  <td><%= image_tag(url_for_file_column(winner.contest_prize.prize, :thumbnail)) if url_for_file_column(winner.contest_prize.prize, :thumbnail) %></td>
+  <td><%= h winner.contest_prize.prize.title %></td>
+  <td class="numeric"><%= number_with_delimiter(winner.contest_prize.prize.credits) %></td>
+  <td style="text-align:center"><%= short_date(winner.confirm_by_date) %></td>
+  <td><%= link_to 'Claim Now', :username => @user.username, :action => :confirm_acceptance, :id => winner.id %></td>
+</tr>
+<% } %>
+</tbody>
+</table>

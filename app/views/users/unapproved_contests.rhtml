@@ -1,0 +1,8 @@
+<% @title = 'Unapproved Games' %>
+<% if @contests.empty? %>
+  <div class="empty">None found!</div>
+<% else %>
+  <%= will_paginate @contests %>
+  <%= render :partial => 'pending_contests', :locals => {:contests => @contests} %>
+  <%= will_paginate @contests %>
+<% end %>

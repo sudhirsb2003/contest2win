@@ -1,0 +1,42 @@
+<% @title = "#{@quiz.title}" %>
+
+<%= error_messages_for :contest_response %>
+<% form_for :contest_response, @contest_response, :url => {:id => @quiz.id} do |f| %>
+<ol>
+  <% @contest_response.answers.each_with_index do |answer, index| %>
+    <% fields_for "answers[#{index}]", answer do |a| %>
+    <li><%= answer.question.question %>
+    <ul>
+        <% answer.question.options.each do |option| %>
+        <li>
+          <%= a.radio_button :question_option_id, option.id %> <label for="answers[<%= index %>]_question_option_id_<%= option.id %>"><%= option.text %></label>
+          <%= a.hidden_field :question_id %>
+        </li>
+        <% end %>
+    </ul>
+    </li>
+    <% end %>
+  <% end %>
+</ol>
+<input type="hidden" name="doneUrl" value="<%= params[:doneUrl] %>"/>
+<input type="hidden" name="styleUrl" value="<%= params[:styleUrl] %>"/>
+<% unless logged_in? %>
+<table class="login_form">
+<tr>
+  <td style="text-align:center" colspan="4">Login if you want your score to be saved.
+  If you don't have a username/password, you may
+  <%= link_to 'register here!', account_link(:action => 'register'), :target => '_blank' %>
+  </td>
+</tr>
+<tr>
+	<th><label for="user_username">Email</label></th>
+	<td><input type="text" name="email" value="<%= params['email'] %>"/></td>
+	<th><label for="user_password">Password</label></th>
+	<td><input type="password" name="password" value="<%= params['password'] %>"/></td>
+</tr>
+</table>
+<% end %>
+<div class="buttons">
+<%= submit_tag 'Submit' %>
+</div>
+<% end %>

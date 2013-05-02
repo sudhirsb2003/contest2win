@@ -1,0 +1,47 @@
+<% unless @mail_sent %>
+<% form_for :recommendation, @recommendation,
+    :url => contest_url(@contest.url_attributes(:action => 'share')),
+    :html => {:style => 'margin:10px;'} do |f| %>	
+<div style="width:500px">
+<%= error_messages_for :recommendation, :sub => {:from_email_address => 'Your Email Address'},
+    :header_message => 'Failed to send emails!'%>
+</div>
+<div class="row">
+  <label for="recommendation_from_email_address" class="field_name">Your Email Address</label>
+  <%= f.text_field :from_email_address, :maxlength => 255, :size => 30, :style => 'width:400px' %>
+</div> 
+
+<div class="row">
+  <label for="recommendation_from_name" class="field_name">Your Name</label>
+  <%= f.text_field :from_name, :maxlength => 30, :size => 30, :style => 'width:400px' %>
+</div> 
+
+<div class="row" style="margin-top:35px">
+<a id="import_contacts_link" class="nav" style="" href="#" onclick="window.open('/import_contacts', 'import', 'width=600,height=500,scrollbars=1');return false"><img src="/images/import-contacts-logos.jpg" alt="Import email addresses" style="display:block;"/>Import email addresses</a>
+  <label for="recommendation_to_email_addresses" class="field_name">To Email Addresses</label>
+  <%= f.text_area :to_email_addresses, :rows => 2, :style => 'width:400px' %>
+  <span class="tip">you may enter multiple email addresses separated by commas</span>
+</div> 
+
+<div class="row">
+  <label for="recommendation_message" class="field_name">Message</label>
+  <%= f.text_area :message, :rows => 3, :style => 'width:400px' %>
+</div> 
+<%= submit_tag 'Send!' %>
+<%= link_to_function 'Cancel', "window.close();", :class => 'cancel_button' %>
+<% end %>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+function setContacts(contacts) {
+	current = $('recommendation_to_email_addresses').value;
+	if (current != '') current += ', ';
+	$('recommendation_to_email_addresses').value = current + contacts;
+}
+//]]>
+</script>
+<% else %>
+<div class="empty" style="text-align:center">Your friends have been notified of this contest.
+<br /><br /><br /><a href="#" onclick="window.close();return false;">Close</a></div>
+<% end %>

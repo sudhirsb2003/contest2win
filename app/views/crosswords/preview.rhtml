@@ -1,0 +1,42 @@
+<% @title = "#{h @contest.title}: Preview" %>
+
+<div style="float:right;width:30%">
+<h2>Across</h2>
+<ul>
+<% @contest.clues('across=true').each {|clue| %>
+	<li><%= clue.position %>. <%= h clue.question.question %> (<%= clue.length %>)</li>
+<% } %>
+</ul>
+
+<h2>Down</h2>
+<ul>
+<% @contest.clues('across=false').each {|clue| %>
+	<li><%= clue.position %>. <%= h clue.question.question %> (<%= clue.length %>)</li>
+<% } %>
+</ul>
+<br />
+<%= form_tag contest_url(@contest.url_attributes(:action => 'confirm')) %>
+<%= submit_tag "Done!" %>
+<%= submit_tag "Edit" %>
+</form>
+</div>
+
+<%= draw_crossword(@contest) %>
+
+<br clear="all"/>
+<% if @contest.all_questions.count(:conditions => "status=#{Question::STATUS_DRAFT}") > 0 %>
+<div style="margin-top:20px;">
+	<h2>Following Words could not be accomodated...</h2>
+	<%= @contest.all_questions.find_all_by_status(Question::STATUS_DRAFT).collect {|q| q.answer}.to_sentence %>
+</div>
+<% end %>
+
+<script src="/javascripts/crossword.js" type="text/javascript"></script>
+<script type="text/javascript">
+<% @contest.clues.each {|clue| %>
+	fill_in_answer('<%= clue.question.answer %>', <%= clue.row %>, <%= clue.col %>, <%= clue.across %>);
+<% } %>
+	function enter_answer(question_id) {
+		return false;
+	}
+</script>

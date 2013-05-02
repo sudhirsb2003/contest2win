@@ -1,0 +1,6 @@
+<div id="resend_activation_request_form" style="display:none">
+<% form_remote_tag(:url => '/account/resend_activation_email', :update => 'resend_activation_email_response', :loading => "$('resend_activation_email_response').innerHTML = 'please wait...'") do %>
+<div id="resend_activation_email_response" class="error"></div>
+Enter your Email Address <input type="text" name="email_address" value="<%= @user.email if @user %>"/> <%= submit_tag 'Re-send the Activation Email' %>
+<% end %>
+</div>

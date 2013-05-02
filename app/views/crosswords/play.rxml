@@ -1,0 +1,23 @@
+xml.instruct!
+
+xml.questions do
+  @contest.questions.each do |question|
+    xml.question do
+      xml.tag! 'question-id', question.id
+      clue = CrosswordClue.find_by_question_id question.id
+      xml.position clue.position
+      xml.question question.question
+      xml.row clue.row
+      xml.col clue.col
+      xml.across clue.across
+      xml.length clue.length
+      xml.digest question.digest
+      if question.image?        
+        host = question.image_in_s3? ? FileColumn::S3FileColumnExtension::Config.s3_distribution_url : "http://#{request.host_with_port}"
+        xml.thumbnail "#{host}/#{question.image_web_path('thumb')}"
+        xml.medium "#{host}/#{question.image_web_path('medium')}"
+        xml.large "#{host}/#{question.image_web_path}"
+      end
+    end
+  end
+end 
